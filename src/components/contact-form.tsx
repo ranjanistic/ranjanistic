@@ -9,13 +9,26 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { Mail, Send, Loader2 } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
+import { heroData } from "@/lib/data"; // Import heroData for email
+
+const designationOptions = [
+  "Potential Employer",
+  "Mentee",
+  "Friend",
+  "Just Curious",
+  "Other",
+] as const;
 
 const contactFormSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
   email: z.string().email({ message: "Please enter a valid email address." }),
+  designation: z.enum(designationOptions, {
+    errorMap: () => ({ message: "Please select your designation." }),
+  }),
   message: z.string().min(10, { message: "Message must be at least 10 characters." }).max(500, { message: "Message must be 500 characters or less." }),
 });
 
@@ -26,11 +39,11 @@ function SubmitButton({ isLoading }: { isLoading: boolean }) {
     <Button type="submit" disabled={isLoading} size="lg" className="w-full sm:w-auto font-sans">
       {isLoading ? (
         <>
-          <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Sending...
+          <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Processing...
         </>
       ) : (
         <>
-          Send Message <Send className="ml-2 h-4 w-4" />
+          Open Email Client <Send className="ml-2 h-4 w-4" />
         </>
       )}
     </Button>
@@ -43,29 +56,49 @@ export function ContactForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    control, // For Select component
+    formState: { errors, isSubmitting, isSubmitSuccessful },
     reset,
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactFormSchema),
     defaultValues: {
       name: "",
       email: "",
+      designation: undefined, // Default to undefined for placeholder
       message: "",
     }
   });
 
-  const onSubmit = async (data: ContactFormData) => {
-    // Simulate network delay
-    await new Promise(resolve => setTimeout(resolve, 1000));
-
-    console.log("Form data submitted (client-side):", data);
-
-    toast({
-      title: "Success!",
-      description: "Thank you for your message! I'll get back to you soon. (Simulated submission)",
-    });
-    reset({ name: "", email: "", message: "" });
+  const onSubmit = (data: ContactFormData) => {
+    const { name, email, message, designation } = data;
+    const subject = encodeURIComponent(`Portfolio Contact - ${name} (${designation})`);
+    const body = encodeURIComponent(
+      `Hello Priyanshu,\n\nMy name is ${name} (${designation}).\nMy email is ${email}.\n\nMessage:\n${message}\n\nBest regards,\n${name}`
+    );
+    
+    const mailtoLink = `mailto:${heroData.email}?subject=${subject}&body=${body}`;
+    
+    try {
+        window.location.href = mailtoLink;
+        toast({
+            title: "Success!",
+            description: "Your email client should open shortly with a pre-filled message.",
+        });
+    } catch (error) {
+        console.error("Failed to open mailto link:", error);
+        toast({
+            variant: "destructive",
+            title: "Error",
+            description: "Could not open your email client. Please try copying the email address manually.",
+        });
+    }
   };
+
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      reset(); 
+    }
+  }, [isSubmitSuccessful, reset]);
 
   return (
     <Card className="w-full max-w-2xl mx-auto shadow-xl bg-card text-card-foreground border border-border">
@@ -102,6 +135,32 @@ export function ContactForm() {
               aria-describedby="email-error"
             />
             {errors.email && <p id="email-error" className="text-sm text-destructive mt-1 font-sans">{errors.email.message}</p>}
+          </div>
+
+          <div>
+            <Label htmlFor="designation" className="font-semibold font-sans">I am a...</Label>
+            <Controller
+              name="designation"
+              control={control}
+              render={({ field }) => (
+                <Select onValueChange={field.onChange} defaultValue={field.value} value={field.value}>
+                  <SelectTrigger 
+                    id="designation" 
+                    className={`mt-1 font-sans ${errors.designation ? "border-destructive" : ""}`}
+                    aria-invalid={!!errors.designation}
+                    aria-describedby="designation-error"
+                  >
+                    <SelectValue placeholder="Select your designation" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {designationOptions.map(option => (
+                      <SelectItem key={option} value={option} className="font-sans">{option}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              )}
+            />
+            {errors.designation && <p id="designation-error" className="text-sm text-destructive mt-1 font-sans">{errors.designation.message}</p>}
           </div>
 
           <div>

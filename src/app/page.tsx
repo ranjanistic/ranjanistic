@@ -4,13 +4,13 @@ import Image from 'next/image';
 import {
   heroData,
   workExperienceData,
-  projectData,
-  skillsData,
+  projectData, // Changed from projects to projectData
+  skillsData,    // Changed from skillCategories to skillsData
   educationData,
   socialLinksFooter,
   blogPosts,
 } from '@/lib/data';
-import type { ProjectEntry as ProjectDataType, WorkExperienceEntry, SkillArea, EducationEntry } from '@/lib/types';
+import type { ProjectEntry, WorkExperienceEntry, SkillArea, EducationEntry } from '@/lib/types'; // Updated types
 import { SectionContainer, SectionHeader } from '@/components/ui/section-container';
 import { Button } from '@/components/ui/button';
 import { Download, ExternalLink, Mail, MapPin, Phone, Briefcase, Lightbulb, Code2, Settings, Users, Award, BookOpen, MessageSquare, CheckCircle } from 'lucide-react';
@@ -145,7 +145,7 @@ export default function Home() {
       <SectionContainer id="projects" bgColorClass="bg-section-projects" fullWidthBg animated>
         <SectionHeader title="Projects" subtitle="Selected Works" alignment="left" />
         <div className="space-y-12">
-          {projectData.map((proj: ProjectDataType) => (
+          {projectData.map((proj: ProjectEntry) => (
             <div key={proj.title} className="pb-8 border-b border-border/50 last:border-b-0 last:pb-0">
               <h3 className="text-2xl lg:text-3xl font-headline text-primary mb-2">
                 {proj.title}
@@ -285,3 +285,5 @@ export default function Home() {
     </>
   );
 }
+
+    
