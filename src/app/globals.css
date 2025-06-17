@@ -46,7 +46,10 @@ body {
     --chart-5: 50 70% 50%;
 
     /* Specific solid background colors for sections (examples) */
-    --section-bg-hero: 220 20% 12%; /* Slightly darker than main for emphasis */
+    /* --section-bg-hero: 220 20% 12%; /* Slightly darker than main for emphasis - Will be replaced by gradient */
+    --hero-gradient-start: hsl(220, 20%, 10%); /* Darker start for hero gradient */
+    --hero-gradient-end: hsl(var(--background));   /* Fades to main background */
+
     --section-bg-about: 220 20% 18%; 
     --section-bg-experience: 220 20% 15%; /* Main bg */
     --section-bg-projects: 220 20% 18%;

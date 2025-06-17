@@ -2,12 +2,10 @@ import Link from 'next/link';
 import { socialLinksFooter, heroData } from '@/lib/data';
 
 export function Footer() {
-  const currentYear = new Date().getFullYear();
-
   return (
     <footer className="bg-muted text-muted-foreground py-12 mt-16 border-t border-border/50">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-2 gap-8 items-center mb-8">
+        <div className="grid md:grid-cols-2 gap-8 items-center">
           <div>
             <div className="text-2xl font-headline font-bold text-foreground mb-2">
               {heroData.name}
@@ -31,14 +29,6 @@ export function Footer() {
               </Link>
             ))}
           </div>
-        </div>
-        <div className="text-center text-sm font-sans border-t border-border/30 pt-8">
-          <p>
-            &copy; {currentYear} {heroData.name}. All rights reserved.
-          </p>
-          <p className="mt-1">
-            Built with Next.js, Tailwind CSS, and a passion for innovation.
-          </p>
         </div>
       </div>
     </footer>

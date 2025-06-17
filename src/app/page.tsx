@@ -4,13 +4,13 @@ import Image from 'next/image';
 import {
   heroData,
   workExperienceData,
-  projectData, // Changed from projects to projectData
-  skillsData,    // Changed from skillCategories to skillsData
+  projectData,
+  skillsData,
   educationData,
   socialLinksFooter,
   blogPosts,
 } from '@/lib/data';
-import type { ProjectEntry, WorkExperienceEntry, SkillArea, EducationEntry } from '@/lib/types'; // Updated types
+import type { ProjectEntry, WorkExperienceEntry, SkillArea, EducationEntry } from '@/lib/types';
 import { SectionContainer, SectionHeader } from '@/components/ui/section-container';
 import { Button } from '@/components/ui/button';
 import { Download, ExternalLink, Mail, MapPin, Phone, Briefcase, Lightbulb, Code2, Settings, Users, Award, BookOpen, MessageSquare, CheckCircle } from 'lucide-react';
@@ -24,8 +24,7 @@ export default function Home() {
     <>
       <SectionContainer
         id="top"
-        bgColorClass="bg-section-hero"
-        className="min-h-[calc(100vh-4rem)] flex flex-col justify-center items-center"
+        className="min-h-[calc(100vh-4rem)] flex flex-col justify-center items-center bg-[linear-gradient(180deg,var(--hero-gradient-start)_0%,var(--hero-gradient-end)_70%)]"
         animated={false}
         fullWidthBg
       >
@@ -131,7 +130,7 @@ export default function Home() {
               </div>
               <ul className="list-none space-y-2 text-base text-muted-foreground leading-relaxed font-sans">
                 {exp.description.map((desc, i) => (
-                  <li key={i} className="flex items-start pl-1">
+                  <li key={`${exp.company}-${exp.role}-desc-${i}`} className="flex items-start pl-1">
                     <CheckCircle className="h-4 w-4 mr-2.5 mt-1 text-accent/80 shrink-0" />
                     {desc}
                   </li>
@@ -205,7 +204,7 @@ export default function Home() {
               <p className="text-lg font-semibold text-primary mt-1">{edu.institution}</p>
               <p className="text-sm text-muted-foreground mb-3 font-sans">{edu.period}</p>
               {edu.details && edu.details.map((detail, i) => (
-                <div key={i} className="text-base text-muted-foreground leading-relaxed font-sans mt-2 space-y-1">
+                <div key={`${edu.institution}-detail-${i}`} className="text-base text-muted-foreground leading-relaxed font-sans mt-2 space-y-1">
                   {detail.specialization && <p><strong className="font-medium text-foreground/80">Specialization:</strong> {detail.specialization}</p>}
                   {detail.projects && (
                     <p className="mt-1">
