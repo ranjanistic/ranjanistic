@@ -11,7 +11,8 @@ export default {
     extend: {
       fontFamily: {
         body: ['Inter', 'sans-serif'],
-        headline: ['Inter', 'sans-serif'],
+        headline: ['Belleza', 'Inter', 'sans-serif'],
+        serif: ['Alegreya', 'serif'],
         code: ['monospace'],
       },
       colors: {
@@ -88,12 +89,59 @@ export default {
             height: '0',
           },
         },
+        'fade-in': {
+          '0%': { opacity: '0', transform: 'translateY(10px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        'slide-in-left': {
+          '0%': { opacity: '0', transform: 'translateX(-20px)' },
+          '100%': { opacity: '1', transform: 'translateX(0)' },
+        },
+        'slide-in-right': {
+          '0%': { opacity: '0', transform: 'translateX(20px)' },
+          '100%': { opacity: '1', transform: 'translateX(0)' },
+        }
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        'fade-in': 'fade-in 0.5s ease-out forwards',
+        'slide-in-left': 'slide-in-left 0.5s ease-out forwards',
+        'slide-in-right': 'slide-in-right 0.5s ease-out forwards',
       },
+      typography: (theme: (arg0: string) => any) => ({
+        DEFAULT: {
+          css: {
+            color: theme('colors.foreground'),
+            a: {
+              color: theme('colors.primary.DEFAULT'),
+              '&:hover': {
+                color: theme('colors.primary.foreground'),
+                backgroundColor: theme('colors.primary.DEFAULT'),
+              },
+            },
+            h1: { fontFamily: theme('fontFamily.headline').join(','), color: theme('colors.foreground') },
+            h2: { fontFamily: theme('fontFamily.headline').join(','), color: theme('colors.foreground') },
+            h3: { fontFamily: theme('fontFamily.headline').join(','), color: theme('colors.foreground') },
+            h4: { fontFamily: theme('fontFamily.headline').join(','), color: theme('colors.foreground') },
+            strong: { color: theme('colors.foreground') },
+            blockquote: { color: theme('colors.muted.foreground'), borderLeftColor: theme('colors.border')},
+            // Add more styles for prose if needed for blog
+          },
+        },
+        longform: {
+          css: {
+            fontFamily: theme('fontFamily.serif').join(','),
+             p: {
+              fontFamily: theme('fontFamily.serif').join(','),
+            },
+            li: {
+              fontFamily: theme('fontFamily.serif').join(','),
+            }
+          }
+        }
+      }),
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography')],
 } satisfies Config;
