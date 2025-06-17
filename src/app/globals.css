@@ -45,18 +45,17 @@ body {
     --chart-4: 280 50% 60%;
     --chart-5: 50 70% 50%;
 
-    /* Specific solid background colors for sections (examples) */
-    /* --section-bg-hero: 220 20% 12%; /* Slightly darker than main for emphasis - Will be replaced by gradient */
-    --hero-gradient-start: hsl(220, 20%, 10%); /* Darker start for hero gradient */
-    --hero-gradient-end: hsl(var(--background));   /* Fades to main background */
+    /* Updated Hero Gradient using Primary/Accent Hues */
+    --hero-gradient-start: hsl(180, 35%, 18%); /* Darker, desaturated Teal/Cyan */
+    --hero-gradient-end: hsl(15, 45%, 22%);   /* Darker, desaturated Coral/Orange */
 
-    --section-bg-about: 220 20% 18%; 
-    --section-bg-experience: 220 20% 15%; /* Main bg */
-    --section-bg-projects: 220 20% 18%;
-    --section-bg-skills: 220 20% 15%; /* Main bg */
-    --section-bg-education: 220 20% 18%;
-    --section-bg-blog: 220 20% 15%; /* Main bg */
-    --section-bg-contact: 220 20% 18%;
+    --section-bg-about: hsl(220 20% 18%); 
+    --section-bg-experience: hsl(var(--background)); /* Main bg */
+    --section-bg-projects: hsl(220 20% 18%);
+    --section-bg-skills: hsl(var(--background)); /* Main bg */
+    --section-bg-education: hsl(220 20% 18%);
+    --section-bg-blog: hsl(var(--background)); /* Main bg */
+    --section-bg-contact: hsl(220 20% 18%);
   }
 
   /* No separate dark mode needed if base is dark */
