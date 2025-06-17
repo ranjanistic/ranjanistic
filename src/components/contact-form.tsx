@@ -2,7 +2,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form"; // Added Controller here
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
@@ -13,7 +13,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useToast } from "@/hooks/use-toast";
 import { Mail, Send, Loader2 } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
-import { heroData } from "@/lib/data"; // Import heroData for email
+import { heroData } from "@/lib/data"; 
 
 const designationOptions = [
   "Potential Employer",
@@ -56,7 +56,7 @@ export function ContactForm() {
   const {
     register,
     handleSubmit,
-    control, // For Select component
+    control, 
     formState: { errors, isSubmitting, isSubmitSuccessful },
     reset,
   } = useForm<ContactFormData>({
@@ -64,7 +64,7 @@ export function ContactForm() {
     defaultValues: {
       name: "",
       email: "",
-      designation: undefined, // Default to undefined for placeholder
+      designation: undefined, 
       message: "",
     }
   });
@@ -184,3 +184,4 @@ export function ContactForm() {
     </Card>
   );
 }
+
