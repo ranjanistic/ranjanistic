@@ -24,7 +24,7 @@ export default function Home() {
     <>
       <SectionContainer
         id="top"
-        className="min-h-[calc(100vh-4rem)] flex flex-col justify-center items-center bg-[linear-gradient(135deg,var(--hero-gradient-start)_0%,var(--hero-gradient-end)_100%)]"
+        className="min-h-[calc(100vh-4rem)] flex flex-col justify-center items-center bg-[linear-gradient(180deg,var(--hero-gradient-start)_0%,var(--hero-gradient-end)_70%)]"
         animated={false}
         fullWidthBg
       >

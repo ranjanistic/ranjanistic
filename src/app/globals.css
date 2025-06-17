@@ -45,9 +45,8 @@ body {
     --chart-4: 280 50% 60%;
     --chart-5: 50 70% 50%;
 
-    /* Updated Hero Gradient using Primary/Accent Hues */
-    --hero-gradient-start: hsl(180, 35%, 18%); /* Darker, desaturated Teal/Cyan */
-    --hero-gradient-end: hsl(15, 45%, 22%);   /* Darker, desaturated Coral/Orange */
+    --hero-gradient-start: hsl(var(--background), 0.95); /* Slightly lighter than background */
+    --hero-gradient-end: hsl(var(--background));       /* Main background color */
 
     --section-bg-about: hsl(220 20% 18%); 
     --section-bg-experience: hsl(var(--background)); /* Main bg */
