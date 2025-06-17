@@ -25,11 +25,12 @@ export function Navbar() {
   }, []);
 
   const NavLinkItem: React.FC<{ href: string; label: string; onClick?: () => void; isBrand?: boolean }> = ({ href, label, onClick, isBrand = false }) => {
-    const isCurrentPageLink = pathname === href.split('#')[0]; // Check if it's for the current page
+    const isCurrentPageLink = pathname === href.split('#')[0];
     const hash = href.split('#')[1];
     let isActive = false;
     if (typeof window !== 'undefined') {
-      isActive = isCurrentPageLink && (hash ? window.location.hash === `#${hash}` : pathname === href);
+       // Check if current hash matches the link's hash, or if it's a top page link and current hash is empty/top
+      isActive = isCurrentPageLink && (hash ? window.location.hash === `#${hash}` : (pathname === href && (window.location.hash === "" || window.location.hash === "#top")));
     }
 
 
@@ -38,10 +39,10 @@ export function Navbar() {
         href={href}
         onClick={onClick}
         className={cn(
-          "px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300",
+          "px-3 py-2 rounded-md text-sm transition-colors duration-300",
           isBrand 
-            ? "text-xl font-headline font-semibold text-foreground hover:text-primary" 
-            : "text-muted-foreground hover:text-foreground focus:text-foreground",
+            ? "text-xl font-headline font-bold text-foreground hover:text-primary" // Archivo for brand
+            : "font-sans text-muted-foreground hover:text-foreground focus:text-foreground", // Inter Tight for nav links
           isActive && !isBrand ? "text-primary font-semibold" : "",
           "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background"
         )}
@@ -52,27 +53,25 @@ export function Navbar() {
     );
   };
   
-  const brandLabel = heroData.name.split(' ')[0]; // Use first name for brand
+  const brandLabel = heroData.name.split(' ')[0]; 
   const navLinks = navLinksData.filter(link => link.label !== heroData.name);
 
 
   return (
     <header className={cn(
       "sticky top-0 z-50 w-full transition-all duration-300",
-      isScrolled ? "bg-background/90 backdrop-blur-lg shadow-md" : "bg-transparent"
+      isScrolled ? "bg-background/80 backdrop-blur-md shadow-lg border-b border-border/30" : "bg-transparent"
     )}>
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <NavLinkItem href="/#top" label={brandLabel} isBrand />
 
-          {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-1">
             {navLinks.map((link) => (
               <NavLinkItem key={link.href} href={link.href} label={link.label} />
             ))}
           </nav>
 
-          {/* Mobile Navigation */}
           <div className="md:hidden">
             <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
               <SheetTrigger asChild>
@@ -80,7 +79,7 @@ export function Navbar() {
                   <Menu className="h-6 w-6 text-foreground" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-full max-w-xs bg-background p-6">
+              <SheetContent side="right" className="w-full max-w-xs bg-background p-6 border-l border-border/50">
                 <div className="flex flex-col space-y-1">
                   <div className="flex justify-between items-center mb-4">
                      <NavLinkItem href="/#top" label={brandLabel} isBrand onClick={() => setIsSheetOpen(false)} />

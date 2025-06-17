@@ -2,13 +2,13 @@
 import Image from 'next/image';
 import { SectionContainer, SectionHeader } from '@/components/ui/section-container';
 import { Button } from '@/components/ui/button';
-import { Download, Linkedin, Github, Gitlab } from 'lucide-react'; // Updated Dribbble to Gitlab
-import { socialLinksFooter } from '@/lib/data'; // Changed socialLinks to socialLinksFooter
+import { Download, Linkedin, Github, Gitlab } from 'lucide-react';
+import { socialLinksFooter } from '@/lib/data';
 import Link from 'next/link';
 
 export default function AboutPage() {
   return (
-    <SectionContainer id="about-me" animated>
+    <SectionContainer id="about-me" animated bgColorClass="bg-section-about" fullWidthBg>
       <SectionHeader title="About Priyanshu Ranjan" subtitle="My Journey & Philosophy" />
       
       <div className="grid lg:grid-cols-3 gap-12 items-start">
@@ -19,18 +19,18 @@ export default function AboutPage() {
             width={400}
             height={500}
             className="rounded-xl shadow-2xl object-cover aspect-[4/5] mb-6"
-            data-ai-hint="professional designer"
+            data-ai-hint="professional tech portrait"
           />
           <h3 className="text-2xl font-headline text-foreground mb-2">Priyanshu Ranjan</h3>
-          <p className="text-muted-foreground text-center mb-4">Forward-Thinking Design Expert</p>
-          <Button variant="default" size="lg" className="mb-4 w-full max-w-xs" asChild>
+          <p className="text-muted-foreground text-center mb-4 font-sans">Forward-Thinking Design Expert</p>
+          <Button variant="outline" size="lg" className="mb-4 w-full max-w-xs font-sans border-primary text-primary hover:bg-primary hover:text-primary-foreground" asChild>
             <a href="/path-to-resume.pdf" download>
               Download Resume <Download className="ml-2 h-5 w-5" />
             </a>
           </Button>
           <div className="flex space-x-4">
-            {socialLinksFooter.map(link => ( // Changed socialLinks to socialLinksFooter
-              <Button key={link.name} variant="outline" size="icon" asChild>
+            {socialLinksFooter.map(link => (
+              <Button key={link.name} variant="outline" size="icon" asChild className="rounded-full border-primary/50 text-primary hover:bg-primary/10 hover:border-primary">
                 <a href={link.url} target="_blank" rel="noopener noreferrer" aria-label={link.name}>
                   <link.icon className="h-5 w-5" />
                 </a>
@@ -39,8 +39,8 @@ export default function AboutPage() {
           </div>
         </div>
 
-        <div className="lg:col-span-2 prose prose-longform dark:prose-invert max-w-none">
-          <p className="text-xl leading-relaxed">
+        <div className="lg:col-span-2 prose prose-lg dark:prose-invert max-w-none prose-headings:font-headline prose-p:font-sans prose-li:font-sans prose-p:text-muted-foreground prose-headings:text-foreground">
+          <p className="text-xl leading-relaxed font-sans">
             As a dedicated and forward-thinking design expert, I am passionate about crafting digital experiences that are not only visually captivating but also deeply intuitive and user-centric. My journey in design has been fueled by a relentless curiosity and a desire to solve complex problems through creative and empathetic solutions.
           </p>
           <h3 className="font-headline text-2xl mt-8 mb-4">My Design Philosophy</h3>
@@ -63,7 +63,7 @@ export default function AboutPage() {
             My goal is to leverage my skills and passion to contribute to projects that make a positive impact, drive innovation, and ultimately, make technology more human.
           </p>
           <div className="mt-8">
-            <Button asChild size="lg">
+            <Button asChild size="lg" className="font-sans">
               <Link href="/contact">Let's Collaborate</Link>
             </Button>
           </div>

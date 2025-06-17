@@ -1,23 +1,24 @@
 import type { Metadata } from 'next';
-import { Inter, Alegreya } from 'next/font/google'; // Removed Belleza, Inter will be headline
+import { Archivo, Inter_Tight } from 'next/font/google';
 import './globals.css';
 import { Navbar } from '@/components/layout/navbar';
 import { Footer } from '@/components/layout/footer';
 import { Toaster } from "@/components/ui/toaster";
 import { cn } from '@/lib/utils';
 
-const inter = Inter({ 
+const archivo = Archivo({ 
   subsets: ['latin'],
-  variable: '--font-inter', // For headlines and general sans-serif
+  variable: '--font-archivo',
   display: 'swap',
+  weight: ['400', '500', '600', '700', '800', '900'], // Added more weights
 });
 
-const alegreya = Alegreya({
+const interTight = Inter_Tight({
   subsets: ['latin'],
   style: ['normal', 'italic'],
-  weight: ['400', '500', '700'],
-  variable: '--font-alegreya', // For body/longform text
+  variable: '--font-inter-tight',
   display: 'swap',
+  weight: ['300', '400', '500', '600', '700'], // Added more weights
 });
 
 export const metadata: Metadata = {
@@ -37,9 +38,9 @@ export default function RootLayout({
       </head>
       <body 
         className={cn(
-          "min-h-screen bg-background font-serif text-foreground antialiased", 
-          inter.variable, 
-          alegreya.variable // Belleza variable removed
+          "min-h-screen bg-background font-sans text-foreground antialiased", // font-sans will use Inter Tight
+          archivo.variable, 
+          interTight.variable 
         )}
       >
         <div className="flex flex-col min-h-screen">

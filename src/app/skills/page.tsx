@@ -9,9 +9,9 @@ export const metadata = {
 
 export default function SkillsPage() {
   return (
-    <SectionContainer id="skills-overview" animated>
+    <SectionContainer id="skills-overview" animated bgColorClass="bg-section-skills" fullWidthBg>
       <SectionHeader title="My Skills & Expertise" subtitle="Technical Proficiency" />
-      <p className="text-center text-lg text-muted-foreground mb-12 max-w-2xl mx-auto font-serif">
+      <p className="text-center text-lg text-muted-foreground mb-12 max-w-2xl mx-auto font-sans">
         I possess a diverse range of skills spanning design, development, and project management. Here's a breakdown of my core competencies and the tools I leverage to bring ideas to life.
       </p>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

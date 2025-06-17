@@ -1,7 +1,7 @@
 import type {Config} from 'tailwindcss';
 
 export default {
-  darkMode: ['class'],
+  darkMode: ['class'], // Keep dark mode toggle if you ever want a light version, otherwise can be removed if base is dark
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -10,9 +10,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-inter)', 'sans-serif'], 
-        serif: ['var(--font-alegreya)', 'serif'], 
-        headline: ['var(--font-inter)', 'sans-serif'], // Changed headline to Inter for impact
+        sans: ['var(--font-inter-tight)', 'sans-serif'], 
+        headline: ['var(--font-archivo)', 'sans-serif'], 
         code: ['monospace'],
       },
       colors: {
@@ -66,6 +65,14 @@ export default {
           border: 'hsl(var(--sidebar-border))',
           ring: 'hsl(var(--sidebar-ring))',
         },
+        'section-hero': 'hsl(var(--section-bg-hero))',
+        'section-about': 'hsl(var(--section-bg-about))',
+        'section-experience': 'hsl(var(--section-bg-experience))',
+        'section-projects': 'hsl(var(--section-bg-projects))',
+        'section-skills': 'hsl(var(--section-bg-skills))',
+        'section-education': 'hsl(var(--section-bg-education))',
+        'section-blog': 'hsl(var(--section-bg-blog))',
+        'section-contact': 'hsl(var(--section-bg-contact))',
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -112,16 +119,16 @@ export default {
       typography: (theme: (arg0: string) => any) => ({
         DEFAULT: {
           css: {
-            color: 'hsl(var(--foreground))', // Use the CSS variable
-            fontFamily: theme('fontFamily.serif').join(','),
-            strong: { color: 'hsl(var(--foreground))', fontWeight: theme('fontWeight.bold') }, // Use the CSS variable
+            color: 'hsl(var(--foreground))', 
+            fontFamily: theme('fontFamily.sans').join(','), // Use sans (Inter Tight) for prose body
+            strong: { color: 'hsl(var(--foreground))', fontWeight: theme('fontWeight.bold') }, 
             a: {
-              color: 'hsl(var(--primary))', // Use CSS variable for primary link color
+              color: 'hsl(var(--primary))', 
               textDecoration: 'none',
               fontWeight: theme('fontWeight.medium'),
               transition: 'color 0.3s ease',
               '&:hover': {
-                color: 'hsl(var(--accent))', // Use CSS variable for accent hover color
+                color: 'hsl(var(--accent))', 
                 textDecoration: 'underline',
                 textUnderlineOffset: '4px',
               },
@@ -137,25 +144,26 @@ export default {
             'ol > li::marker': {
               color: 'hsl(var(--muted-foreground))',
             },
-            // Ensure prose uses HSL variables for dark mode compatibility
             '--tw-prose-body': 'hsl(var(--foreground))',
             '--tw-prose-headings': 'hsl(var(--foreground))',
             '--tw-prose-lead': 'hsl(var(--muted-foreground))',
             '--tw-prose-links': 'hsl(var(--primary))',
             '--tw-prose-bold': 'hsl(var(--foreground))',
             '--tw-prose-counters': 'hsl(var(--muted-foreground))',
-            '--tw-prose-bullets': 'hsl(var(--muted-foreground))', // Adjusted to muted-foreground
+            '--tw-prose-bullets': 'hsl(var(--muted-foreground))', 
             '--tw-prose-hr': 'hsl(var(--border))',
             '--tw-prose-quotes': 'hsl(var(--foreground))',
             '--tw-prose-quote-borders': 'hsl(var(--border))',
             '--tw-prose-captions': 'hsl(var(--muted-foreground))',
             '--tw-prose-code': 'hsl(var(--foreground))',
-            '--tw-prose-pre-code': 'hsl(var(--foreground))', // Example, adjust as needed
-            '--tw-prose-pre-bg': 'hsl(var(--muted))', // Example, adjust as needed
+            '--tw-prose-pre-code': 'hsl(var(--foreground))', 
+            '--tw-prose-pre-bg': 'hsl(var(--muted))', 
             '--tw-prose-th-borders': 'hsl(var(--border))',
             '--tw-prose-td-borders': 'hsl(var(--border))',
 
-            '--tw-prose-invert-body': 'hsl(var(--foreground))', // In dark mode, foreground becomes light
+            // For dark theme, these are essentially the same if your base theme IS dark.
+            // If you had a light base and .dark class, these would be different.
+            '--tw-prose-invert-body': 'hsl(var(--foreground))', 
             '--tw-prose-invert-headings': 'hsl(var(--foreground))',
             '--tw-prose-invert-lead': 'hsl(var(--muted-foreground))',
             '--tw-prose-invert-links': 'hsl(var(--primary))',

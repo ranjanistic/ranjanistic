@@ -1,14 +1,18 @@
 
 import type { LucideIcon } from 'lucide-react';
-import { Linkedin, Github, Gitlab } from 'lucide-react';
-import type { WorkExperienceEntry, NavLink, HeroData, ProjectEntry, SkillArea, EducationEntry, SocialLinkInfo, BlogPost, BlogPostContentItem } from '@/lib/types';
+import { Linkedin, Github, Gitlab, LayoutDashboard, Briefcase, Wand2, GraduationCap, MessageCircle, Palette, Code, Settings, Users } from 'lucide-react'; // Added more icons
+import type { WorkExperienceEntry, NavLink, HeroData, ProjectEntry, SkillArea, EducationEntry, SocialLinkInfo, BlogPost, Project, SkillCategory, Experience, BlogPostContentItem } from '@/lib/types';
+
 
 export const navLinksData: NavLink[] = [
-  { href: '/#top', label: 'Priyanshu Ranjan' },
+  { href: '/#top', label: 'Priyanshu R.' }, // Shortened for navbar
+  { href: '/#about', label: 'About' },
   { href: '/#experience', label: 'Experience' },
   { href: '/#projects', label: 'Projects' },
   { href: '/#skills', label: 'Skills' },
   { href: '/#education', label: 'Education' },
+  { href: '/#blog', label: 'Blog' },
+  { href: '/#contact', label: 'Contact' },
 ];
 
 export const heroData: HeroData = {
@@ -108,7 +112,7 @@ export const projectData: ProjectEntry[] = [
     title: 'Stellar Evolution — Using MESA',
     description: 'Pre-main sequence contraction, role of mass distributions guided by Initial Mass Function, involving HR diagrams.',
     linkText: 'View concluding report',
-    link: '#',
+    link: '#', // Placeholder link
   },
   {
     title: 'Knotters — Open source community portal',
@@ -130,7 +134,7 @@ export const projectData: ProjectEntry[] = [
     title: 'Schemester — B2B management',
     description: 'An online institution management system, primarily focused on the educational niche.',
     linkText: 'View',
-    link: '#',
+    link: '#', // Placeholder link
   },
   {
     title: 'Skivvy — Native android app',
@@ -178,7 +182,7 @@ export const educationData: EducationEntry[] = [
       {
         projects: 'Stellar evolution & modelling using MESA, under the guidance of Prof. T.R. Seshadri & Dr. Sachin Pandey.',
         projectLinkText: 'View concluding presentation',
-        projectLink: '#',
+        projectLink: '#', // Placeholder link
       },
       {
         specialization: 'General Theory of Relativity, Cosmology, Astrophysics, Complex systems & Networks, Nonlinear Dynamics, Computational Physics.',
@@ -214,7 +218,6 @@ export const socialLinksFooter: SocialLinkInfo[] = [
   { name: 'GitLab', url: 'https://gitlab.com/ranjanistic', icon: Gitlab },
 ];
 
-// Blog Posts Data
 export const blogPosts: BlogPost[] = [
   {
     slug: 'the-future-of-design-thinking',
@@ -223,7 +226,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: 'Exploring how design thinking methodologies are evolving with advancements in AI and other technologies.',
     content: [
       { type: 'paragraph', content: "Design thinking has long been a cornerstone of innovation, providing a human-centered approach to problem-solving. As technology, particularly Artificial Intelligence (AI), continues its rapid advancement, the landscape of design thinking is set for a transformative shift. How will these methodologies adapt, and what new opportunities will arise for designers?" },
-      { type: 'image', src: 'https://placehold.co/800x450.png', alt: 'AI and design thinking concept', hint: 'AI design' },
+      { type: 'image', src: 'https://placehold.co/800x450.png', alt: 'AI and design thinking concept', hint: 'abstract ai design' },
       { type: 'heading', content: 'AI as a Design Partner' },
       { type: 'paragraph', content: "Instead of viewing AI as a replacement for designers, we should see it as a powerful partner. AI can automate repetitive tasks, analyze vast amounts of user data to uncover insights, and even generate initial design concepts. This frees up designers to focus on higher-level strategic thinking, empathy, and creativity – areas where human intuition excels." },
       { type: 'heading', content: 'Ethical Considerations' },
@@ -233,7 +236,7 @@ export const blogPosts: BlogPost[] = [
     ],
     tags: ['Design Thinking', 'AI', 'Future of Design', 'Technology'],
     coverImage: 'https://placehold.co/800x400.png',
-    coverImageHint: 'futuristic design tech'
+    coverImageHint: 'futuristic tech interface'
   },
   {
     slug: 'minimalism-in-ui-ux',
@@ -244,7 +247,7 @@ export const blogPosts: BlogPost[] = [
       { type: 'paragraph', content: "In a world saturated with information and visual stimuli, minimalism in UI/UX design offers a breath of fresh air. It’s more than just an aesthetic trend; it’s a philosophy centered on clarity, purpose, and user focus. But what makes minimalist design so powerful, and how can it be effectively implemented?" },
       { type: 'heading', content: 'Clarity and Focus' },
       { type: 'paragraph', content: "Minimalist interfaces remove unnecessary clutter, allowing users to focus on the core content and functionality. By prioritizing essential elements and employing generous white space, designers can guide the user’s attention and make interactions more intuitive." },
-      { type: 'image', src: 'https://placehold.co/800x450.png', alt: 'Minimalist UI example', hint: 'minimalist interface' },
+      { type: 'image', src: 'https://placehold.co/800x450.png', alt: 'Minimalist UI example', hint: 'clean minimalist ui' },
       { type: 'heading', content: 'Improved Performance' },
       { type: 'paragraph', content: "Fewer elements typically mean faster loading times and smoother performance, especially on mobile devices. This contributes significantly to a positive user experience and can impact conversion rates and user retention." },
       { type: 'heading', content: 'Timeless Appeal' },
@@ -253,55 +256,104 @@ export const blogPosts: BlogPost[] = [
     ],
     tags: ['Minimalism', 'UI Design', 'UX Design', 'User Experience'],
     coverImage: 'https://placehold.co/800x400.png',
-    coverImageHint: 'clean design interface'
+    coverImageHint: 'simple design elements'
   },
 ];
 
-// Detailed data for Projects and Skills for dedicated pages (if restored)
-// For now, these are illustrative and not directly used by the single-page kinseygross.com style
-// but are kept here if those pages are to be made functional with more detail.
-
-export const projects: import('@/lib/types').Project[] = [
+// Detailed data for Projects (if a dedicated /projects/[slug] page is used)
+export const projects: Project[] = [
   {
     id: 'project-a',
-    slug: 'project-alpha',
+    slug: 'project-alpha', // Make sure slugs are unique and URL-friendly
     title: 'Project Alpha',
-    shortDescription: 'A revolutionary e-commerce platform design.',
+    shortDescription: 'A revolutionary e-commerce platform design focusing on UX.',
     description: 'Project Alpha aimed to redefine the online shopping experience by integrating cutting-edge UI/UX principles with a highly personalized user journey. The storyline involved extensive user research, iterative prototyping, and collaboration with development teams to bring a seamless and engaging platform to life.',
-    imageUrl: 'https://placehold.co/600x400.png',
-    imageHint: 'modern ecommerce',
-    technologies: ['Figma', 'React', 'User Research'],
-    liveLink: '#',
-    repoLink: '#',
+    imageUrl: 'https://placehold.co/1200x675.png', // Larger image for detail page
+    imageHint: 'modern ecommerce dashboard',
+    technologies: ['Figma', 'React', 'User Research', 'Node.js'],
+    liveLink: 'https://example.com/project-alpha-live', // Example link
+    repoLink: 'https://github.com/your-username/project-alpha', // Example link
     storyline: [
       { type: 'heading', content: 'The Challenge' },
-      { type: 'paragraph', content: 'Existing e-commerce platforms often suffer from cluttered interfaces and impersonal experiences. The goal was to create something intuitive and delightful.' },
-      { type: 'image', src: 'https://placehold.co/800x450.png', alt: 'Early sketch of platform', hint: 'design sketch' },
-      { type: 'heading', content: 'Our Approach' },
-      { type: 'paragraph', content: 'We started with deep user interviews and persona development. This was followed by wireframing, low-fidelity, and high-fidelity prototypes, constantly testing with users.' },
+      { type: 'paragraph', content: 'Existing e-commerce platforms often suffer from cluttered interfaces and impersonal experiences. The goal was to create something intuitive, delightful, and highly performant, capable of handling a large product catalog and diverse user base.' },
+      { type: 'image', src: 'https://placehold.co/800x450.png', alt: 'Early sketch of platform architecture', hint: 'architecture sketch' },
+      { type: 'heading', content: 'Our Approach & My Role' },
+      { type: 'paragraph', content: 'We started with deep user interviews and persona development. This was followed by wireframing, low-fidelity, and high-fidelity prototypes using Figma. I led the UX research phase and collaborated closely with UI designers and front-end developers to ensure design feasibility and optimal user flow. Iterative testing with users was conducted at each stage.' },
+      { type: 'list', items: ['Conducted 20+ user interviews.', 'Developed 5 key user personas.', 'Created interactive prototypes for A/B testing.'] },
       { type: 'heading', content: 'The Outcome' },
-      { type: 'paragraph', content: 'A platform that saw a 30% increase in user engagement and a 15% rise in conversion rates within the first three months of launch.' },
+      { type: 'paragraph', content: 'A platform that saw a 30% increase in user engagement, a 25% reduction in cart abandonment, and a 15% rise in conversion rates within the first three months of launch. The design system created also streamlined future development efforts.' },
     ],
   },
-  // Add more detailed projects if needed for a dedicated projects page
+  {
+    id: 'project-b',
+    slug: 'project-beta',
+    title: 'Project Beta',
+    shortDescription: 'A mobile app for mindfulness and well-being with a calm UI.',
+    description: 'Project Beta is a serene mobile application designed to help users cultivate mindfulness and improve their mental well-being through guided meditations, breathing exercises, and progress tracking. The project involved creating a calming user interface, intuitive navigation, and engaging content delivery mechanisms.',
+    imageUrl: 'https://placehold.co/1200x675.png',
+    imageHint: 'mobile app mindfulness',
+    technologies: ['SwiftUI', 'Adobe XD', 'Firebase', 'User Testing'],
+    liveLink: 'https://example.com/project-beta-live',
+    storyline: [
+      { type: 'heading', content: 'Concept & Vision' },
+      { type: 'paragraph', content: 'In an increasingly fast-paced world, Project Beta offers a personal sanctuary for users to find peace, reduce stress, and enhance clarity through guided meditations and structured mindfulness exercises. The vision was to make mental well-being accessible and engaging.' },
+      { type: 'image', src: 'https://placehold.co/800x450.png', alt: 'App screenshot of meditation screen', hint: 'meditation app ui' },
+      { type: 'heading', content: 'Design Philosophy & Execution' },
+      { type: 'paragraph', content: 'The design uses a palette of soft, natural colors, minimalist icons, and gentle, non-intrusive animations to create a tranquil and immersive user experience. I focused on creating a user journey that felt supportive and encouraging, with clear pathways to content and progress tracking.' },
+      { type: 'list', items: ['Designed over 50 unique screens and user flows.', 'Developed a content strategy for guided meditations.', 'Integrated gamification elements to encourage consistent use.'] },
+      { type: 'heading', content: 'Impact' },
+      { type: 'paragraph', content: 'User feedback highlighted the app\'s calming effect and ease of use. Early metrics showed a 40% daily active user rate among beta testers and high completion rates for guided sessions.' },
+    ],
+  },
+  // Add more detailed projects as needed
 ];
 
-export const skillCategories: import('@/lib/types').SkillCategory[] = [
+// Detailed data for Skill Categories (if a dedicated /skills page is used)
+export const skillCategories: SkillCategory[] = [
   {
     name: 'Design',
-    iconName: 'Palette',
+    iconName: 'Palette', 
     skills: [
       { name: 'UI/UX Design', level: 95 },
       { name: 'Interaction Design', level: 90 },
-      { name: 'Prototyping', level: 92 },
-      { name: 'User Research', level: 88 },
-      { name: 'Visual Design', level: 93 },
+      { name: 'Prototyping (Figma, XD)', level: 92 },
+      { name: 'User Research & Testing', level: 88 },
+      { name: 'Visual Design & Branding', level: 93 },
+      { name: 'Mobile & Web App Design', level: 90 },
+      { name: 'Design Systems', level: 85 },
     ],
   },
-  // Add more detailed skill categories if needed for a dedicated skills page
+  {
+    name: 'Development',
+    iconName: 'Code',
+    skills: [
+      { name: 'HTML5 & CSS3/SCSS', level: 90 },
+      { name: 'JavaScript (ES6+)', level: 88 },
+      { name: 'TypeScript', level: 85 },
+      { name: 'React & Next.js', level: 85 },
+      { name: 'Node.js & Express', level: 75 },
+      { name: 'Python (Django)', level: 70 },
+      { name: 'Tailwind CSS', level: 90 },
+      { name: 'Git & Version Control', level: 92 },
+    ],
+  },
+  {
+    name: 'Tools & Software',
+    iconName: 'Settings',
+    skills: [
+      { name: 'Figma', level: 95 },
+      { name: 'Adobe XD', level: 90 },
+      { name: 'Adobe Illustrator & Photoshop', level: 80 },
+      { name: 'VS Code', level: 95 },
+      { name: 'Jira & Confluence', level: 82 },
+      { name: 'AWS (Basic Services)', level: 65 },
+    ],
+  },
+  // Add more categories like "Methodologies", "Soft Skills" if desired for a detailed page
 ];
 
-export const experiences: import('@/lib/types').Experience[] = [
+// Example for detailed Experience page data structure
+export const experiences: Experience[] = [
     {
     id: 'exp1',
     company: 'Innovatech Solutions',
@@ -315,7 +367,22 @@ export const experiences: import('@/lib/types').Experience[] = [
     ],
     storyline: 'At Innovatech, I championed user-centered design principles across multiple product teams. My role involved translating complex user needs and business requirements into intuitive and elegant design solutions. A key achievement was spearheading the overhaul of our main SaaS platform, focusing on improved navigation and task efficiency, which directly contributed to higher customer retention rates.',
     logoUrl: 'https://placehold.co/100x100.png',
-    logoHint: 'tech logo',
+    logoHint: 'modern tech logo',
   },
-  // Add more detailed experiences if needed for a dedicated experience page
+  {
+    id: 'exp2',
+    company: 'Creative Minds Agency',
+    role: 'UI/UX Designer',
+    period: 'Jun 2017 - Dec 2019',
+    timeline: '2017-2019',
+    achievements: [
+      'Designed and launched 10+ websites and mobile apps for diverse clients, from concept to final mockups.',
+      'Consistently received positive client feedback for creativity, communication, and attention to detail.',
+      'Contributed to a 40% growth in the agency’s design portfolio by delivering high-quality, impactful designs.',
+    ],
+    storyline: 'During my time at Creative Minds, I worked on a wide array of projects, from startups to established brands. This fast-paced environment honed my ability to quickly understand client needs, iterate on designs based on feedback, and deliver high-quality solutions under tight deadlines. I particularly enjoyed the challenge of crafting unique brand identities and user experiences that resonated with target audiences and achieved business goals.',
+    logoUrl: 'https://placehold.co/100x100.png',
+    logoHint: 'creative agency logo',
+  },
+  // Add more experiences if needed
 ];

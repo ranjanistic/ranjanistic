@@ -1,3 +1,4 @@
+
 "use client";
 import { cn } from "@/lib/utils";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
@@ -9,8 +10,9 @@ interface SectionContainerProps extends React.HTMLAttributes<HTMLElement> {
   className?: string;
   id?: string;
   animated?: boolean;
-  delay?: number; // in ms
-  fullWidthBg?: boolean; // New prop for full-width background
+  delay?: number; 
+  fullWidthBg?: boolean; 
+  bgColorClass?: string; // New prop for specific background color class
 }
 
 export function SectionContainer({ 
@@ -20,7 +22,8 @@ export function SectionContainer({
   id, 
   animated = true,
   delay = 0,
-  fullWidthBg = false, // Default to not full width
+  fullWidthBg = true, // Default to true for the "single sheet" feel
+  bgColorClass, // e.g., "bg-section-about"
   ...props 
 }: SectionContainerProps) {
   const { ref, isVisible } = useScrollReveal<HTMLElement>({ once: true });
@@ -30,35 +33,28 @@ export function SectionContainer({
     animated && isVisible && "scroll-reveal-visible",
   );
 
-  if (fullWidthBg) {
-    return (
-      <Component
-        ref={animated ? ref : undefined}
-        id={id}
-        className={cn(baseClasses, className)} // className here is for the full-width wrapper
-        style={animated && isVisible ? { transitionDelay: `${delay}ms` } : {}}
-        {...props}
-      >
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24"> {/* Inner container for content */}
-          {children}
-        </div>
-      </Component>
-    );
-  }
-
+  // If fullWidthBg is true, the bgColorClass applies to the outer component
+  // The inner div handles padding and max-width for content
   return (
     <Component
       ref={animated ? ref : undefined}
       id={id}
       className={cn(
-        "py-16 md:py-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8", // Wider content area, still constrained
         baseClasses,
-        className
+        fullWidthBg ? bgColorClass : '', // Apply bgColorClass if fullWidthBg
+        fullWidthBg ? 'w-full' : 'max-w-5xl mx-auto px-4 sm:px-6 lg:px-8', // Outer structure
+        className // Allows overriding or adding to outer component classes
       )}
       style={animated && isVisible ? { transitionDelay: `${delay}ms` } : {}}
       {...props}
     >
-      {children}
+      <div className={cn(
+        fullWidthBg ? 'max-w-5xl mx-auto px-4 sm:px-6 lg:px-8' : '', // Inner content wrapper if fullWidthBg
+        'py-16 md:py-24', // Standard padding for content
+        fullWidthBg ? '' : bgColorClass // Apply to inner if not fullWidthBg
+      )}>
+        {children}
+      </div>
     </Component>
   );
 }
@@ -66,10 +62,10 @@ export function SectionContainer({
 interface SectionHeaderProps {
   title: string;
   subtitle?: string;
-  className?: string; // Applied to the wrapper div
+  className?: string; 
   titleClassName?: string;
   subtitleClassName?: string;
-  alignment?: 'left' | 'center'; // New prop for alignment
+  alignment?: 'left' | 'center'; 
 }
 
 export function SectionHeader({ 
@@ -78,7 +74,7 @@ export function SectionHeader({
   className, 
   titleClassName, 
   subtitleClassName,
-  alignment = 'left' // Default to left alignment
+  alignment = 'left' 
 }: SectionHeaderProps) {
   return (
     <div className={cn(
@@ -89,14 +85,14 @@ export function SectionHeader({
     )}>
       {subtitle && (
         <p className={cn(
-          "text-base font-medium text-accent mb-2 font-sans tracking-wider uppercase", // Using accent for subtitle
+          "text-sm font-medium text-accent mb-2 font-sans tracking-wider uppercase", 
           subtitleClassName
         )}>
           {subtitle}
         </p>
       )}
       <h2 className={cn(
-        "text-4xl md:text-5xl lg:text-6xl font-headline font-bold gradient-text", // Apply gradient-text class
+        "text-4xl md:text-5xl lg:text-6xl font-headline font-extrabold gradient-text",
         titleClassName
       )}>
         {title}

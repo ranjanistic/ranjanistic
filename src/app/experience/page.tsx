@@ -9,9 +9,9 @@ export const metadata = {
 
 export default function ExperiencePage() {
   return (
-    <SectionContainer id="work-experience" animated>
+    <SectionContainer id="work-experience" animated bgColorClass="bg-section-experience" fullWidthBg>
       <SectionHeader title="Work Experience" subtitle="Professional Journey" />
-      <p className="text-center text-lg text-muted-foreground mb-12 max-w-2xl mx-auto font-serif">
+      <p className="text-center text-lg text-muted-foreground mb-12 max-w-2xl mx-auto font-sans">
         My professional journey has been marked by impactful roles where I've contributed to significant projects and driven design excellence. Here's a look at my key experiences.
       </p>
       <div className="space-y-12 max-w-3xl mx-auto">

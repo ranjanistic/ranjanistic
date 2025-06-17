@@ -3,95 +3,61 @@
 @tailwind utilities;
 
 body {
-  font-family: var(--font-alegreya), serif; /* Default to Alegreya for body */
+  font-family: var(--font-inter-tight), sans-serif; /* Default to Inter Tight for body */
 }
 
 @layer base {
   :root {
-    /* New Color Palette - Cool & Sophisticated with a warm accent */
-    --background: 210 20% 98%; /* Very light cool gray */
-    --foreground: 215 25% 25%; /* Dark desaturated blue/charcoal */
+    /* New Color Palette - Professional & Bold with Solid Backgrounds */
+    --background: 220 20% 15%; /* Dark Slate Blue/Charcoal */
+    --foreground: 210 30% 95%; /* Light Gray/Off-White */
 
-    --muted: 210 20% 92%; /* Slightly darker cool gray for muted backgrounds */
-    --muted-foreground: 210 15% 50%; /* Medium gray for muted text */
+    --muted: 220 20% 20%; /* Slightly Lighter Dark Slate for muted backgrounds */
+    --muted-foreground: 210 20% 70%; /* Medium-Light Gray for muted text */
 
-    --popover: 220 20% 99%; /* Popover background, slightly off-white */
-    --popover-foreground: 215 25% 25%;
+    --popover: 220 20% 12%; 
+    --popover-foreground: 210 30% 95%;
 
-    --card: 0 0% 100%; /* White for cards (if any are distinctly styled) */
-    --card-foreground: 215 25% 25%;
+    --card: 220 20% 18%; /* Darker card, distinct from main background */
+    --card-foreground: 210 30% 95%;
 
-    --border: 210 20% 85%; /* Softer border color */
-    --input: 210 20% 88%; /* Input background */
+    --border: 220 20% 30%; 
+    --input: 220 20% 25%; 
 
-    --primary: 205 70% 45%; /* Strong, medium-dark blue */
-    --primary-foreground: 0 0% 100%; /* White */
+    --primary: 180 70% 50%; /* Vibrant Teal/Cyan */
+    --primary-foreground: 220 20% 10%; /* Dark text for primary buttons */
     
-    --secondary: 210 30% 75%; /* Lighter, desaturated blue for secondary elements */
-    --secondary-foreground: 215 25% 20%; /* Darker text for secondary */
+    --secondary: 220 15% 40%; /* Muted Blue-Gray for secondary elements */
+    --secondary-foreground: 210 30% 90%; 
 
-    --accent: 30 90% 60%; /* Vibrant warm orange/gold */
-    --accent-foreground: 215 25% 25%; /* Dark text for on accent */
+    --accent: 15 90% 60%; /* Warm Coral/Orange */
+    --accent-foreground: 220 20% 10%; /* Dark text for on accent */
 
-    --destructive: 0 70% 55%; /* A clearer red for destructive actions */
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 70% 55%; 
+    --destructive-foreground: 210 30% 95%;
 
-    --ring: 205 70% 55%; /* Ring color based on primary */
+    --ring: 180 70% 55%; 
     --radius: 0.5rem;
 
-    --chart-1: 205 70% 50%;
-    --chart-2: 25 85% 65%;
-    --chart-3: 180 50% 50%;
-    --chart-4: 280 60% 65%;
-    --chart-5: 50 75% 55%;
+    --chart-1: 180 70% 50%;
+    --chart-2: 15 85% 65%;
+    --chart-3: 200 60% 55%;
+    --chart-4: 280 50% 60%;
+    --chart-5: 50 70% 50%;
 
-    /* Sidebar colors remain, assuming they might be used or adapted if a sidebar layout returns */
-    --sidebar-background: 215 28% 17%; /* Darker blue for sidebar */
-    --sidebar-foreground: 210 40% 98%; /* Light text for dark sidebar */
-    --sidebar-primary: 30 90% 60%; /* Accent color for primary actions in sidebar */
-    --sidebar-primary-foreground: 215 25% 25%;
-    --sidebar-accent: 215 28% 25%; /* Slightly lighter dark blue for accent */
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 215 28% 22%;
-    --sidebar-ring: 30 90% 60%;
+    /* Specific solid background colors for sections (examples) */
+    --section-bg-hero: 220 20% 12%; /* Slightly darker than main for emphasis */
+    --section-bg-about: 220 20% 18%; 
+    --section-bg-experience: 220 20% 15%; /* Main bg */
+    --section-bg-projects: 220 20% 18%;
+    --section-bg-skills: 220 20% 15%; /* Main bg */
+    --section-bg-education: 220 20% 18%;
+    --section-bg-blog: 220 20% 15%; /* Main bg */
+    --section-bg-contact: 220 20% 18%;
   }
 
-  .dark {
-    --background: 215 28% 17%; /* Dark desaturated blue */
-    --foreground: 210 40% 96%; /* Light gray for text */
-
-    --muted: 215 28% 22%; /* Darker shade for muted backgrounds */
-    --muted-foreground: 210 25% 70%; /* Lighter muted text */
-
-    --popover: 215 30% 15%;
-    --popover-foreground: 210 40% 96%;
-
-    --card: 215 28% 20%; /* Dark card background */
-    --card-foreground: 210 40% 96%;
-
-    --border: 215 25% 30%; /* Darker border */
-    --input: 215 25% 28%; /* Darker input */
-
-    --primary: 205 75% 55%; /* Slightly brighter blue for dark mode primary */
-    --primary-foreground: 0 0% 100%; 
-    
-    --secondary: 210 30% 35%; /* Dark mode secondary */
-    --secondary-foreground: 210 40% 90%;
-
-    --accent: 30 90% 65%; /* Slightly brighter accent for dark mode */
-    --accent-foreground: 215 25% 15%; 
-
-    --destructive: 0 70% 60%; /* Dark mode destructive */
-    --destructive-foreground: 0 0% 100%;
-
-    --ring: 205 75% 60%;
-    
-    --chart-1: 205 70% 60%;
-    --chart-2: 25 80% 70%;
-    --chart-3: 180 50% 60%;
-    --chart-4: 280 60% 70%;
-    --chart-5: 50 75% 60%;
-  }
+  /* No separate dark mode needed if base is dark */
+  /* .dark { ... } */
 }
 
 @layer base {
@@ -105,15 +71,12 @@ body {
   html {
     scroll-behavior: smooth;
   }
-  /* Custom link styling for a modern feel */
   a {
     @apply text-primary hover:text-accent font-medium transition-colors duration-300;
-    /* Remove default underline, add it on hover or keep it subtle */
     @apply no-underline hover:underline underline-offset-4;
   }
-  /* Headings font & gradient */
   h1, h2, h3, h4, h5, h6 {
-    @apply font-headline text-foreground;
+    @apply font-headline text-foreground; /* Archivo will be applied via --font-headline */
   }
 
   .gradient-text {
@@ -123,7 +86,7 @@ body {
 
 .scroll-reveal-hidden {
   opacity: 0;
-  transform: translateY(30px); /* Slightly more pronounced effect */
+  transform: translateY(30px);
   transition: opacity 0.7s ease-out, transform 0.7s ease-out;
 }
 
