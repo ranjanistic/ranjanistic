@@ -10,9 +10,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-inter)', 'sans-serif'], // Inter is now the general sans-serif
-        serif: ['var(--font-alegreya)', 'serif'], // Alegreya for body/longform text
-        headline: ['var(--font-belleza)', 'var(--font-inter)', 'sans-serif'], // Belleza for main headings
+        sans: ['var(--font-inter)', 'sans-serif'], 
+        serif: ['var(--font-alegreya)', 'serif'], 
+        headline: ['var(--font-inter)', 'sans-serif'], // Changed headline to Inter for impact
         code: ['monospace'],
       },
       colors: {
@@ -27,8 +27,8 @@ export default {
           foreground: 'hsl(var(--popover-foreground))',
         },
         primary: {
-          DEFAULT: 'hsl(var(--primary))', // Soft Lavender
-          foreground: 'hsl(var(--primary-foreground))', // Darker purple for text on lavender
+          DEFAULT: 'hsl(var(--primary))',
+          foreground: 'hsl(var(--primary-foreground))',
         },
         secondary: {
           DEFAULT: 'hsl(var(--secondary))',
@@ -39,7 +39,7 @@ export default {
           foreground: 'hsl(var(--muted-foreground))',
         },
         accent: {
-          DEFAULT: 'hsl(var(--accent))', // Pale Cyan
+          DEFAULT: 'hsl(var(--accent))',
           foreground: 'hsl(var(--accent-foreground))',
         },
         destructive: {
@@ -112,29 +112,65 @@ export default {
       typography: (theme: (arg0: string) => any) => ({
         DEFAULT: {
           css: {
-            color: theme('colors.foreground'),
-            fontFamily: theme('fontFamily.serif').join(','), // Default prose to serif
-            strong: { color: theme('colors.foreground'), fontWeight: theme('fontWeight.bold') },
+            color: 'hsl(var(--foreground))', // Use the CSS variable
+            fontFamily: theme('fontFamily.serif').join(','),
+            strong: { color: 'hsl(var(--foreground))', fontWeight: theme('fontWeight.bold') }, // Use the CSS variable
             a: {
-              color: 'hsl(var(--primary-foreground))', // Use darker purple for links
-              textDecoration: 'underline',
-              textUnderlineOffset: '2px',
+              color: 'hsl(var(--primary))', // Use CSS variable for primary link color
+              textDecoration: 'none',
+              fontWeight: theme('fontWeight.medium'),
+              transition: 'color 0.3s ease',
               '&:hover': {
-                color: 'hsl(var(--primary))', // Lighter lavender on hover (text color)
-                backgroundColor: 'hsl(var(--primary-foreground))', // Darker purple background on hover
+                color: 'hsl(var(--accent))', // Use CSS variable for accent hover color
+                textDecoration: 'underline',
+                textUnderlineOffset: '4px',
               },
             },
-            h1: { fontFamily: theme('fontFamily.headline').join(','), color: theme('colors.foreground'), fontWeight: theme('fontWeight.bold') },
-            h2: { fontFamily: theme('fontFamily.headline').join(','), color: theme('colors.foreground'), fontWeight: theme('fontWeight.bold') },
-            h3: { fontFamily: theme('fontFamily.headline').join(','), color: theme('colors.foreground'), fontWeight: theme('fontWeight.bold') },
-            h4: { fontFamily: theme('fontFamily.headline').join(','), color: theme('colors.foreground'), fontWeight: theme('fontWeight.bold') },
-            blockquote: { color: theme('colors.muted.foreground'), borderLeftColor: theme('colors.border')},
+            h1: { fontFamily: theme('fontFamily.headline').join(','), color: 'hsl(var(--foreground))', fontWeight: theme('fontWeight.bold') },
+            h2: { fontFamily: theme('fontFamily.headline').join(','), color: 'hsl(var(--foreground))', fontWeight: theme('fontWeight.bold') },
+            h3: { fontFamily: theme('fontFamily.headline').join(','), color: 'hsl(var(--foreground))', fontWeight: theme('fontWeight.bold') },
+            h4: { fontFamily: theme('fontFamily.headline').join(','), color: 'hsl(var(--foreground))', fontWeight: theme('fontWeight.bold') },
+            blockquote: { color: 'hsl(var(--muted-foreground))', borderLeftColor: 'hsl(var(--border))'},
             'ul > li::marker': {
-              color: theme('colors.muted.foreground'),
+              color: 'hsl(var(--muted-foreground))',
             },
             'ol > li::marker': {
-              color: theme('colors.muted.foreground'),
+              color: 'hsl(var(--muted-foreground))',
             },
+            // Ensure prose uses HSL variables for dark mode compatibility
+            '--tw-prose-body': 'hsl(var(--foreground))',
+            '--tw-prose-headings': 'hsl(var(--foreground))',
+            '--tw-prose-lead': 'hsl(var(--muted-foreground))',
+            '--tw-prose-links': 'hsl(var(--primary))',
+            '--tw-prose-bold': 'hsl(var(--foreground))',
+            '--tw-prose-counters': 'hsl(var(--muted-foreground))',
+            '--tw-prose-bullets': 'hsl(var(--muted-foreground))', // Adjusted to muted-foreground
+            '--tw-prose-hr': 'hsl(var(--border))',
+            '--tw-prose-quotes': 'hsl(var(--foreground))',
+            '--tw-prose-quote-borders': 'hsl(var(--border))',
+            '--tw-prose-captions': 'hsl(var(--muted-foreground))',
+            '--tw-prose-code': 'hsl(var(--foreground))',
+            '--tw-prose-pre-code': 'hsl(var(--foreground))', // Example, adjust as needed
+            '--tw-prose-pre-bg': 'hsl(var(--muted))', // Example, adjust as needed
+            '--tw-prose-th-borders': 'hsl(var(--border))',
+            '--tw-prose-td-borders': 'hsl(var(--border))',
+
+            '--tw-prose-invert-body': 'hsl(var(--foreground))', // In dark mode, foreground becomes light
+            '--tw-prose-invert-headings': 'hsl(var(--foreground))',
+            '--tw-prose-invert-lead': 'hsl(var(--muted-foreground))',
+            '--tw-prose-invert-links': 'hsl(var(--primary))',
+            '--tw-prose-invert-bold': 'hsl(var(--foreground))',
+            '--tw-prose-invert-counters': 'hsl(var(--muted-foreground))',
+            '--tw-prose-invert-bullets': 'hsl(var(--muted-foreground))',
+            '--tw-prose-invert-hr': 'hsl(var(--border))',
+            '--tw-prose-invert-quotes': 'hsl(var(--foreground))',
+            '--tw-prose-invert-quote-borders': 'hsl(var(--border))',
+            '--tw-prose-invert-captions': 'hsl(var(--muted-foreground))',
+            '--tw-prose-invert-code': 'hsl(var(--foreground))',
+            '--tw-prose-invert-pre-code': 'hsl(var(--foreground))',
+            '--tw-prose-invert-pre-bg': 'hsl(var(--muted))',
+            '--tw-prose-invert-th-borders': 'hsl(var(--border))',
+            '--tw-prose-invert-td-borders': 'hsl(var(--border))',
           },
         },
       }),

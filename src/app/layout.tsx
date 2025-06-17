@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter, Belleza, Alegreya } from 'next/font/google';
+import { Inter, Alegreya } from 'next/font/google'; // Removed Belleza, Inter will be headline
 import './globals.css';
 import { Navbar } from '@/components/layout/navbar';
 import { Footer } from '@/components/layout/footer';
@@ -8,14 +8,7 @@ import { cn } from '@/lib/utils';
 
 const inter = Inter({ 
   subsets: ['latin'],
-  variable: '--font-inter', // Kept for fallback or specific UI elements
-  display: 'swap',
-});
-
-const belleza = Belleza({
-  subsets: ['latin'],
-  weight: ['400'],
-  variable: '--font-belleza',
+  variable: '--font-inter', // For headlines and general sans-serif
   display: 'swap',
 });
 
@@ -23,7 +16,7 @@ const alegreya = Alegreya({
   subsets: ['latin'],
   style: ['normal', 'italic'],
   weight: ['400', '500', '700'],
-  variable: '--font-alegreya',
+  variable: '--font-alegreya', // For body/longform text
   display: 'swap',
 });
 
@@ -44,15 +37,14 @@ export default function RootLayout({
       </head>
       <body 
         className={cn(
-          "min-h-screen bg-background font-serif text-foreground antialiased", // Changed default font to serif (Alegreya)
+          "min-h-screen bg-background font-serif text-foreground antialiased", 
           inter.variable, 
-          belleza.variable, 
-          alegreya.variable
+          alegreya.variable // Belleza variable removed
         )}
       >
         <div className="flex flex-col min-h-screen">
           <Navbar />
-          <main className="flex-grow"> {/* Container removed, page.tsx will handle its own max-width */}
+          <main className="flex-grow"> 
             {children}
           </main>
           <Footer />
