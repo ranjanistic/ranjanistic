@@ -1,5 +1,6 @@
+
 import { blogPosts } from '@/lib/data';
-import type { BlogPost as BlogPostType, BlogPostContentItem } from '@/lib/types';
+import type { BlogPost, BlogPostContentItem } from '@/lib/types'; // Changed BlogPostType to BlogPost
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';

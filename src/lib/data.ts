@@ -1,29 +1,15 @@
-import type { LucideIcon } from 'lucide-react';
-import { Linkedin, Github, Gitlab } from 'lucide-react'; // Gitlab icon is available
-import type { WorkExperienceEntry } from '@/lib/types';
 
-export interface NavLink {
-  href: string;
-  label: string;
-}
+import type { LucideIcon } from 'lucide-react';
+import { Linkedin, Github, Gitlab } from 'lucide-react';
+import type { WorkExperienceEntry, NavLink, HeroData, ProjectEntry, SkillArea, EducationEntry, SocialLinkInfo, BlogPost, BlogPostContentItem } from '@/lib/types';
 
 export const navLinksData: NavLink[] = [
-  { href: '/#top', label: 'Priyanshu Ranjan' }, // Points to very top
+  { href: '/#top', label: 'Priyanshu Ranjan' },
   { href: '/#experience', label: 'Experience' },
   { href: '/#projects', label: 'Projects' },
   { href: '/#skills', label: 'Skills' },
   { href: '/#education', label: 'Education' },
 ];
-
-export interface HeroData {
-  name: string;
-  tagline: string;
-  location: string;
-  email: string;
-  gitlab: string;
-  github: string;
-  linkedin: string;
-}
 
 export const heroData: HeroData = {
   name: 'Priyanshu Ranjan',
@@ -88,7 +74,6 @@ export const workExperienceData: WorkExperienceEntry[] = [
     period: 'AUG 2021 - MAR 2022',
     description: [
       'Open platform for collaboration of open source projects and competitions for systematic resume building, based on Django, full stack.',
-      // 'View' implies a link, but no URL provided for this specific item in the text.
     ],
   },
   {
@@ -97,7 +82,6 @@ export const workExperienceData: WorkExperienceEntry[] = [
     period: 'JUNE 2021 - AUG 2021',
     description: [
       'APIs, microservices, unit testing, and DB ops using MongoDB.',
-      // 'View' implies a link, but no URL provided.
     ],
   },
   {
@@ -119,18 +103,11 @@ export const workExperienceData: WorkExperienceEntry[] = [
   },
 ];
 
-export interface ProjectEntry {
-  title: string;
-  description: string;
-  link?: string;
-  linkText?: string;
-}
-
 export const projectData: ProjectEntry[] = [
   {
     title: 'Stellar Evolution — Using MESA',
     description: 'Pre-main sequence contraction, role of mass distributions guided by Initial Mass Function, involving HR diagrams.',
-    linkText: 'View concluding report', // No URL provided, will use #
+    linkText: 'View concluding report',
     link: '#',
   },
   {
@@ -152,7 +129,7 @@ export const projectData: ProjectEntry[] = [
   {
     title: 'Schemester — B2B management',
     description: 'An online institution management system, primarily focused on the educational niche.',
-    linkText: 'View', // No URL provided
+    linkText: 'View',
     link: '#',
   },
   {
@@ -165,14 +142,9 @@ export const projectData: ProjectEntry[] = [
     title: 'Schemester Android — Native android app.',
     description: 'A small project targeted at schedule management for my own batchmates.',
     linkText: 'schemester.app',
-    link: 'https://schemester.app', // Assuming this is the link
+    link: 'https://schemester.app',
   },
 ];
-
-export interface SkillArea {
-  title: string;
-  skills: string; // Plain text as provided
-}
 
 export const skillsData: SkillArea[] = [
   {
@@ -197,18 +169,6 @@ export const skillsData: SkillArea[] = [
   },
 ];
 
-export interface EducationEntry {
-  degree: string;
-  institution: string;
-  period: string;
-  details?: {
-    projects?: string;
-    projectLink?: string;
-    projectLinkText?: string;
-    specialization?: string;
-  }[];
-}
-
 export const educationData: EducationEntry[] = [
   {
     degree: 'Msc. Physics',
@@ -217,7 +177,7 @@ export const educationData: EducationEntry[] = [
     details: [
       {
         projects: 'Stellar evolution & modelling using MESA, under the guidance of Prof. T.R. Seshadri & Dr. Sachin Pandey.',
-        projectLinkText: 'View concluding presentation', // No URL
+        projectLinkText: 'View concluding presentation',
         projectLink: '#',
       },
       {
@@ -227,7 +187,7 @@ export const educationData: EducationEntry[] = [
   },
   {
     degree: 'Bsc. Honours Physics',
-    institution: 'University of Delhi, Ramjas College, North Campus.', // Combined Ramjas College info here
+    institution: 'University of Delhi, Ramjas College, North Campus.',
     period: '2018 - 2021',
     details: [
         { specialization: 'Physics, Mathematics.'}
@@ -248,21 +208,114 @@ export const educationData: EducationEntry[] = [
 ];
 
 
-export interface SocialLinkInfo {
-  name: string;
-  url: string;
-  icon: LucideIcon;
-}
 export const socialLinksFooter: SocialLinkInfo[] = [
   { name: 'LinkedIn', url: 'https://linkedin.com/in/ranjanistic', icon: Linkedin },
   { name: 'GitHub', url: 'https://github.com/ranjanistic', icon: Github },
   { name: 'GitLab', url: 'https://gitlab.com/ranjanistic', icon: Gitlab },
 ];
 
-// The old data structures are removed as they are superseded by the new text content.
-// If any parts of them were needed, they should be integrated into the new structures above.
-// For example, the detailed project storylines are not part of the new minimalist design based on kinseygross.com.
-// Blog posts are also removed from this data file as the new design doesn't feature a blog section prominently.
-// The user wants a single page design based on kinseygross.com using the *new* text.
-// The old 'projects', 'skillCategories', 'experiences', 'blogPosts', 'socialLinks' (from PRD) are effectively replaced.
-// I've created socialLinksFooter for the specific links provided by user.
+// Blog Posts Data
+export const blogPosts: BlogPost[] = [
+  {
+    slug: 'the-future-of-design-thinking',
+    title: 'The Future of Design Thinking in a Tech-Driven World',
+    date: '2024-07-15',
+    excerpt: 'Exploring how design thinking methodologies are evolving with advancements in AI and other technologies.',
+    content: [
+      { type: 'paragraph', content: "Design thinking has long been a cornerstone of innovation, providing a human-centered approach to problem-solving. As technology, particularly Artificial Intelligence (AI), continues its rapid advancement, the landscape of design thinking is set for a transformative shift. How will these methodologies adapt, and what new opportunities will arise for designers?" },
+      { type: 'image', src: 'https://placehold.co/800x450.png', alt: 'AI and design thinking concept', hint: 'AI design' },
+      { type: 'heading', content: 'AI as a Design Partner' },
+      { type: 'paragraph', content: "Instead of viewing AI as a replacement for designers, we should see it as a powerful partner. AI can automate repetitive tasks, analyze vast amounts of user data to uncover insights, and even generate initial design concepts. This frees up designers to focus on higher-level strategic thinking, empathy, and creativity – areas where human intuition excels." },
+      { type: 'heading', content: 'Ethical Considerations' },
+      { type: 'paragraph', content: "With great power comes great responsibility. The integration of AI into design processes also brings new ethical challenges. Designers must be vigilant about issues like bias in algorithms, data privacy, and the potential for AI-driven designs to manipulate users. A renewed focus on ethical design principles will be paramount." },
+      { type: 'list', items: ["The role of empathy in an AI world.", "Data-driven vs. intuition-led design.", "Upskilling for future design roles."] },
+      { type: 'paragraph', content: "The future is not about AI versus human designers, but AI *with* human designers. By embracing these new tools thoughtfully and ethically, we can unlock unprecedented levels of innovation and create even more meaningful and impactful user experiences." }
+    ],
+    tags: ['Design Thinking', 'AI', 'Future of Design', 'Technology'],
+    coverImage: 'https://placehold.co/800x400.png',
+    coverImageHint: 'futuristic design tech'
+  },
+  {
+    slug: 'minimalism-in-ui-ux',
+    title: 'The Power of Minimalism in UI/UX Design',
+    date: '2024-06-28',
+    excerpt: 'A deep dive into why less is often more when it comes to creating effective and engaging user interfaces.',
+    content: [
+      { type: 'paragraph', content: "In a world saturated with information and visual stimuli, minimalism in UI/UX design offers a breath of fresh air. It’s more than just an aesthetic trend; it’s a philosophy centered on clarity, purpose, and user focus. But what makes minimalist design so powerful, and how can it be effectively implemented?" },
+      { type: 'heading', content: 'Clarity and Focus' },
+      { type: 'paragraph', content: "Minimalist interfaces remove unnecessary clutter, allowing users to focus on the core content and functionality. By prioritizing essential elements and employing generous white space, designers can guide the user’s attention and make interactions more intuitive." },
+      { type: 'image', src: 'https://placehold.co/800x450.png', alt: 'Minimalist UI example', hint: 'minimalist interface' },
+      { type: 'heading', content: 'Improved Performance' },
+      { type: 'paragraph', content: "Fewer elements typically mean faster loading times and smoother performance, especially on mobile devices. This contributes significantly to a positive user experience and can impact conversion rates and user retention." },
+      { type: 'heading', content: 'Timeless Appeal' },
+      { type: 'paragraph', content: "While design trends come and go, the principles of minimalism – clarity, balance, and purposeful design – tend to endure. A well-executed minimalist design can remain relevant and effective for years." },
+      { type: 'paragraph', content: "Achieving true minimalism is not about stripping everything away; it’s about making intentional choices to include only what is truly necessary to achieve the user’s goals and communicate the intended message effectively." }
+    ],
+    tags: ['Minimalism', 'UI Design', 'UX Design', 'User Experience'],
+    coverImage: 'https://placehold.co/800x400.png',
+    coverImageHint: 'clean design interface'
+  },
+];
+
+// Detailed data for Projects and Skills for dedicated pages (if restored)
+// For now, these are illustrative and not directly used by the single-page kinseygross.com style
+// but are kept here if those pages are to be made functional with more detail.
+
+export const projects: import('@/lib/types').Project[] = [
+  {
+    id: 'project-a',
+    slug: 'project-alpha',
+    title: 'Project Alpha',
+    shortDescription: 'A revolutionary e-commerce platform design.',
+    description: 'Project Alpha aimed to redefine the online shopping experience by integrating cutting-edge UI/UX principles with a highly personalized user journey. The storyline involved extensive user research, iterative prototyping, and collaboration with development teams to bring a seamless and engaging platform to life.',
+    imageUrl: 'https://placehold.co/600x400.png',
+    imageHint: 'modern ecommerce',
+    technologies: ['Figma', 'React', 'User Research'],
+    liveLink: '#',
+    repoLink: '#',
+    storyline: [
+      { type: 'heading', content: 'The Challenge' },
+      { type: 'paragraph', content: 'Existing e-commerce platforms often suffer from cluttered interfaces and impersonal experiences. The goal was to create something intuitive and delightful.' },
+      { type: 'image', src: 'https://placehold.co/800x450.png', alt: 'Early sketch of platform', hint: 'design sketch' },
+      { type: 'heading', content: 'Our Approach' },
+      { type: 'paragraph', content: 'We started with deep user interviews and persona development. This was followed by wireframing, low-fidelity, and high-fidelity prototypes, constantly testing with users.' },
+      { type: 'heading', content: 'The Outcome' },
+      { type: 'paragraph', content: 'A platform that saw a 30% increase in user engagement and a 15% rise in conversion rates within the first three months of launch.' },
+    ],
+  },
+  // Add more detailed projects if needed for a dedicated projects page
+];
+
+export const skillCategories: import('@/lib/types').SkillCategory[] = [
+  {
+    name: 'Design',
+    iconName: 'Palette',
+    skills: [
+      { name: 'UI/UX Design', level: 95 },
+      { name: 'Interaction Design', level: 90 },
+      { name: 'Prototyping', level: 92 },
+      { name: 'User Research', level: 88 },
+      { name: 'Visual Design', level: 93 },
+    ],
+  },
+  // Add more detailed skill categories if needed for a dedicated skills page
+];
+
+export const experiences: import('@/lib/types').Experience[] = [
+    {
+    id: 'exp1',
+    company: 'Innovatech Solutions',
+    role: 'Senior UX Designer',
+    period: 'Jan 2020 - Present',
+    timeline: '2020-Present',
+    achievements: [
+      'Led the redesign of the flagship product, resulting in a 25% increase in user satisfaction.',
+      'Mentored a team of 3 junior designers, fostering their growth and improving team output.',
+      'Implemented a new user research framework that reduced design iteration time by 15%.',
+    ],
+    storyline: 'At Innovatech, I championed user-centered design principles across multiple product teams. My role involved translating complex user needs and business requirements into intuitive and elegant design solutions. A key achievement was spearheading the overhaul of our main SaaS platform, focusing on improved navigation and task efficiency, which directly contributed to higher customer retention rates.',
+    logoUrl: 'https://placehold.co/100x100.png',
+    logoHint: 'tech logo',
+  },
+  // Add more detailed experiences if needed for a dedicated experience page
+];

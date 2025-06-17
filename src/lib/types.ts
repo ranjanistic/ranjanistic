@@ -1,15 +1,16 @@
+
 import type { LucideIcon } from 'lucide-react';
 
 // NavLink definition is now in data.ts as it's simpler
 
-// Project types (old, for reference, might be removed if not used by other pages)
+// Project types
 export type ProjectStorylineItem = 
   | { type: 'heading'; content: string }
   | { type: 'paragraph'; content: string }
   | { type: 'image'; src: string; alt: string; hint: string }
   | { type: 'list'; items: string[] };
 
-export interface LegacyProject { // Renamed to avoid conflict if new page needs 'Project'
+export interface Project { // Renamed from LegacyProject
   id: string;
   slug: string;
   title: string;
@@ -23,28 +24,28 @@ export interface LegacyProject { // Renamed to avoid conflict if new page needs 
   storyline: ProjectStorylineItem[];
 }
 
-// Skill types (old)
-export interface LegacySkill {
+// Skill types
+export interface Skill { // Renamed from LegacySkill
   name: string;
   level: number; 
 }
 
-export interface LegacySkillCategory {
+export interface SkillCategory { // Renamed from LegacySkillCategory
   name: string;
   iconName: string; 
-  skills: LegacySkill[];
+  skills: Skill[];
 }
 
 // Experience types
-export interface WorkExperienceEntry {
+export interface WorkExperienceEntry { // This is the current structure used for the single page
   role: string;
   company: string;
   companyLink?: string;
   period: string;
-  description: string[];
+  description: string[]; // List of achievements/responsibilities
 }
 
-export interface LegacyExperience {
+export interface Experience { // Renamed from LegacyExperience, for detailed experience page if needed
   id: string;
   company: string;
   role: string;
@@ -56,14 +57,14 @@ export interface LegacyExperience {
   logoHint?: string;
 }
 
-// Blog types (old)
+// Blog types
 export type BlogPostContentItem = 
   | { type: 'heading'; content: string }
   | { type: 'paragraph'; content: string }
   | { type: 'image'; src: string; alt: string; hint: string }
   | { type: 'list'; items: string[] };
 
-export interface LegacyBlogPost {
+export interface BlogPost { // Renamed from LegacyBlogPost
   slug: string;
   title: string;
   date: string; 
@@ -76,8 +77,50 @@ export interface LegacyBlogPost {
 
 // SocialLink definition is now in data.ts (SocialLinkInfo)
 
-// New, simpler types will be inferred from data.ts structures if not explicitly defined here.
-// For example, HeroData, ProjectEntry, SkillArea, EducationEntry, NavLink, SocialLinkInfo
-// are defined as interfaces directly in data.ts for clarity in this refactor.
-// If these types were to be used across many files, defining them here would be better.
+// Simpler types for the single-page portfolio (as per kinseygross.com style)
+// These were defined in data.ts previously, but good to have clear type names here too.
+export interface HeroData {
+  name: string;
+  tagline: string;
+  location: string;
+  email: string;
+  gitlab: string;
+  github: string;
+  linkedin: string;
+}
 
+export interface NavLink {
+  href: string;
+  label: string;
+}
+
+export interface ProjectEntry { // Simple project entry for homepage
+  title: string;
+  description: string;
+  link?: string;
+  linkText?: string;
+}
+
+export interface SkillArea { // Simple skill area for homepage
+  title: string;
+  skills: string; 
+}
+
+export interface EducationDetail {
+  projects?: string;
+  projectLink?: string;
+  projectLinkText?: string;
+  specialization?: string;
+}
+export interface EducationEntry { // Simple education entry for homepage
+  degree: string;
+  institution: string;
+  period: string;
+  details?: EducationDetail[];
+}
+
+export interface SocialLinkInfo {
+  name: string;
+  url: string;
+  icon: LucideIcon;
+}

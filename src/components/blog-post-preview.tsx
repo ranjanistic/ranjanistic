@@ -1,7 +1,8 @@
+
 "use client";
 import Image from 'next/image';
 import Link from 'next/link';
-import type { BlogPost } from '@/lib/types';
+import type { BlogPost } from '@/lib/types'; // Ensure this uses the updated BlogPost type
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
