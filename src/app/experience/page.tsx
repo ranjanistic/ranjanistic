@@ -1,6 +1,6 @@
 import { ExperienceItem } from '@/components/experience-item';
 import { SectionContainer, SectionHeader } from '@/components/ui/section-container';
-import { experiences } from '@/lib/data';
+import { workExperienceData as experiences } from '@/lib/data';
 
 export const metadata = {
   title: 'Work Experience | Priyanshu Ranjan',
@@ -16,7 +16,7 @@ export default function ExperiencePage() {
       </p>
       <div className="space-y-12 max-w-3xl mx-auto">
         {experiences.map((exp, index) => (
-          <ExperienceItem key={exp.id} experience={exp} animationDelay={index * 150}/>
+          <ExperienceItem key={exp.company + exp.role} experience={exp} animationDelay={index * 150}/>
         ))}
       </div>
     </SectionContainer>

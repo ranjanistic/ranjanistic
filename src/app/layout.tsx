@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils';
 
 const inter = Inter({ 
   subsets: ['latin'],
-  variable: '--font-inter',
+  variable: '--font-inter', // Kept for fallback or specific UI elements
   display: 'swap',
 });
 
@@ -21,14 +21,16 @@ const belleza = Belleza({
 
 const alegreya = Alegreya({
   subsets: ['latin'],
+  style: ['normal', 'italic'],
+  weight: ['400', '500', '700'],
   variable: '--font-alegreya',
   display: 'swap',
 });
 
 export const metadata: Metadata = {
-  title: 'Priyanshu Ranjan | Design Portfolio',
-  description: 'Portfolio of Priyanshu Ranjan, a forward-thinking design expert.',
-  keywords: 'Priyanshu Ranjan, design, portfolio, UI, UX, web design, product design',
+  title: 'Priyanshu Ranjan | Portfolio',
+  description: 'Portfolio of Priyanshu Ranjan, showcasing 5 years of industry experience in technology leadership and product development.',
+  keywords: 'Priyanshu Ranjan, portfolio, software developer, CTO, full stack, product development, technology leadership',
 };
 
 export default function RootLayout({
@@ -39,11 +41,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Google Fonts are handled by next/font, no need for <link> tags here if using next/font */}
       </head>
       <body 
         className={cn(
-          "min-h-screen bg-background font-body antialiased",
+          "min-h-screen bg-background font-serif text-foreground antialiased", // Changed default font to serif (Alegreya)
           inter.variable, 
           belleza.variable, 
           alegreya.variable
@@ -51,7 +52,7 @@ export default function RootLayout({
       >
         <div className="flex flex-col min-h-screen">
           <Navbar />
-          <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <main className="flex-grow"> {/* Container removed, page.tsx will handle its own max-width */}
             {children}
           </main>
           <Footer />

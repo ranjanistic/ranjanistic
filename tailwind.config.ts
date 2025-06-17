@@ -10,9 +10,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        body: ['Inter', 'sans-serif'],
-        headline: ['Belleza', 'Inter', 'sans-serif'],
-        serif: ['Alegreya', 'serif'],
+        sans: ['var(--font-inter)', 'sans-serif'], // Inter is now the general sans-serif
+        serif: ['var(--font-alegreya)', 'serif'], // Alegreya for body/longform text
+        headline: ['var(--font-belleza)', 'var(--font-inter)', 'sans-serif'], // Belleza for main headings
         code: ['monospace'],
       },
       colors: {
@@ -27,8 +27,8 @@ export default {
           foreground: 'hsl(var(--popover-foreground))',
         },
         primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))',
+          DEFAULT: 'hsl(var(--primary))', // Soft Lavender
+          foreground: 'hsl(var(--primary-foreground))', // Darker purple for text on lavender
         },
         secondary: {
           DEFAULT: 'hsl(var(--secondary))',
@@ -39,7 +39,7 @@ export default {
           foreground: 'hsl(var(--muted-foreground))',
         },
         accent: {
-          DEFAULT: 'hsl(var(--accent))',
+          DEFAULT: 'hsl(var(--accent))', // Pale Cyan
           foreground: 'hsl(var(--accent-foreground))',
         },
         destructive: {
@@ -113,33 +113,30 @@ export default {
         DEFAULT: {
           css: {
             color: theme('colors.foreground'),
+            fontFamily: theme('fontFamily.serif').join(','), // Default prose to serif
+            strong: { color: theme('colors.foreground'), fontWeight: theme('fontWeight.bold') },
             a: {
-              color: theme('colors.primary.DEFAULT'),
+              color: 'hsl(var(--primary-foreground))', // Use darker purple for links
+              textDecoration: 'underline',
+              textUnderlineOffset: '2px',
               '&:hover': {
-                color: theme('colors.primary.foreground'),
-                backgroundColor: theme('colors.primary.DEFAULT'),
+                color: 'hsl(var(--primary))', // Lighter lavender on hover (text color)
+                backgroundColor: 'hsl(var(--primary-foreground))', // Darker purple background on hover
               },
             },
-            h1: { fontFamily: theme('fontFamily.headline').join(','), color: theme('colors.foreground') },
-            h2: { fontFamily: theme('fontFamily.headline').join(','), color: theme('colors.foreground') },
-            h3: { fontFamily: theme('fontFamily.headline').join(','), color: theme('colors.foreground') },
-            h4: { fontFamily: theme('fontFamily.headline').join(','), color: theme('colors.foreground') },
-            strong: { color: theme('colors.foreground') },
+            h1: { fontFamily: theme('fontFamily.headline').join(','), color: theme('colors.foreground'), fontWeight: theme('fontWeight.bold') },
+            h2: { fontFamily: theme('fontFamily.headline').join(','), color: theme('colors.foreground'), fontWeight: theme('fontWeight.bold') },
+            h3: { fontFamily: theme('fontFamily.headline').join(','), color: theme('colors.foreground'), fontWeight: theme('fontWeight.bold') },
+            h4: { fontFamily: theme('fontFamily.headline').join(','), color: theme('colors.foreground'), fontWeight: theme('fontWeight.bold') },
             blockquote: { color: theme('colors.muted.foreground'), borderLeftColor: theme('colors.border')},
-            // Add more styles for prose if needed for blog
+            'ul > li::marker': {
+              color: theme('colors.muted.foreground'),
+            },
+            'ol > li::marker': {
+              color: theme('colors.muted.foreground'),
+            },
           },
         },
-        longform: {
-          css: {
-            fontFamily: theme('fontFamily.serif').join(','),
-             p: {
-              fontFamily: theme('fontFamily.serif').join(','),
-            },
-            li: {
-              fontFamily: theme('fontFamily.serif').join(','),
-            }
-          }
-        }
       }),
     },
   },

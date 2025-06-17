@@ -1,19 +1,15 @@
 import type { LucideIcon } from 'lucide-react';
 
-export interface NavLink {
-  href: string;
-  label: string;
-  iconName: string; // Changed from icon: LucideIcon
-}
+// NavLink definition is now in data.ts as it's simpler
 
+// Project types (old, for reference, might be removed if not used by other pages)
 export type ProjectStorylineItem = 
   | { type: 'heading'; content: string }
   | { type: 'paragraph'; content: string }
   | { type: 'image'; src: string; alt: string; hint: string }
   | { type: 'list'; items: string[] };
 
-
-export interface Project {
+export interface LegacyProject { // Renamed to avoid conflict if new page needs 'Project'
   id: string;
   slug: string;
   title: string;
@@ -27,18 +23,28 @@ export interface Project {
   storyline: ProjectStorylineItem[];
 }
 
-export interface Skill {
+// Skill types (old)
+export interface LegacySkill {
   name: string;
-  level: number; // Percentage 0-100
+  level: number; 
 }
 
-export interface SkillCategory {
+export interface LegacySkillCategory {
   name: string;
-  iconName: string; // Changed from icon: LucideIcon
-  skills: Skill[];
+  iconName: string; 
+  skills: LegacySkill[];
 }
 
-export interface Experience {
+// Experience types
+export interface WorkExperienceEntry {
+  role: string;
+  company: string;
+  companyLink?: string;
+  period: string;
+  description: string[];
+}
+
+export interface LegacyExperience {
   id: string;
   company: string;
   role: string;
@@ -50,16 +56,17 @@ export interface Experience {
   logoHint?: string;
 }
 
+// Blog types (old)
 export type BlogPostContentItem = 
   | { type: 'heading'; content: string }
   | { type: 'paragraph'; content: string }
   | { type: 'image'; src: string; alt: string; hint: string }
   | { type: 'list'; items: string[] };
 
-export interface BlogPost {
+export interface LegacyBlogPost {
   slug: string;
   title: string;
-  date: string; // YYYY-MM-DD
+  date: string; 
   excerpt: string;
   content: BlogPostContentItem[];
   tags: string[];
@@ -67,8 +74,10 @@ export interface BlogPost {
   coverImageHint: string;
 }
 
-export interface SocialLink {
-  name: string;
-  url: string;
-  icon: LucideIcon; // This remains LucideIcon as it's used by Server Components
-}
+// SocialLink definition is now in data.ts (SocialLinkInfo)
+
+// New, simpler types will be inferred from data.ts structures if not explicitly defined here.
+// For example, HeroData, ProjectEntry, SkillArea, EducationEntry, NavLink, SocialLinkInfo
+// are defined as interfaces directly in data.ts for clarity in this refactor.
+// If these types were to be used across many files, defining them here would be better.
+

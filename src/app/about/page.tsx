@@ -1,8 +1,9 @@
+
 import Image from 'next/image';
 import { SectionContainer, SectionHeader } from '@/components/ui/section-container';
 import { Button } from '@/components/ui/button';
-import { Download, Linkedin, Github, Dribbble } from 'lucide-react';
-import { socialLinks } from '@/lib/data';
+import { Download, Linkedin, Github, Gitlab } from 'lucide-react'; // Updated Dribbble to Gitlab
+import { socialLinksFooter } from '@/lib/data'; // Changed socialLinks to socialLinksFooter
 import Link from 'next/link';
 
 export default function AboutPage() {
@@ -28,7 +29,7 @@ export default function AboutPage() {
             </a>
           </Button>
           <div className="flex space-x-4">
-            {socialLinks.map(link => (
+            {socialLinksFooter.map(link => ( // Changed socialLinks to socialLinksFooter
               <Button key={link.name} variant="outline" size="icon" asChild>
                 <a href={link.url} target="_blank" rel="noopener noreferrer" aria-label={link.name}>
                   <link.icon className="h-5 w-5" />

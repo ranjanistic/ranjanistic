@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  font-family: var(--font-inter), sans-serif; /* Default to Inter */
+  font-family: var(--font-alegreya), serif; /* Default to Alegreya */
 }
 
 @layer base {
@@ -11,31 +11,31 @@ body {
     --background: 0 0% 96.1%; /* Off-white #F5F5F5 */
     --foreground: 240 10% 3.9%; /* Darker for contrast on off-white */
 
-    --muted: 0 0% 90%; /* Slightly darker than background */
+    --muted: 0 0% 90%; 
     --muted-foreground: 0 0% 45.1%; 
 
-    --popover: 0 0% 100%; /* White */
+    --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
 
-    --card: 0 0% 100%; /* White */
+    --card: 0 0% 100%;
     --card-foreground: 240 10% 3.9%;
 
     --border: 0 0% 89.8%;
     --input: 0 0% 89.8%;
 
     --primary: 240 67% 94.1%; /* Soft lavender #E6E6FA */
-    --primary-foreground: 240 40% 25%; /* Darker purple for text on lavender */
+    --primary-foreground: 240 40% 25%; /* Darker purple for text on soft lavender background */
     
-    --secondary: 180 60% 90%; /* Lighter variant of accent for secondary elements if needed */
+    --secondary: 180 60% 90%; 
     --secondary-foreground: 180 40% 20%;
 
     --accent: 180 60% 81%; /* Pale cyan #AFEEEE */
-    --accent-foreground: 180 50% 20%; /* Darker cyan for text on pale cyan */
+    --accent-foreground: 180 50% 20%; 
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --ring: 180 60% 81%; /* Accent color for rings */
+    --ring: 180 60% 81%; 
     --radius: 0.5rem;
 
     --chart-1: 12 76% 61%;
@@ -44,7 +44,6 @@ body {
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
 
-    /* Sidebar specific colors - adjust if sidebar is used, otherwise can be simplified */
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
@@ -71,13 +70,13 @@ body {
     --border: 240 5% 15%;
     --input: 240 5% 15%;
 
-    --primary: 240 60% 70%; /* Lighter lavender for dark mode */
+    --primary: 240 60% 70%; 
     --primary-foreground: 240 80% 98%; 
     
-    --secondary: 180 50% 60%; /* Lighter cyan for dark mode */
+    --secondary: 180 50% 60%;
     --secondary-foreground: 180 80% 98%;
 
-    --accent: 180 50% 50%; /* Adjusted cyan for dark mode */
+    --accent: 180 50% 50%; 
     --accent-foreground: 180 80% 98%;
 
     --destructive: 0 62.8% 30.6%;
@@ -91,7 +90,6 @@ body {
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
 
-    /* Sidebar specific colors for dark mode */
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -111,13 +109,19 @@ body {
     @apply bg-background text-foreground;
     @apply antialiased;
   }
-  /* Add smooth scroll behavior */
   html {
     scroll-behavior: smooth;
   }
+  /* Custom link styling */
+  a {
+    @apply text-[hsl(var(--primary-foreground))] hover:text-[hsl(var(--primary))] underline underline-offset-2;
+  }
+  /* Headings font */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-headline text-foreground;
+  }
 }
 
-/* Animation classes for scroll reveal */
 .scroll-reveal-hidden {
   opacity: 0;
   transform: translateY(20px);

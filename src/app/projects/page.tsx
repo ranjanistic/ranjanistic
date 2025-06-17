@@ -1,6 +1,7 @@
+
 import { ProjectCard } from '@/components/project-card';
 import { SectionContainer, SectionHeader } from '@/components/ui/section-container';
-import { projects } from '@/lib/data';
+import { projectData as projects } from '@/lib/data';
 
 export const metadata = {
   title: 'Projects | Priyanshu Ranjan',
@@ -16,7 +17,7 @@ export default function ProjectsPage() {
       </p>
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {projects.map((project, index) => (
-          <ProjectCard key={project.id} project={project} animationDelay={index * 100} />
+          <ProjectCard key={project.title} project={project} animationDelay={index * 100} />
         ))}
       </div>
     </SectionContainer>
