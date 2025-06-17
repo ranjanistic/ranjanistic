@@ -22,8 +22,8 @@ import { cn } from '@/lib/utils';
 export default function Home() {
   return (
     <>
-      <SectionContainer 
-        id="top" 
+      <SectionContainer
+        id="top"
         bgColorClass="bg-section-hero"
         className="min-h-[calc(100vh-4rem)] flex flex-col justify-center items-center"
         animated={false}
@@ -68,7 +68,7 @@ export default function Home() {
         <div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-center">
           <div className="lg:col-span-2 flex justify-center lg:justify-start">
             <Image
-              src="https://placehold.co/600x750.png" 
+              src="https://placehold.co/600x750.png"
               alt="Priyanshu Ranjan - Professional Portrait"
               width={600}
               height={750}
@@ -109,12 +109,12 @@ export default function Home() {
           </div>
         </div>
       </SectionContainer>
-      
+
       <SectionContainer id="experience" bgColorClass="bg-section-experience" fullWidthBg animated>
         <SectionHeader title="Work Experience" subtitle="Professional Journey" alignment="left" />
         <div className="space-y-12">
           {workExperienceData.map((exp, index) => (
-            <div key={index} className="pb-10 border-b border-border/50 last:border-b-0 last:pb-0">
+            <div key={`${exp.company}-${exp.role}-${index}`} className="pb-10 border-b border-border/50 last:border-b-0 last:pb-0">
               <h3 className="text-2xl lg:text-3xl font-headline text-primary mb-1">
                 {exp.role}
               </h3>
@@ -145,8 +145,8 @@ export default function Home() {
       <SectionContainer id="projects" bgColorClass="bg-section-projects" fullWidthBg animated>
         <SectionHeader title="Projects" subtitle="Selected Works" alignment="left" />
         <div className="space-y-12">
-          {projectData.map((proj: ProjectDataType, index: number) => (
-            <div key={index} className="pb-8 border-b border-border/50 last:border-b-0 last:pb-0">
+          {projectData.map((proj: ProjectDataType) => (
+            <div key={proj.title} className="pb-8 border-b border-border/50 last:border-b-0 last:pb-0">
               <h3 className="text-2xl lg:text-3xl font-headline text-primary mb-2">
                 {proj.title}
               </h3>
@@ -155,10 +155,10 @@ export default function Home() {
               </p>
               {proj.link && proj.linkText && (
                 <Button variant="link" asChild className="p-0 h-auto text-base text-accent hover:text-accent/80">
-                  <a 
-                    href={proj.link.startsWith('http') || proj.link.startsWith('#') ? proj.link : `https://${proj.link}`} 
-                    target={proj.link.startsWith('http') ? '_blank' : '_self'} 
-                    rel="noopener noreferrer" 
+                  <a
+                    href={proj.link.startsWith('http') || proj.link.startsWith('#') ? proj.link : `https://${proj.link}`}
+                    target={proj.link.startsWith('http') ? '_blank' : '_self'}
+                    rel="noopener noreferrer"
                     className="inline-flex items-center group"
                   >
                     {proj.linkText}
@@ -174,13 +174,13 @@ export default function Home() {
       <SectionContainer id="skills" bgColorClass="bg-section-skills" fullWidthBg animated>
         <SectionHeader title="Skills &amp; Expertise" subtitle="Core Competencies" alignment="left" />
         <div className="grid md:grid-cols-2 gap-x-10 gap-y-12">
-          {skillsData.map((area, index) => (
-            <div key={index}>
+          {skillsData.map((area) => (
+            <div key={area.title}>
               <div className="flex items-center mb-4">
                 {area.title === "Hard Skills" && <Code2 className="h-7 w-7 mr-3 text-primary" />}
                 {area.title === "Soft Skills" && <Users className="h-7 w-7 mr-3 text-primary" />}
                 {area.title === "Languages" && <BookOpen className="h-7 w-7 mr-3 text-primary" />}
-                {area.title === "Tools &amp; Technologies" && <Settings className="h-7 w-7 mr-3 text-primary" />}
+                {area.title === "Tools & Technologies" && <Settings className="h-7 w-7 mr-3 text-primary" />}
                 {area.title === "Frameworks" && <Briefcase className="h-7 w-7 mr-3 text-primary" />}
                 <h3 className="text-2xl font-headline text-primary">
                   {area.title}
@@ -198,7 +198,7 @@ export default function Home() {
         <SectionHeader title="Education" subtitle="Academic Background" alignment="left" />
         <div className="space-y-12">
           {educationData.map((edu, index) => (
-            <div key={index} className="pb-8 border-b border-border/50 last:border-b-0 last:pb-0">
+            <div key={`${edu.institution}-${edu.degree}-${index}`} className="pb-8 border-b border-border/50 last:border-b-0 last:pb-0">
               <h3 className="text-2xl lg:text-3xl font-headline text-foreground">
                 {edu.degree}
               </h3>
@@ -226,7 +226,7 @@ export default function Home() {
           ))}
         </div>
       </SectionContainer>
-      
+
       {blogPosts.length > 0 && (
         <SectionContainer id="blog" bgColorClass="bg-section-blog" fullWidthBg animated>
           <SectionHeader title="Insights &amp; Articles" subtitle="My Blog" alignment="left" />

@@ -1,7 +1,6 @@
 
 "use client";
 
-import { useFormState, useFormStatus } from "react-dom";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -11,7 +10,6 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { submitContactForm, type ContactFormState } from "@/app/actions";
 import { Mail, Send, Loader2 } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 
@@ -23,11 +21,10 @@ const contactFormSchema = z.object({
 
 type ContactFormData = z.infer<typeof contactFormSchema>;
 
-function SubmitButton() {
-  const { pending } = useFormStatus();
+function SubmitButton({ isLoading }: { isLoading: boolean }) {
   return (
-    <Button type="submit" disabled={pending} size="lg" className="w-full sm:w-auto font-sans">
-      {pending ? (
+    <Button type="submit" disabled={isLoading} size="lg" className="w-full sm:w-auto font-sans">
+      {isLoading ? (
         <>
           <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Sending...
         </>
@@ -43,65 +40,32 @@ function SubmitButton() {
 export function ContactForm() {
   const { toast } = useToast();
   
-  const initialState: ContactFormState = { message: "", success: false };
-  const [state, formAction] = useFormState(submitContactForm, initialState);
-
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     reset,
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactFormSchema),
-    defaultValues: { // Ensure default values are set to prevent uncontrolled to controlled warning
-      name: state.fields?.name || "",
-      email: state.fields?.email || "",
-      message: state.fields?.message || "",
+    defaultValues: {
+      name: "",
+      email: "",
+      message: "",
     }
   });
 
-  useEffect(() => {
-    if (state.message) {
-      if (state.success) {
-        toast({
-          title: "Success!",
-          description: state.message,
-        });
-        reset({ name: "", email: "", message: "" }); // Reset form fields on success
-      } else {
-        toast({
-          title: "Error",
-          description: state.message || "Failed to send message.",
-          variant: "destructive",
-        });
-         // If error, repopulate with previous data, or clear if not available
-        reset({
-          name: state.fields?.name || "",
-          email: state.fields?.email || "",
-          message: state.fields?.message || ""
-        });
-      }
-    }
-  }, [state, toast, reset]);
+  const onSubmit = async (data: ContactFormData) => {
+    // Simulate network delay
+    await new Promise(resolve => setTimeout(resolve, 1000));
 
-  // Handle zod validation errors by populating RHF errors for display
-   useEffect(() => {
-    if (state.issues && !state.success && state.fields) {
-      const fieldErrors = state.issues.reduce((acc, issue) => {
-        const path = (issue as any).path?.[0] ; // Zod issues have a path property
-        if (path && !acc[path]) { // Only set the first error for a field
-          acc[path] = { message: issue as any, type: 'manual' };
-        }
-        return acc;
-      }, {} as any);
+    console.log("Form data submitted (client-side):", data);
 
-      Object.keys(fieldErrors).forEach(key => {
-        (register(key as keyof ContactFormData) as any).ref({ name: key }); // Dummy ref
-         (reset as any)(undefined, { errors: { ...errors, [key]: fieldErrors[key] } });
-      });
-    }
-  }, [state, errors, reset, register]);
-
+    toast({
+      title: "Success!",
+      description: "Thank you for your message! I'll get back to you soon. (Simulated submission)",
+    });
+    reset({ name: "", email: "", message: "" });
+  };
 
   return (
     <Card className="w-full max-w-2xl mx-auto shadow-xl bg-card text-card-foreground border border-border">
@@ -113,7 +77,7 @@ export function ContactForm() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <form action={formAction} className="space-y-6">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <div>
             <Label htmlFor="name" className="font-semibold font-sans">Full Name</Label>
             <Input
@@ -153,14 +117,8 @@ export function ContactForm() {
             {errors.message && <p id="message-error" className="text-sm text-destructive mt-1 font-sans">{errors.message.message}</p>}
           </div>
           
-          {state.issues && !state.success && !errors.name && !errors.email && !errors.message && (
-            <div className="text-sm text-destructive font-sans">
-              {state.issues.map((issue, i) => <p key={i}>{issue}</p>)}
-            </div>
-          )}
-
           <div className="pt-2">
-            <SubmitButton />
+            <SubmitButton isLoading={isSubmitting} />
           </div>
         </form>
       </CardContent>

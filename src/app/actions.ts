@@ -1,12 +1,10 @@
+
 "use server";
 
-import { z } from "zod";
-
-const contactFormSchema = z.object({
-  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
-  email: z.string().email({ message: "Invalid email address." }),
-  message: z.string().min(10, { message: "Message must be at least 10 characters." }),
-});
+// This file is intentionally left almost empty to remove Server Action functionality
+// for static site generation (next export).
+// If you need to re-enable server-side contact form submissions,
+// you can reimplement the submitContactForm function here.
 
 export type ContactFormState = {
   message: string;
@@ -14,6 +12,16 @@ export type ContactFormState = {
   issues?: string[];
   success: boolean;
 };
+
+// Example of how the function might look if re-enabled:
+/*
+import { z } from "zod";
+
+const contactFormSchema = z.object({
+  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
+  email: z.string().email({ message: "Invalid email address." }),
+  message: z.string().min(10, { message: "Message must be at least 10 characters." }),
+});
 
 export async function submitContactForm(
   prevState: ContactFormState,
@@ -32,7 +40,6 @@ export async function submitContactForm(
   }
 
   // Here you would typically send an email or save to a database
-  // For this example, we'll just simulate a successful submission
   console.log("Form data submitted:", parsed.data);
 
   // Simulate network delay
@@ -43,3 +50,4 @@ export async function submitContactForm(
     success: true,
   };
 }
+*/
