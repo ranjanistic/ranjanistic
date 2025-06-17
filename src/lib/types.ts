@@ -3,7 +3,7 @@ import type { LucideIcon } from 'lucide-react';
 export interface NavLink {
   href: string;
   label: string;
-  icon: LucideIcon;
+  iconName: string; // Changed from icon: LucideIcon
 }
 
 export type ProjectStorylineItem = 
@@ -34,7 +34,7 @@ export interface Skill {
 
 export interface SkillCategory {
   name: string;
-  icon: LucideIcon;
+  iconName: string; // Changed from icon: LucideIcon
   skills: Skill[];
 }
 
@@ -70,5 +70,5 @@ export interface BlogPost {
 export interface SocialLink {
   name: string;
   url: string;
-  icon: LucideIcon;
+  icon: LucideIcon; // This remains LucideIcon as it's used by Server Components
 }

@@ -1,14 +1,16 @@
-import type { Project, SkillCategory, Experience, BlogPost } from '@/lib/types';
-import { Briefcase, Code, Users, Feather, LayoutDashboard, Palette, TerminalSquare, Mic2, PenTool } from 'lucide-react';
+import type { Project, SkillCategory, Experience, BlogPost, SocialLink, NavLink } from '@/lib/types';
+// Removed imports for icons used in navLinks and skillCategories as they are now strings
+// Kept imports for icons used in socialLinks as they are consumed by Server Components
+import { Linkedin, Github, Dribbble, Feather } from 'lucide-react';
 
-export const navLinks = [
-  { href: '/', label: 'Home', icon: LayoutDashboard },
-  { href: '/about', label: 'About', icon: Users },
-  { href: '/projects', label: 'Projects', icon: Briefcase },
-  { href: '/skills', label: 'Skills', icon: Code },
-  { href: '/experience', label: 'Experience', icon: TerminalSquare },
-  { href: '/blog', label: 'Blog', icon: PenTool },
-  { href: '/contact', label: 'Contact', icon: Mic2 },
+export const navLinks: NavLink[] = [
+  { href: '/#hero', label: 'Home', iconName: 'LayoutDashboard' },
+  { href: '/#about', label: 'About', iconName: 'Users' },
+  { href: '/#projects', label: 'Projects', iconName: 'Briefcase' },
+  { href: '/#skills', label: 'Skills', iconName: 'Code' },
+  { href: '/#experience', label: 'Experience', iconName: 'TerminalSquare' },
+  { href: '/#blog', label: 'Blog', iconName: 'PenTool' },
+  { href: '/#contact', label: 'Contact', iconName: 'Mic2' },
 ];
 
 export const projects: Project[] = [
@@ -74,7 +76,7 @@ export const projects: Project[] = [
 export const skillCategories: SkillCategory[] = [
   {
     name: 'Design',
-    icon: Palette,
+    iconName: 'Palette',
     skills: [
       { name: 'UI/UX Design', level: 95 },
       { name: 'Interaction Design', level: 90 },
@@ -85,7 +87,7 @@ export const skillCategories: SkillCategory[] = [
   },
   {
     name: 'Development',
-    icon: Code,
+    iconName: 'Code',
     skills: [
       { name: 'HTML & CSS', level: 90 },
       { name: 'JavaScript (React, Next.js)', level: 85 },
@@ -95,7 +97,7 @@ export const skillCategories: SkillCategory[] = [
   },
   {
     name: 'Tools',
-    icon: Briefcase,
+    iconName: 'Briefcase',
     skills: [
       { name: 'Figma', level: 95 },
       { name: 'Adobe XD', level: 90 },
@@ -181,9 +183,9 @@ export const blogPosts: BlogPost[] = [
   },
 ];
 
-// Social links for footer
-export const socialLinks = [
-  { name: 'LinkedIn', url: 'https://linkedin.com/in/priyanshu', icon: Feather }, // Using Feather as placeholder
-  { name: 'GitHub', url: 'https://github.com/priyanshu', icon: Code },
-  { name: 'Dribbble', url: 'https://dribbble.com/priyanshu', icon: Palette },
+export const socialLinks: SocialLink[] = [
+  { name: 'LinkedIn', url: 'https://linkedin.com/in/priyanshuranjan-portfolio', icon: Linkedin },
+  { name: 'GitHub', url: 'https://github.com/priyanshuranjan-portfolio', icon: Github },
+  { name: 'Dribbble', url: 'https://dribbble.com/priyanshuranjan-portfolio', icon: Dribbble },
+  { name: 'Feather', url: 'https://feathericons.com/', icon: Feather },
 ];
