@@ -4,22 +4,59 @@ import Image from 'next/image';
 import {
   heroData,
   workExperienceData,
-  projectData, 
-  skillsData, 
+  projects, // Use detailed projects array
+  skillCategories, // Use detailed skillCategories array
   educationData,
   certificationsData,
   honorsAwardsData,
   socialLinksFooter,
 } from '@/lib/data';
-import type { ProjectEntry, WorkExperienceEntry, SkillArea, EducationEntry, GitHubUser, GitHubRepo, Certification, HonorAward } from '@/lib/types';
+import type { Project, ProjectStorylineItem, WorkExperienceEntry, SkillCategory as SkillCategoryType, EducationEntry, GitHubUser, GitHubRepo, Certification, HonorAward } from '@/lib/types';
 import { SectionContainer, SectionHeader } from '@/components/ui/section-container';
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 import { 
-  Download, ExternalLink, Mail, MapPin, Phone, Briefcase, Lightbulb, Code2, Settings, Users, Award, BookOpen, MessageSquare, CheckCircle, Star, GitFork, UsersRound, FolderKanban, Zap, Languages as LanguagesIcon, Trophy, GraduationCap, SquareTerminal, Brain, Mic, Palette as PaletteIcon, LifeBuoy, ShieldCheck
+  Download, ExternalLink, Mail, MapPin, Phone, Briefcase, Lightbulb, Code2, Settings, Users, Award, BookOpen, MessageSquare, CheckCircle, Star, GitFork, UsersRound, FolderKanban, Zap, Languages as LanguagesIcon, Trophy, GraduationCap, SquareTerminal, Brain, Mic, Palette as PaletteIcon, LifeBuoy, ShieldCheck, Github as GithubIcon // Renamed to avoid conflict
 } from 'lucide-react';
 import { ContactForm } from '@/components/contact-form';
 import { getGitHubUser, getGitHubRepos } from '@/lib/github-api';
 import { format } from 'date-fns';
+import { ExperienceItem } from '@/components/experience-item'; // For detailed experience
+import { SkillCategory } from '@/components/skill-category'; // For detailed skills
+
+
+// Helper function to render project storyline items (can be moved to a utils file if preferred)
+function renderStorylineItem(item: ProjectStorylineItem, index: number, projectTitle: string) {
+  switch (item.type) {
+    case 'heading':
+      return <h3 key={`${projectTitle}-story-${index}`} className="text-2xl md:text-3xl font-headline font-semibold mt-10 mb-4 text-foreground">{item.content}</h3>;
+    case 'paragraph':
+      return <p key={`${projectTitle}-story-${index}`} className="text-lg text-muted-foreground mb-4 leading-relaxed font-sans">{item.content}</p>;
+    case 'image':
+      return (
+        <div key={`${projectTitle}-story-${index}`} className="my-8">
+          <Image
+            src={item.src}
+            alt={item.alt}
+            width={800}
+            height={450}
+            className="rounded-lg shadow-md object-cover w-full"
+            data-ai-hint={item.hint || 'project detail'}
+          />
+          {item.alt && <p className="text-sm text-center text-muted-foreground mt-2 font-sans">{item.alt}</p>}
+        </div>
+      );
+    case 'list':
+      return (
+        <ul key={`${projectTitle}-story-${index}`} className="list-disc list-inside space-y-2 my-4 text-lg text-muted-foreground font-sans">
+          {item.items.map((li, i) => <li key={`${projectTitle}-story-${index}-li-${i}`}>{li}</li>)}
+        </ul>
+      );
+    default:
+      return null;
+  }
+}
+
 
 export default async function Home() {
   const githubUser: GitHubUser | null = await getGitHubUser();
@@ -36,9 +73,10 @@ export default async function Home() {
 
   return (
     <>
+      {/* Hero Section */}
       <SectionContainer
         id="top"
-        className="min-h-[calc(100vh-4rem)] flex flex-col justify-center items-center bg-[linear-gradient(180deg,var(--hero-gradient-start)_0%,var(--hero-gradient-end)_70%)]"
+        className="min-h-[calc(100vh-4rem)] flex flex-col justify-center items-center bg-[linear-gradient(135deg,var(--hero-gradient-start)_0%,var(--hero-gradient-end)_100%)]"
         animated={false}
         fullWidthBg
       >
@@ -89,29 +127,43 @@ export default async function Home() {
         </div>
       </SectionContainer>
 
+      {/* About Me Section - Detailed */}
       <SectionContainer id="about" bgColorClass="bg-section-about" fullWidthBg animated>
-        <div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-center">
-          <div className="lg:col-span-2 flex justify-center lg:justify-start">
+        <SectionHeader title="About Priyanshu Ranjan" subtitle="My Journey & Philosophy" alignment="left"/>
+        <div className="grid lg:grid-cols-3 gap-12 items-start">
+          <div className="lg:col-span-1 flex flex-col items-center">
             <Image
-              src="https://placehold.co/600x750.png" 
-              alt="Priyanshu Ranjan - Professional Portrait"
-              width={600}
-              height={750}
-              className="rounded-xl shadow-2xl object-cover aspect-[4/5] max-w-md w-full"
-              data-ai-hint="professional tech leader"
+              src="https://placehold.co/400x500.png" // Consistent with about page
+              alt="Priyanshu Ranjan"
+              width={400}
+              height={500}
+              className="rounded-xl shadow-2xl object-cover aspect-[4/5] mb-6"
+              data-ai-hint="professional tech portrait"
             />
+            <h3 className="text-2xl font-headline text-foreground mb-2">{heroData.name}</h3>
+            <p className="text-muted-foreground text-center mb-4 font-sans">Forward-Thinking Design Expert</p>
+            <Button variant="outline" size="lg" className="mb-4 w-full max-w-xs font-sans border-primary text-primary hover:bg-primary hover:text-primary-foreground" asChild>
+              <a href="/path-to-resume.pdf" download>
+                Download Resume <Download className="ml-2 h-5 w-5" />
+              </a>
+            </Button>
+            <div className="flex space-x-4">
+              {socialLinksFooter.map(link => (
+                <Button key={link.name} variant="outline" size="icon" asChild className="rounded-full border-primary/50 text-primary hover:bg-primary/10 hover:border-primary">
+                  <a href={link.url} target="_blank" rel="noopener noreferrer" aria-label={link.name}>
+                    <link.icon className="h-5 w-5" />
+                  </a>
+                </Button>
+              ))}
+            </div>
           </div>
-          <div className="lg:col-span-3">
-            <SectionHeader title="About Me" subtitle="My Journey &amp; Philosophy" alignment="left" className="mb-6"/>
-            <div className="space-y-6 text-muted-foreground">
-              <p className="text-xl leading-relaxed text-foreground font-sans">
-                {heroData.summary || "With 5 years of dedicated industry experience, I thrive on the full product development lifecycle, from conceptualization to deployment. My expertise spans technology leadership, effective communication, intuitive design, strategic problem navigation, and engaging public speaking."}
-              </p>
-              <p className="font-sans">
-                My journey has been fueled by a relentless curiosity and a desire to solve complex problems through creative, empathetic, and technically sound solutions. I believe great products are born at the intersection of deep user understanding, robust technical architecture, and clear strategic vision.
-              </p>
-              <h3 className="font-headline text-2xl text-primary !mt-8 !mb-3">My Approach</h3>
-              <ul className="list-none space-y-3 font-sans">
+
+          <div className="lg:col-span-2 prose prose-lg dark:prose-invert max-w-none prose-headings:font-headline prose-p:font-sans prose-li:font-sans prose-p:text-muted-foreground prose-headings:text-foreground">
+            <p className="text-xl leading-relaxed font-sans text-foreground">
+              {heroData.summary || "As a dedicated and forward-thinking design expert, I am passionate about crafting digital experiences that are not only visually captivating but also deeply intuitive and user-centric. My journey in design has been fueled by a relentless curiosity and a desire to solve complex problems through creative and empathetic solutions."}
+            </p>
+             <h3 className="font-headline text-2xl mt-8 mb-4 !text-primary">My Approach</h3>
+              <ul className="list-none space-y-3 font-sans !pl-0">
                 {aboutMeIcons.map(item => (
                   <li key={item.text} className="flex items-start">
                     <item.icon className="h-5 w-5 mr-3 mt-1 text-accent shrink-0" />
@@ -119,120 +171,94 @@ export default async function Home() {
                   </li>
                 ))}
               </ul>
-            </div>
-            <Button variant="outline" size="lg" className="mt-8 group border-primary text-primary hover:bg-primary hover:text-primary-foreground" asChild>
-              <Link href="/about">
-                Learn More About Me <ExternalLink className="ml-2 h-4 w-4"/>
-              </Link>
-            </Button>
+            <h3 className="font-headline text-2xl mt-8 mb-4">My Design Philosophy</h3>
+            <p>
+              I believe that great design is born at the intersection of empathy, strategy, and artistry. It's about understanding the user's needs, aligning with business goals, and then weaving those elements into a seamless and delightful experience. My process is iterative and collaborative, always striving for clarity and impact. I advocate for:
+            </p>
+            <ul className="list-disc list-inside space-y-2 my-4">
+              <li><strong>User-Centricity:</strong> Placing the user at the heart of every design decision.</li>
+              <li><strong>Simplicity & Clarity:</strong> Distilling complexity into intuitive and accessible solutions.</li>
+              <li><strong>Meaningful Innovation:</strong> Pushing boundaries thoughtfully to create novel and valuable experiences.</li>
+              <li><strong>Data-Informed Creativity:</strong> Balancing artistic vision with empirical evidence to achieve optimal outcomes.</li>
+              <li><strong>Ethical Design:</strong> Creating responsible and inclusive products that respect user autonomy and privacy.</li>
+            </ul>
+            
+            <h3 className="font-headline text-2xl mt-8 mb-4">Beyond the Pixels</h3>
+            <p>
+              When I'm not immersed in design projects, I enjoy exploring new technologies, contributing to open-source projects, and continuously learning to stay at the forefront of the ever-evolving digital landscape. I'm always eager to connect with fellow creatives and innovators, so feel free to reach out!
+            </p>
+            <p>
+              My goal is to leverage my skills and passion to contribute to projects that make a positive impact, drive innovation, and ultimately, make technology more human.
+            </p>
           </div>
         </div>
       </SectionContainer>
 
+      {/* Work Experience Section - Detailed */}
       <SectionContainer id="experience" bgColorClass="bg-section-experience" fullWidthBg animated>
         <SectionHeader title="Work Experience" subtitle="Professional Journey" alignment="left" />
-        <div className="space-y-16">
+        <div className="space-y-12 max-w-4xl mx-auto"> {/* Increased max-width for detailed items */}
           {workExperienceData.map((exp, index) => (
-            <div key={`${exp.company}-${exp.role}-${index}`} className="pb-10 border-b border-border/50 last:border-b-0 last:pb-0">
-              <div className="mb-6">
-                <h3 className="text-2xl lg:text-3xl font-headline text-primary mb-1">
-                  {exp.role}
-                </h3>
-                <div className="flex flex-col sm:flex-row sm:items-baseline gap-x-3 gap-y-1 mb-3">
-                  <span className="text-xl font-semibold text-foreground">
-                    {exp.companyLink ? (
-                      <a href={exp.companyLink.startsWith('http') ? exp.companyLink : `https://${exp.companyLink}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center group hover:text-accent">
-                        {exp.company}
-                        <ExternalLink className="ml-2 h-4 w-4 text-muted-foreground group-hover:text-accent transition-colors" />
-                      </a>
-                    ) : exp.company}
-                  </span>
-                  <span className="text-sm text-muted-foreground font-sans">{exp.period} {exp.location && `• ${exp.location}`}</span>
-                </div>
-                <ul className="list-none space-y-2 text-base text-muted-foreground leading-relaxed font-sans">
-                  {exp.description.map((desc, i) => (
-                    <li key={`${exp.company}-${exp.role}-desc-${i}`} className="flex items-start pl-1">
-                      <CheckCircle className="h-4 w-4 mr-2.5 mt-1 text-accent/80 shrink-0" />
-                      {desc}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {exp.imageUrls && exp.imageUrls.length > 0 && (
-                <div className="mt-4">
-                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                    {exp.imageUrls.map((url, imgIndex) => (
-                      <div key={imgIndex} className="rounded-lg overflow-hidden shadow-md bg-muted/20">
-                        <Image
-                          src={url}
-                          alt={`${exp.company} - Visual ${imgIndex + 1}`}
-                          width={300} 
-                          height={200} 
-                          className="object-cover w-full h-auto aspect-[3/2] transition-transform duration-300 hover:scale-105"
-                          data-ai-hint={exp.imageHints?.[imgIndex] || 'work project detail'}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
+            <ExperienceItem key={exp.company + exp.role + index} experience={exp} animationDelay={index * 100}/>
           ))}
         </div>
-         <Button variant="outline" asChild className="mt-12 group border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-          <Link href="/experience">
-            View Full Experience Details <ExternalLink className="ml-2 h-4 w-4"/>
-          </Link>
-        </Button>
       </SectionContainer>
 
+      {/* Projects Section - Detailed */}
       <SectionContainer id="projects" bgColorClass="bg-section-projects" fullWidthBg animated>
-        <SectionHeader title="Projects" subtitle="Selected Works" alignment="left" />
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projectData.slice(0, 6).map((proj: ProjectEntry, index) => ( 
-            <div key={proj.title + index} className="p-6 border border-border/50 rounded-lg bg-card hover:shadow-xl transition-all duration-300 flex flex-col group transform hover:-translate-y-1">
-              {proj.imageUrl && (
-                <div className="mb-4 rounded-md overflow-hidden">
-                  <Image 
-                    src={proj.imageUrl} 
-                    alt={proj.title} 
-                    width={400} 
-                    height={225} 
-                    className="rounded-md object-cover w-full aspect-video transition-transform duration-300 group-hover:scale-105" 
-                    data-ai-hint={proj.imageHint || 'project preview'} 
-                  />
+        <SectionHeader title="Projects" subtitle="Selected Works & Case Studies" alignment="left" />
+        <div className="space-y-20"> {/* Increased spacing between detailed projects */}
+          {projects.map((project, index) => (
+            <article key={project.id + index} className="p-6 md:p-8 border border-border/50 rounded-lg bg-card hover:shadow-xl transition-all duration-300 flex flex-col group transform hover:-translate-y-1">
+              <header className="mb-8">
+                <h3 className="text-3xl md:text-4xl font-headline font-bold text-primary mb-3 group-hover:text-accent transition-colors">{project.title}</h3>
+                <p className="text-lg text-muted-foreground font-sans mb-4">{project.shortDescription}</p>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {project.technologies.map((tech) => (
+                    <Badge key={tech} variant="secondary" className="bg-accent/30 text-accent-foreground/80 text-sm px-3 py-1 font-sans">
+                      {tech}
+                    </Badge>
+                  ))}
                 </div>
-              )}
-              <h3 className="text-xl lg:text-2xl font-headline text-primary mb-2 group-hover:text-accent transition-colors">
-                {proj.title}
-              </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed font-sans mb-4 flex-grow line-clamp-3">
-                {proj.description}
-              </p>
-              {proj.link && proj.linkText && (
-                <Button variant="link" asChild className="p-0 h-auto text-base text-accent hover:text-accent/80 self-start mt-auto">
-                  <Link
-                    href={proj.link}
-                    target={proj.link.startsWith('/projects/') ? '_self' : '_blank'}
-                    rel={proj.link.startsWith('/projects/') ? undefined : "noopener noreferrer"}
-                    className="inline-flex items-center group"
-                  >
-                    {proj.linkText}
-                    <ExternalLink className="ml-1.5 h-4 w-4 text-muted-foreground group-hover:text-accent transition-colors" />
-                  </Link>
-                </Button>
-              )}
-            </div>
+                <div className="flex gap-4">
+                  {project.liveLink && (
+                    <Button asChild className="font-sans" size="sm">
+                      <a href={project.liveLink} target="_blank" rel="noopener noreferrer">
+                        Live Demo <ExternalLink className="ml-2 h-4 w-4" />
+                      </a>
+                    </Button>
+                  )}
+                  {project.repoLink && (
+                    <Button variant="outline" asChild className="font-sans border-primary/50 text-primary hover:bg-primary/10" size="sm">
+                      <a href={project.repoLink} target="_blank" rel="noopener noreferrer">
+                        View Code <GithubIcon className="ml-2 h-4 w-4" />
+                      </a>
+                    </Button>
+                  )}
+                </div>
+              </header>
+
+              <Image
+                src={project.imageUrl}
+                alt={project.title}
+                width={1200}
+                height={675}
+                className="rounded-xl shadow-lg object-cover w-full aspect-video mb-8"
+                data-ai-hint={project.imageHint || 'project main image'}
+                priority={index < 2} // Prioritize loading for first few projects
+              />
+              
+              <div className="prose prose-lg dark:prose-invert max-w-none prose-headings:font-headline prose-p:font-sans prose-li:font-sans prose-p:text-muted-foreground prose-headings:text-foreground">
+                <h4 className="text-2xl md:text-3xl font-headline font-semibold text-foreground mb-4 border-b border-border/50 pb-2">Project Storyline</h4>
+                {project.description && <p className="text-lg text-muted-foreground mb-6 leading-relaxed font-sans">{project.description}</p>}
+                {project.storyline.map((item, storyIndex) => renderStorylineItem(item, storyIndex, project.title))}
+              </div>
+            </article>
           ))}
         </div>
-        <Button variant="outline" asChild className="mt-12 group border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-          <Link href="/projects">
-            Explore All Projects <ExternalLink className="ml-2 h-4 w-4"/>
-          </Link>
-        </Button>
       </SectionContainer>
 
+      {/* GitHub Showcase Section */}
       {githubUser && (
         <SectionContainer id="github-showcase" bgColorClass="bg-section-experience" fullWidthBg animated>
           <SectionHeader title="GitHub Showcase" subtitle="My Open Source Activity" alignment="left" />
@@ -297,70 +323,59 @@ export default async function Home() {
         </SectionContainer>
       )}
 
+      {/* Skills Section - Detailed */}
       <SectionContainer id="skills" bgColorClass="bg-section-skills" fullWidthBg animated>
-        <SectionHeader title="Skills &amp; Expertise" subtitle="Core Competencies" alignment="left" />
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-12">
-          {skillsData.map((area) => (
-            <div key={area.title}>
-              <div className="flex items-center mb-4">
-                {area.title === "Hard Skills & DevOps" && <SquareTerminal className="h-7 w-7 mr-3 text-primary" />}
-                {area.title === "Soft Skills & Design" && <PaletteIcon className="h-7 w-7 mr-3 text-primary" />}
-                {area.title === "Programming Languages" && <Code2 className="h-7 w-7 mr-3 text-primary" />}
-                {area.title === "Tools & Technologies" && <Settings className="h-7 w-7 mr-3 text-primary" />}
-                {area.title === "Frameworks & Libraries" && <Briefcase className="h-7 w-7 mr-3 text-primary" />}
-                <h3 className="text-2xl font-headline text-primary">
-                  {area.title}
-                </h3>
-              </div>
-              <p className="text-base text-muted-foreground leading-relaxed font-sans whitespace-pre-line">
-                {area.skills}
-              </p>
-            </div>
+        <SectionHeader title="Skills &amp; Expertise" subtitle="Core Competencies & Technical Proficiency" alignment="left" />
+        <p className="text-left text-lg text-muted-foreground mb-12 max-w-3xl font-sans">
+          I possess a diverse range of skills spanning technology leadership, full-stack development, and design. Here's a breakdown of my core competencies and the tools I leverage to bring ideas to life.
+        </p>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {skillCategories.map((category, index) => (
+            <SkillCategory key={category.name + index} category={category} animationDelay={index * 100} />
           ))}
         </div>
-        <Button variant="outline" asChild className="mt-12 group border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-          <Link href="/skills">
-            View Detailed Skills <ExternalLink className="ml-2 h-4 w-4"/>
-          </Link>
-        </Button>
       </SectionContainer>
 
+      {/* Education Section */}
       <SectionContainer id="education" bgColorClass="bg-section-education" fullWidthBg animated>
         <SectionHeader title="Education" subtitle="Academic Background" alignment="left" />
         <div className="space-y-12">
           {educationData.map((edu, index) => (
             <div key={`${edu.institution}-${edu.degree}-${index}`} className="pb-8 border-b border-border/50 last:border-b-0 last:pb-0">
-              <div className="flex items-center mb-1">
-                <GraduationCap className="h-7 w-7 mr-3 text-primary" />
+              <div className="flex items-start sm:items-center mb-1">
+                <GraduationCap className="h-7 w-7 mr-3 text-primary shrink-0 mt-1 sm:mt-0" />
                 <h3 className="text-2xl lg:text-3xl font-headline text-foreground">
                   {edu.degree}
                 </h3>
               </div>
-              <p className="text-lg font-semibold text-primary/90 ml-10">{edu.institution} {edu.campus && `(${edu.campus})`}</p>
-              <p className="text-sm text-muted-foreground mb-3 font-sans ml-10">{edu.period}</p>
-              {edu.details && edu.details.map((detail, i) => (
-                <div key={`${edu.institution}-detail-${i}`} className="text-base text-muted-foreground leading-relaxed font-sans mt-2 space-y-1 ml-10">
-                  {detail.specialization && <p><strong className="font-medium text-foreground/80">Specialization:</strong> {detail.specialization}</p>}
-                  {detail.projects && (
-                    <p className="mt-1">
-                      <strong className="font-medium text-foreground/80">Key Projects/Focus:</strong> {detail.projects}{' '}
-                      {detail.projectLink && detail.projectLinkText && (
-                        <Button variant="link" asChild className="p-0 h-auto text-sm text-accent hover:text-accent/80">
-                        <a href={detail.projectLink} target={detail.projectLink.startsWith('http') || detail.projectLink.startsWith('/') ? '_blank' : '_self'} rel="noopener noreferrer" className="inline-flex items-center group">
-                          {detail.projectLinkText}
-                          {(detail.projectLink.startsWith('http') || detail.projectLink.startsWith('/')) && <ExternalLink className="ml-1.5 h-4 w-4 text-muted-foreground group-hover:text-accent transition-colors" />}
-                        </a>
-                        </Button>
-                      )}
-                    </p>
-                  )}
-                </div>
-              ))}
+              <div className="pl-10">
+                <p className="text-lg font-semibold text-primary/90">{edu.institution} {edu.campus && `(${edu.campus})`}</p>
+                <p className="text-sm text-muted-foreground mb-3 font-sans">{edu.period}</p>
+                {edu.details && edu.details.map((detail, i) => (
+                  <div key={`${edu.institution}-detail-${i}`} className="text-base text-muted-foreground leading-relaxed font-sans mt-2 space-y-1">
+                    {detail.specialization && <p><strong className="font-medium text-foreground/80">Specialization:</strong> {detail.specialization}</p>}
+                    {detail.projects && (
+                      <p className="mt-1">
+                        <strong className="font-medium text-foreground/80">Key Projects/Focus:</strong> {detail.projects}{' '}
+                        {detail.projectLink && detail.projectLinkText && (
+                          <Button variant="link" asChild className="p-0 h-auto text-sm text-accent hover:text-accent/80">
+                          <Link href={detail.projectLink} className="inline-flex items-center group">
+                            {detail.projectLinkText}
+                            <ExternalLink className="ml-1.5 h-4 w-4 text-muted-foreground group-hover:text-accent transition-colors" />
+                          </Link>
+                          </Button>
+                        )}
+                      </p>
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
           ))}
         </div>
       </SectionContainer>
 
+      {/* Certifications Section */}
       <SectionContainer id="certifications" bgColorClass="bg-section-skills" fullWidthBg animated>
         <SectionHeader title="Certifications" subtitle="Professional Accreditations" alignment="left" />
         <div className="grid md:grid-cols-2 gap-8">
@@ -377,9 +392,9 @@ export default async function Home() {
                     data-ai-hint={cert.imageHint || 'certification logo badge'} />
                 )}
                 <div className="flex-1">
-                  <h3 className={`text-xl font-headline mb-1 ${cert.credentialUrl ? 'text-primary group-hover:text-accent' : 'text-foreground'}`}>
+                  <h3 className={`text-xl font-headline mb-1 ${cert.credentialUrl && cert.credentialUrl !== '#' ? 'text-primary group-hover:text-accent' : 'text-foreground'}`}>
                     {cert.name}
-                    {cert.credentialUrl && <ExternalLink className="inline-block ml-2 h-4 w-4 text-muted-foreground group-hover:text-accent transition-colors" />}
+                    {cert.credentialUrl && cert.credentialUrl !== '#' && <ExternalLink className="inline-block ml-2 h-4 w-4 text-muted-foreground group-hover:text-accent transition-colors" />}
                   </h3>
                   {cert.issuingOrganization && (
                     <p className="text-sm text-muted-foreground font-sans">
@@ -392,7 +407,7 @@ export default async function Home() {
 
             return (
               <div key={`${cert.name}-${index}`} className="border border-border/30 rounded-lg bg-muted/20">
-                {cert.credentialUrl ? (
+                {cert.credentialUrl && cert.credentialUrl !== '#' ? (
                   <a href={cert.credentialUrl} target="_blank" rel="noopener noreferrer" className="block">
                     {CertContent}
                   </a>
@@ -405,13 +420,14 @@ export default async function Home() {
         </div>
       </SectionContainer>
 
+      {/* Honors & Awards Section */}
       <SectionContainer id="honors" bgColorClass="bg-section-education" fullWidthBg animated>
         <SectionHeader title="Honors & Awards" subtitle="Recognitions & Achievements" alignment="left" />
         <div className="space-y-8">
           {honorsAwardsData.map((honor, index) => (
             <div key={`${honor.title}-${index}`} className="pb-6 border-b border-border/50 last:border-b-0 last:pb-0">
                <div className="flex items-center mb-1">
-                <Trophy className="h-6 w-6 mr-3 text-primary" /> {/* Changed Star to Trophy */}
+                <Trophy className="h-6 w-6 mr-3 text-primary shrink-0" />
                 <h3 className="text-xl lg:text-2xl font-headline text-foreground">
                   {honor.title}
                 </h3>
@@ -427,6 +443,7 @@ export default async function Home() {
         </div>
       </SectionContainer>
 
+      {/* Contact Section */}
       <SectionContainer id="contact" bgColorClass="bg-section-contact" fullWidthBg animated>
         <SectionHeader title="Contact Me" subtitle="Let's Connect" alignment="left" />
         <div className="grid md:grid-cols-2 gap-10 lg:gap-16 items-start">
