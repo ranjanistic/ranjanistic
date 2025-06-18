@@ -5,7 +5,7 @@ import type { LucideIcon } from 'lucide-react';
 export type ProjectStorylineItem = 
   | { type: 'heading'; content: string }
   | { type: 'paragraph'; content: string }
-  | { type: 'image'; src: string; alt: string; hint?: string } // hint is optional from XLSX
+  | { type: 'image'; src: string; alt: string; hint?: string } // hint is optional
   | { type: 'list'; items: string[] };
 
 export interface Project {
@@ -55,24 +55,6 @@ export interface Experience { // For detailed experience page if ever needed
   logoHint?: string;
 }
 
-// Blog types (kept for potential future re-add, but not currently used)
-export type BlogPostContentItem = 
-  | { type: 'heading'; content: string }
-  | { type: 'paragraph'; content: string }
-  | { type: 'image'; src: string; alt: string; hint?: string }
-  | { type: 'list'; items: string[] };
-
-export interface BlogPost {
-  slug: string;
-  title: string;
-  date: string; 
-  excerpt: string;
-  content: BlogPostContentItem[];
-  tags: string[];
-  coverImage: string;
-  coverImageHint?: string;
-}
-
 // General types for portfolio structure
 export interface HeroData {
   name: string;
@@ -117,6 +99,30 @@ export interface EducationEntry {
 export interface SocialLinkInfo {
   name: string;
   url: string;
-  icon: LucideIcon; // In data.ts, we map iconName string to this
-  iconName?: string; // From JSON
+  icon: LucideIcon; 
+  iconName?: string; 
+}
+
+// GitHub API Types
+export interface GitHubUser {
+  login: string;
+  avatar_url: string;
+  html_url: string;
+  name?: string;
+  bio?: string;
+  public_repos: number;
+  followers: number;
+  following: number;
+}
+
+export interface GitHubRepo {
+  id: number;
+  name: string;
+  full_name: string;
+  html_url: string;
+  description?: string | null;
+  stargazers_count: number;
+  forks_count: number;
+  language?: string | null;
+  updated_at: string;
 }

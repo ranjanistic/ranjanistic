@@ -8,18 +8,21 @@ import {
   skillsData,
   educationData,
   socialLinksFooter,
-  // blogPosts, // Removed
 } from '@/lib/data';
-import type { ProjectEntry, WorkExperienceEntry, SkillArea, EducationEntry } from '@/lib/types';
+import type { ProjectEntry, WorkExperienceEntry, SkillArea, EducationEntry, GitHubUser, GitHubRepo } from '@/lib/types';
 import { SectionContainer, SectionHeader } from '@/components/ui/section-container';
 import { Button } from '@/components/ui/button';
-import { Download, ExternalLink, Mail, MapPin, Phone, Briefcase, Lightbulb, Code2, Settings, Users, Award, BookOpen, MessageSquare, CheckCircle } from 'lucide-react';
-// import { BlogPostPreview } from '@/components/blog-post-preview'; // Removed
+import { 
+  Download, ExternalLink, Mail, MapPin, Phone, Briefcase, Lightbulb, Code2, Settings, Users, Award, BookOpen, MessageSquare, CheckCircle, Star, GitFork, UsersRound
+} from 'lucide-react';
 import { ContactForm } from '@/components/contact-form';
-import { Badge } from '@/components/ui/badge';
-import { cn } from '@/lib/utils';
+import { getGitHubUser, getGitHubRepos } from '@/lib/github-api';
+import { format } from 'date-fns';
 
-export default function Home() {
+export default async function Home() {
+  const githubUser: GitHubUser | null = await getGitHubUser();
+  const githubRepos: GitHubRepo[] | null = await getGitHubRepos(6);
+
   return (
     <>
       <SectionContainer
@@ -170,6 +173,71 @@ export default function Home() {
         </div>
       </SectionContainer>
 
+      {githubUser && (
+        <SectionContainer id="github-showcase" bgColorClass="bg-section-skills" fullWidthBg animated>
+          <SectionHeader title="GitHub Showcase" subtitle="My Open Source Activity" alignment="left" />
+          <div className="grid md:grid-cols-3 gap-8 items-start mb-12">
+            <div className="md:col-span-1 flex flex-col items-center md:items-start">
+              {githubUser.avatar_url && (
+                <Image
+                  src={githubUser.avatar_url}
+                  alt={githubUser.login || 'GitHub User'}
+                  width={150}
+                  height={150}
+                  className="rounded-full shadow-lg mb-4"
+                  data-ai-hint="github avatar"
+                />
+              )}
+              <h3 className="text-2xl font-headline text-foreground mb-1">{githubUser.name || githubUser.login}</h3>
+              {githubUser.bio && <p className="text-muted-foreground font-sans text-center md:text-left mb-2">{githubUser.bio}</p>}
+              <div className="flex items-center text-muted-foreground text-sm mb-1">
+                <UsersRound className="h-4 w-4 mr-2 text-primary" /> Followers: {githubUser.followers}
+              </div>
+              <div className="flex items-center text-muted-foreground text-sm mb-4">
+                <Briefcase className="h-4 w-4 mr-2 text-primary" /> Public Repos: {githubUser.public_repos}
+              </div>
+              <Button variant="outline" asChild className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                <a href={githubUser.html_url} target="_blank" rel="noopener noreferrer">
+                  View GitHub Profile <ExternalLink className="ml-2 h-4 w-4" />
+                </a>
+              </Button>
+            </div>
+            <div className="md:col-span-2">
+              <h4 className="text-xl font-headline text-primary mb-4">Recent Repositories</h4>
+              {githubRepos && githubRepos.length > 0 ? (
+                <div className="space-y-6">
+                  {githubRepos.map(repo => (
+                    <div key={repo.id} className="p-4 border border-border/50 rounded-lg bg-card hover:shadow-md transition-shadow">
+                      <a href={repo.html_url} target="_blank" rel="noopener noreferrer" className="group">
+                        <h5 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors mb-1">{repo.name}</h5>
+                      </a>
+                      {repo.description && <p className="text-sm text-muted-foreground font-sans mb-2 line-clamp-2">{repo.description}</p>}
+                      <div className="flex items-center space-x-4 text-xs text-muted-foreground">
+                        {repo.language && (
+                          <div className="flex items-center">
+                            <Code2 className="h-3 w-3 mr-1 text-primary/80" /> {repo.language}
+                          </div>
+                        )}
+                        <div className="flex items-center">
+                          <Star className="h-3 w-3 mr-1 text-yellow-500" /> {repo.stargazers_count}
+                        </div>
+                        <div className="flex items-center">
+                          <GitFork className="h-3 w-3 mr-1 text-blue-500" /> {repo.forks_count}
+                        </div>
+                        <span>Updated: {format(new Date(repo.updated_at), 'MMM dd, yyyy')}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-muted-foreground font-sans">No public repositories found or could not fetch data.</p>
+              )}
+            </div>
+          </div>
+        </SectionContainer>
+      )}
+
+
       <SectionContainer id="skills" bgColorClass="bg-section-skills" fullWidthBg animated>
         <SectionHeader title="Skills &amp; Expertise" subtitle="Core Competencies" alignment="left" />
         <div className="grid md:grid-cols-2 gap-x-10 gap-y-12">
@@ -226,8 +294,6 @@ export default function Home() {
         </div>
       </SectionContainer>
 
-      {/* Blog Section Removed */}
-
       <SectionContainer id="contact" bgColorClass="bg-section-contact" fullWidthBg animated>
         <SectionHeader title="Contact Me" subtitle="Let's Connect" alignment="left" />
         <div className="grid md:grid-cols-2 gap-10 lg:gap-16 items-start">
@@ -265,5 +331,3 @@ export default function Home() {
     </>
   );
 }
-
-    
