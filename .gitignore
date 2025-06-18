@@ -1,45 +1,53 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# dependencies
+# Dependencies
 /node_modules
 /.pnp
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/versions
+.pnp.js
 
-# testing
-/coverage
-
-# next.js
+# Production
+/build
 /.next/
 /out/
 
-# production
-/build
-
-# misc
+# Misc
 .DS_Store
 *.pem
 
-# debug
+# Logs
+logs
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.pnpm-debug.log*
+pnpm-debug.log*
+lerna-debug.log*
 
-# vercel
-.vercel
+# Debug
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+pidlog.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+webstorm.log*
+*.sublime-project
+*.sublime-workspace
+*.idea
+*.vscode/tasks.json
+*.vscode/launch.json
+# Local Netlify folder
+.netlify
 
-# typescript
-*.tsbuildinfo
-next-env.d.ts
+# Next.js local development files
+.next
+out
 
-.genkit/*
-.env*
-
-# firebase
+# Firebase
+.firebase
 firebase-debug.log
-firestore-debug.log
+*.firebase.*
+
+# Genkit
+.genkit/cache
+.genkit/log
+.genkit/state
+
+# Generated data file
+src/lib/generated-data.json

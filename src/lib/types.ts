@@ -1,23 +1,21 @@
 
 import type { LucideIcon } from 'lucide-react';
 
-// NavLink definition is now in data.ts as it's simpler
-
 // Project types
 export type ProjectStorylineItem = 
   | { type: 'heading'; content: string }
   | { type: 'paragraph'; content: string }
-  | { type: 'image'; src: string; alt: string; hint: string }
+  | { type: 'image'; src: string; alt: string; hint?: string } // hint is optional from XLSX
   | { type: 'list'; items: string[] };
 
-export interface Project { // Renamed from LegacyProject
+export interface Project {
   id: string;
   slug: string;
   title: string;
   shortDescription: string;
   description: string;
   imageUrl: string;
-  imageHint: string;
+  imageHint?: string; // hint is optional
   technologies: string[];
   liveLink?: string;
   repoLink?: string;
@@ -25,27 +23,27 @@ export interface Project { // Renamed from LegacyProject
 }
 
 // Skill types
-export interface Skill { // Renamed from LegacySkill
+export interface Skill {
   name: string;
   level: number; 
 }
 
-export interface SkillCategory { // Renamed from LegacySkillCategory
+export interface SkillCategory {
   name: string;
-  iconName: string; 
+  iconName: string; // Stays as string, component will map to LucideIcon
   skills: Skill[];
 }
 
 // Experience types
-export interface WorkExperienceEntry { // This is the current structure used for the single page
+export interface WorkExperienceEntry {
   role: string;
   company: string;
   companyLink?: string;
   period: string;
-  description: string[]; // List of achievements/responsibilities
+  description: string[];
 }
 
-export interface Experience { // Renamed from LegacyExperience, for detailed experience page if needed
+export interface Experience { // For detailed experience page if ever needed
   id: string;
   company: string;
   role: string;
@@ -57,14 +55,14 @@ export interface Experience { // Renamed from LegacyExperience, for detailed exp
   logoHint?: string;
 }
 
-// Blog types
+// Blog types (kept for potential future re-add, but not currently used)
 export type BlogPostContentItem = 
   | { type: 'heading'; content: string }
   | { type: 'paragraph'; content: string }
-  | { type: 'image'; src: string; alt: string; hint: string }
+  | { type: 'image'; src: string; alt: string; hint?: string }
   | { type: 'list'; items: string[] };
 
-export interface BlogPost { // Renamed from LegacyBlogPost
+export interface BlogPost {
   slug: string;
   title: string;
   date: string; 
@@ -72,21 +70,18 @@ export interface BlogPost { // Renamed from LegacyBlogPost
   content: BlogPostContentItem[];
   tags: string[];
   coverImage: string;
-  coverImageHint: string;
+  coverImageHint?: string;
 }
 
-// SocialLink definition is now in data.ts (SocialLinkInfo)
-
-// Simpler types for the single-page portfolio (as per kinseygross.com style)
-// These were defined in data.ts previously, but good to have clear type names here too.
+// General types for portfolio structure
 export interface HeroData {
   name: string;
   tagline: string;
   location: string;
   email: string;
-  gitlab: string;
-  github: string;
-  linkedin: string;
+  gitlab?: string;
+  github?: string;
+  linkedin?: string;
 }
 
 export interface NavLink {
@@ -112,7 +107,7 @@ export interface EducationDetail {
   projectLinkText?: string;
   specialization?: string;
 }
-export interface EducationEntry { // Simple education entry for homepage
+export interface EducationEntry {
   degree: string;
   institution: string;
   period: string;
@@ -122,5 +117,6 @@ export interface EducationEntry { // Simple education entry for homepage
 export interface SocialLinkInfo {
   name: string;
   url: string;
-  icon: LucideIcon;
+  icon: LucideIcon; // In data.ts, we map iconName string to this
+  iconName?: string; // From JSON
 }
