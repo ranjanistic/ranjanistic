@@ -7,25 +7,6 @@ import type {
   WorkExperienceEntry, NavLink, HeroData, ProjectEntry, SkillArea, EducationEntry, SocialLinkInfo, Project, SkillCategory, Skill, EducationDetail
 } from '@/lib/types';
 
-// Attempt to import generated data
-let generatedData;
-try {
-  generatedData = require('./generated-data.json');
-} catch (error) {
-  console.warn("generated-data.json not found. Using fallback empty data. Run build to generate.");
-  generatedData = {
-    heroData: {},
-    navLinksData: [],
-    socialLinksFooter: [],
-    workExperienceData: [],
-    projectData: [],
-    projects: [],
-    skillsData: [],
-    skillCategories: [],
-    educationData: [],
-  };
-}
-
 const iconMap: Record<string, LucideIcon> = {
   Linkedin,
   Github,
@@ -47,12 +28,12 @@ const iconMap: Record<string, LucideIcon> = {
   Phone,
   Lightbulb,
   CheckCircle
-  // Add other icons used in data if necessary
 };
 
-export const heroData: HeroData = generatedData.heroData || {
+// --- Default Fallback Data ---
+const defaultHeroData: HeroData = {
   name: 'Priyanshu Ranjan',
-  tagline: 'Loading tagline...',
+  tagline: 'Forward-Thinking Design Expert & Developer',
   location: 'Noida, UP (India)',
   email: 'priyanshuranjan88@gmail.com',
   gitlab: 'https://gitlab.com/ranjanistic',
@@ -60,7 +41,7 @@ export const heroData: HeroData = generatedData.heroData || {
   linkedin: 'https://linkedin.com/in/ranjanistic',
 };
 
-export const navLinksData: NavLink[] = generatedData.navLinksData || [
+const defaultNavLinksData: NavLink[] = [
   { href: '/#top', label: 'Priyanshu R.' },
   { href: '/#about', label: 'About' },
   { href: '/#experience', label: 'Experience' },
@@ -70,12 +51,57 @@ export const navLinksData: NavLink[] = generatedData.navLinksData || [
   { href: '/#contact', label: 'Contact' },
 ];
 
-export const socialLinksFooter: SocialLinkInfo[] = (generatedData.socialLinksFooter || []).map((link: any) => ({
-  name: link.name,
-  url: link.url,
-  icon: iconMap[link.iconName as keyof typeof iconMap] || MessageCircle, // Fallback icon
+const defaultSocialLinksFooterRaw: Omit<SocialLinkInfo, 'icon'>[] = [
+  { name: 'Linkedin', url: 'https://linkedin.com/in/ranjanistic', iconName: 'Linkedin' },
+  { name: 'Github', url: 'https://github.com/ranjanistic', iconName: 'Github' },
+  { name: 'Gitlab', url: 'https://gitlab.com/ranjanistic', iconName: 'Gitlab' },
+];
+
+const defaultSocialLinksFooter: SocialLinkInfo[] = defaultSocialLinksFooterRaw.map(link => ({
+  ...link,
+  icon: iconMap[link.iconName as keyof typeof iconMap] || MessageCircle,
 }));
 
+// Attempt to import generated data
+let generatedData: any;
+try {
+  generatedData = require('./generated-data.json');
+} catch (error) {
+  console.warn("generated-data.json not found or is invalid. Using fallback data. Run build to generate.");
+  generatedData = {
+    heroData: {},
+    navLinksData: [],
+    socialLinksFooter: [],
+    workExperienceData: [],
+    projectData: [],
+    projects: [],
+    skillsData: [],
+    skillCategories: [],
+    educationData: [],
+  };
+}
+
+// --- Exported Data with Fallbacks ---
+export const heroData: HeroData = 
+  (generatedData.heroData && generatedData.heroData.name) 
+  ? generatedData.heroData 
+  : defaultHeroData;
+
+export const navLinksData: NavLink[] = 
+  (generatedData.navLinksData && generatedData.navLinksData.length > 0) 
+  ? generatedData.navLinksData 
+  : defaultNavLinksData;
+
+export const socialLinksFooter: SocialLinkInfo[] = 
+  (generatedData.socialLinksFooter && generatedData.socialLinksFooter.length > 0)
+  ? (generatedData.socialLinksFooter || []).map((link: any) => ({
+      name: link.name,
+      url: link.url,
+      icon: iconMap[link.iconName as keyof typeof iconMap] || MessageCircle,
+    }))
+  : defaultSocialLinksFooter;
+
+// For other data types, provide similar robust fallbacks if they become critical
 export const workExperienceData: WorkExperienceEntry[] = (generatedData.workExperienceData || []).map((exp: any) => ({
   role: exp.role,
   company: exp.company,
@@ -84,7 +110,7 @@ export const workExperienceData: WorkExperienceEntry[] = (generatedData.workExpe
   description: Array.isArray(exp.description) ? exp.description : (exp.descriptionItems ? String(exp.descriptionItems).split(';;').map(s => s.trim()) : [])
 }));
 
-export const projectData: ProjectEntry[] = generatedData.projectData || []; // For homepage
+export const projectData: ProjectEntry[] = generatedData.projectData || [];
 
 export const projects: Project[] = (generatedData.projects || []).map((p: any) => ({
   id: p.id,
@@ -100,11 +126,11 @@ export const projects: Project[] = (generatedData.projects || []).map((p: any) =
   storyline: Array.isArray(p.storyline) ? p.storyline : [],
 }));
 
-export const skillsData: SkillArea[] = generatedData.skillsData || []; // For homepage
+export const skillsData: SkillArea[] = generatedData.skillsData || [];
 
 export const skillCategories: SkillCategory[] = (generatedData.skillCategories || []).map((category: any) => ({
   name: category.name,
-  iconName: category.iconName, // The component will handle mapping this string to an icon
+  iconName: category.iconName,
   skills: Array.isArray(category.skills) ? category.skills.map((skill: any) => ({
       name: skill.name,
       level: Number(skill.level) || 0,
@@ -122,5 +148,3 @@ export const educationData: EducationEntry[] = (generatedData.educationData || [
       specialization: detail.specialization,
   })) : [],
 }));
-
-// No blogPosts data as it was removed

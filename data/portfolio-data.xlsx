@@ -1,0 +1,95 @@
+
+## SHEET: HeroData
+name,tagline,location,email,gitlab,github,linkedin
+Priyanshu Ranjan,Forward-Thinking Design Expert & Full-Stack Developer with 5 years of industry experience,Noida, UP (India),priyanshuranjan88@gmail.com,https://gitlab.com/ranjanistic,https://github.com/ranjanistic,https://linkedin.com/in/ranjanistic
+
+## SHEET: NavLinks
+href,label
+/#top,Priyanshu R.
+/#about,About
+/#experience,Experience
+/#projects,Projects
+/#skills,Skills
+/#education,Education
+/#contact,Contact
+
+## SHEET: SocialLinks
+name,url,iconName
+LinkedIn,https://linkedin.com/in/ranjanistic,Linkedin
+GitHub,https://github.com/ranjanistic,Github
+GitLab,https://gitlab.com/ranjanistic,Gitlab
+
+## SHEET: WorkExperience
+role,company,companyLink,period,descriptionItems
+Senior Software Engineer & Team Lead,Innovatech Solutions Inc.,https://innovatech.com,Jan 2021 - Present,"Led a team of 5 developers in the creation of a new flagship SaaS product, resulting in a 20% increase in customer acquisition.;;Architected and implemented a scalable microservices backend using Node.js, TypeScript, and Kubernetes.;;Championed agile methodologies, improving team velocity by 15% and reducing bug backlogs by 30%.;;Mentored junior engineers, fostering a culture of continuous learning and development."
+Software Engineer,TechForward Co.,https://techforward.com,Jun 2019 - Dec 2020,"Developed and maintained key features for a high-traffic e-commerce platform using React and Ruby on Rails.;;Collaborated with UX/UI designers to implement responsive and user-friendly interfaces.;;Contributed to API development and database optimization, improving query performance by 25%."
+Junior Developer,CodeGenius LLC,,Jul 2018 - May 2019,"Assisted in the development of various web applications for clients across different industries.;;Gained proficiency in full-stack development, working with JavaScript, Python (Django), and SQL databases.;;Participated in code reviews and learned best practices for software development."
+
+## SHEET: ProjectEntries
+title,description,link,linkText
+AI-Powered Content Generation Platform,"A platform leveraging generative AI to assist users in creating diverse content formats, from articles to marketing copy. Features include customizable tone, style, and output length.",/projects/ai-content-platform,View Project Details
+E-commerce Analytics Dashboard,"A comprehensive dashboard for e-commerce businesses to track sales, customer behavior, and inventory. Provides actionable insights through data visualization.",/projects/ecommerce-analytics,View Project Details
+Collaborative Project Management Tool,"A web-based tool designed to streamline project workflows, enhance team communication, and manage tasks effectively with features like Kanban boards, Gantt charts, and real-time updates.",/projects/collab-pm-tool,View Project Details
+
+## SHEET: ProjectsDetailed
+id,slug,title,shortDescription,description,imageUrl,imageHint,technologies,liveLink,repoLink,storyline_json
+ai-content-platform,ai-content-platform,AI-Powered Content Generation Platform,"Leveraging generative AI to assist users in creating diverse content formats.","This project is a comprehensive platform designed to empower users with advanced AI tools for content creation. It supports various content types, including blog posts, social media updates, marketing materials, and more. The system integrates with cutting-edge language models and provides an intuitive interface for users to specify their requirements, such as topic, tone, style, keywords, and desired length. The goal is to streamline the content creation process, boost productivity, and enhance creativity.",https://placehold.co/1200x675.png,ai content generation interface,"Next.js,TypeScript,Python,FastAPI,Genkit,Tailwind CSS,PostgreSQL",#,https://github.com/ranjanistic/ai-content-platform,"[{""type"":""heading"",""content"":""The Challenge: Content Bottlenecks""},{""type"":""paragraph"",""content"":""Many creators and businesses struggle with the time and effort required to produce high-quality content consistently. This platform aims to alleviate that pain point.""},{""type"":""image"",""src"":""https://placehold.co/800x450.png"",""alt"":""Content creation workflow diagram"",""hint"":""workflow diagram""},{""type"":""heading"",""content"":""Our Solution: AI-Driven Assistance""},{""type"":""paragraph"",""content"":""We developed a modular system with features including:""},{""type"":""list"",""items"":[""Multi-model integration for diverse outputs."",""Advanced prompt engineering capabilities."",""User-friendly project management."",""Collaborative editing tools (future).""]}]"
+ecommerce-analytics,ecommerce-analytics,E-commerce Analytics Dashboard,"Track sales, customer behavior, and inventory with actionable insights.","This dashboard provides e-commerce businesses with a powerful tool to monitor key performance indicators (KPIs). It visualizes data related to sales trends, customer demographics, popular products, inventory levels, and marketing campaign effectiveness. Features include customizable reports, data filtering, and period comparisons to help businesses make data-driven decisions and optimize their operations.",https://placehold.co/1200x675.png,ecommerce dashboard chart,"React,Chart.js,Node.js,Express,MongoDB,Tailwind CSS",#,https://github.com/ranjanistic/ecommerce-analytics,"[{""type"":""heading"",""content"":""Understanding E-commerce Data""},{""type"":""paragraph"",""content"":""Businesses generate vast amounts of data. The key is transforming this data into actionable insights for growth and efficiency.""},{""type"":""image"",""src"":""https://placehold.co/800x450.png"",""alt"":""Sample data visualization"",""hint"":""data visualization""},{""type"":""heading"",""content"":""Key Features""},{""type"":""list"",""items"":[""Real-time sales tracking."",""Customer segmentation."",""Inventory alerts."",""Marketing ROI analysis.""]}]"
+collab-pm-tool,collab-pm-tool,Collaborative Project Management Tool,"Streamline project workflows and enhance team communication.","A web-based application designed to help teams manage projects efficiently. It offers features such as task assignment, progress tracking, Kanban boards, Gantt charts, file sharing, and real-time communication. The intuitive interface aims to reduce complexity and improve collaboration, ensuring projects stay on track and meet deadlines.",https://placehold.co/1200x675.png,project management interface,"Vue.js,Firebase,Node.js,Express,Tailwind CSS",#,https://github.com/ranjanistic/collab-pm-tool,"[{""type"":""heading"",""content"":""The Need for Better Collaboration""},{""type"":""paragraph"",""content"":""Effective project management is crucial for team success. This tool addresses common pain points in traditional PM approaches.""},{""type"":""heading"",""content"":""Core Functionalities""},{""type"":""list"",""items"":[""Task Management with Kanban Boards."",""Gantt Charts for Timeline Visualization."",""Real-time Chat and Notifications."",""Secure File Sharing and Versioning.""]}]"
+
+## SHEET: SkillAreas
+title,skillsText
+Hard Skills,"Frontend: React, Next.js, TypeScript, JavaScript (ES6+), HTML5, CSS3, Tailwind CSS, Zustand
+Backend: Node.js, Express.js, Python, FastAPI, REST APIs, GraphQL
+Databases: PostgreSQL, MongoDB, Redis
+DevOps & Cloud: Docker, Kubernetes, GCP, AWS, Firebase, Vercel"
+Soft Skills,"Leadership, Communication, Problem Solving, Teamwork, Agile Methodologies, Mentorship, Public Speaking, Time Management, Adaptability"
+Languages,"English (Fluent), Hindi (Native)"
+Tools & Technologies,"Git, VS Code, Postman, Figma, Jira, Slack, Genkit, Google AI Studio"
+Frameworks,"Next.js, React, Express.js, FastAPI, Django (basic), Vue.js (basic)"
+
+## SHEET: SkillCategoriesDetailed
+name,iconName
+Frontend Development,Palette
+Backend Development,Code
+Databases,Database
+DevOps & Cloud,Cloud
+Design Tools,PenTool
+Project Management,Briefcase
+AI & Machine Learning,Wand2
+
+## SHEET: SkillsDetailed
+categoryName,skillName,level
+Frontend Development,React & Next.js,95
+Frontend Development,TypeScript,90
+Frontend Development,JavaScript (ESNext),90
+Frontend Development,HTML5 & CSS3,95
+Frontend Development,Tailwind CSS,95
+Frontend Development,State Management (Zustand, Redux),85
+Backend Development,Node.js & Express.js,90
+Backend Development,Python & FastAPI,85
+Backend Development,REST APIs & GraphQL,88
+Backend Development,Microservices Architecture,80
+Databases,PostgreSQL,85
+Databases,MongoDB,80
+Databases,Redis,75
+DevOps & Cloud,Docker & Kubernetes,80
+DevOps & Cloud,GCP & Firebase,85
+DevOps & Cloud,AWS (S3, EC2, Lambda),75
+DevOps & Cloud,CI/CD (GitHub Actions),80
+Design Tools,Figma,80
+Design Tools,Adobe XD (Conceptual),70
+Project Management,Agile & Scrum,90
+Project Management,Jira & Confluence,85
+AI & Machine Learning,Genkit (Google AI),80
+AI & Machine Learning,Prompt Engineering,85
+AI & Machine Learning,Basic ML Concepts,70
+
+## SHEET: EducationEntries
+degree,institution,period,details_json
+Master of Science in Computer Science,Stanford University,2018 - 2020,"[{""specialization"":""Artificial Intelligence"",""projects"":""Developed a novel algorithm for NLP (published)."",""projectLink"":""#"",""projectLinkText"":""View Publication""}]"
+Bachelor of Technology in Information Technology,Indian Institute of Technology, Delhi,2014 - 2018,"[{""specialization"":""Web Development"",""projects"":""Lead developer for annual tech fest website, handling 50k+ users."",""projectLink"":""#"",""projectLinkText"":""View Archive""}]"
+High School Diploma,DPS R.K. Puram,2012 - 2014,"[{""specialization"":""Science with Computer Science"",""projects"":""Achieved 95% in CBSE Board Exams, School Topper in Computer Science."}]"
+
+
+    
