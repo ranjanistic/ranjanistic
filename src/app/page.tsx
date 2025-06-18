@@ -3,20 +3,20 @@ import Link from 'next/link';
 import Image from 'next/image';
 import {
   heroData,
+  socialLinksFooter,
   workExperienceData,
-  projects, 
-  skillCategories, 
+  projects,
+  skillCategories,
   educationData,
   certificationsData,
   honorsAwardsData,
-  socialLinksFooter,
 } from '@/lib/data';
-import type { ProjectStorylineItem, WorkExperienceEntry, SkillCategory as SkillCategoryType, EducationEntry, Certification, HonorAward } from '@/lib/types';
+import type { ProjectStorylineItem, WorkExperienceEntry, SkillCategory as SkillCategoryType, EducationEntry, Certification, HonorAward, Skill } from '@/lib/types';
 import { SectionContainer, SectionHeader } from '@/components/ui/section-container';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { 
-  Download, ExternalLink, Mail, MapPin, Phone, Briefcase, Lightbulb, Code2 as CodeIconLucide, Settings, Users, Award, BookOpen, MessageSquare, CheckCircle, Star, GitFork, UsersRound, FolderKanban, Zap, Languages as LanguagesIcon, Trophy, GraduationCap, SquareTerminal, Brain, Mic, Palette as PaletteIcon, LifeBuoy, ShieldCheck, Github as GithubIcon 
+  Download, ExternalLink, Mail, MapPin, Phone, Briefcase, Lightbulb, Code2 as CodeIconLucide, Settings, Users, Award, BookOpen, MessageSquare, CheckCircle, Star, GitFork, UsersRound, FolderKanban, Zap, Languages as LanguagesIcon, Trophy, GraduationCap, SquareTerminal, Brain, Mic, Palette as PaletteIcon, LifeBuoy, Github as GithubIcon, ShieldCheck 
 } from 'lucide-react';
 import { ContactForm } from '@/components/contact-form';
 import { format } from 'date-fns';
@@ -197,7 +197,7 @@ export default async function Home() {
       </SectionContainer>
 
       {/* Work Experience Section - Detailed */}
-      <SectionContainer id="experience" bgColorClass="bg-section-experience" fullWidthBg animated>
+      <SectionContainer id="experience" bgColorClass="bg-section-experience" fullWidthBg animated={false}>
         <SectionHeader title="Work Experience" subtitle="Professional Journey" alignment="left" />
         <div className="space-y-12 max-w-4xl mx-auto"> 
           {workExperienceData.map((exp, index) => (
@@ -207,7 +207,7 @@ export default async function Home() {
       </SectionContainer>
 
       {/* Projects Section - Detailed */}
-      <SectionContainer id="projects" bgColorClass="bg-section-experience" fullWidthBg animated>
+      <SectionContainer id="projects" bgColorClass="bg-section-experience" fullWidthBg animated={false}>
         <SectionHeader title="Projects" subtitle="Selected Works & Case Studies" alignment="left" />
         <div className="space-y-20"> 
           {projects.map((project, index) => (
@@ -419,3 +419,4 @@ export default async function Home() {
     </>
   );
 }
+
