@@ -8,13 +8,13 @@ import {
   skillsData,
   educationData,
   socialLinksFooter,
-  blogPosts,
+  // blogPosts, // Removed
 } from '@/lib/data';
 import type { ProjectEntry, WorkExperienceEntry, SkillArea, EducationEntry } from '@/lib/types';
 import { SectionContainer, SectionHeader } from '@/components/ui/section-container';
 import { Button } from '@/components/ui/button';
 import { Download, ExternalLink, Mail, MapPin, Phone, Briefcase, Lightbulb, Code2, Settings, Users, Award, BookOpen, MessageSquare, CheckCircle } from 'lucide-react';
-import { BlogPostPreview } from '@/components/blog-post-preview';
+// import { BlogPostPreview } from '@/components/blog-post-preview'; // Removed
 import { ContactForm } from '@/components/contact-form';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
@@ -226,26 +226,7 @@ export default function Home() {
         </div>
       </SectionContainer>
 
-      {blogPosts.length > 0 && (
-        <SectionContainer id="blog" bgColorClass="bg-section-blog" fullWidthBg animated>
-          <SectionHeader title="Insights &amp; Articles" subtitle="My Blog" alignment="left" />
-          <p className="text-lg text-muted-foreground mb-12 max-w-3xl font-sans">
-            Welcome to my blog where I share insights on design, technology, creative processes, and more. Explore articles that aim to inspire and inform.
-          </p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogPosts.slice(0, 3).map((post, index) => (
-              <BlogPostPreview key={post.slug} post={post} animationDelay={index * 100} />
-            ))}
-          </div>
-          {blogPosts.length > 3 && (
-            <div className="mt-12 text-left">
-              <Button asChild variant="outline" size="lg" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                <Link href="/blog">View All Posts</Link>
-              </Button>
-            </div>
-          )}
-        </SectionContainer>
-      )}
+      {/* Blog Section Removed */}
 
       <SectionContainer id="contact" bgColorClass="bg-section-contact" fullWidthBg animated>
         <SectionHeader title="Contact Me" subtitle="Let's Connect" alignment="left" />

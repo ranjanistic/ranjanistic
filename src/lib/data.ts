@@ -1,7 +1,7 @@
 
 import type { LucideIcon } from 'lucide-react';
 import { Linkedin, Github, Gitlab, LayoutDashboard, Briefcase, Wand2, GraduationCap, MessageCircle, Palette, Code, Settings, Users } from 'lucide-react'; // Added more icons
-import type { WorkExperienceEntry, NavLink, HeroData, ProjectEntry, SkillArea, EducationEntry, SocialLinkInfo, BlogPost, Project, SkillCategory, Experience, BlogPostContentItem } from '@/lib/types';
+import type { WorkExperienceEntry, NavLink, HeroData, ProjectEntry, SkillArea, EducationEntry, SocialLinkInfo, Project, SkillCategory, Experience, BlogPostContentItem, BlogPost } from '@/lib/types';
 
 
 export const navLinksData: NavLink[] = [
@@ -11,7 +11,7 @@ export const navLinksData: NavLink[] = [
   { href: '/#projects', label: 'Projects' },
   { href: '/#skills', label: 'Skills' },
   { href: '/#education', label: 'Education' },
-  { href: '/#blog', label: 'Blog' },
+  // { href: '/#blog', label: 'Blog' }, // Removed
   { href: '/#contact', label: 'Contact' },
 ];
 
@@ -218,47 +218,9 @@ export const socialLinksFooter: SocialLinkInfo[] = [
   { name: 'GitLab', url: 'https://gitlab.com/ranjanistic', icon: Gitlab },
 ];
 
-export const blogPosts: BlogPost[] = [
-  {
-    slug: 'the-future-of-design-thinking',
-    title: 'The Future of Design Thinking in a Tech-Driven World',
-    date: '2024-07-15',
-    excerpt: 'Exploring how design thinking methodologies are evolving with advancements in AI and other technologies.',
-    content: [
-      { type: 'paragraph', content: "Design thinking has long been a cornerstone of innovation, providing a human-centered approach to problem-solving. As technology, particularly Artificial Intelligence (AI), continues its rapid advancement, the landscape of design thinking is set for a transformative shift. How will these methodologies adapt, and what new opportunities will arise for designers?" },
-      { type: 'image', src: 'https://placehold.co/800x450.png', alt: 'AI and design thinking concept', hint: 'abstract ai design' },
-      { type: 'heading', content: 'AI as a Design Partner' },
-      { type: 'paragraph', content: "Instead of viewing AI as a replacement for designers, we should see it as a powerful partner. AI can automate repetitive tasks, analyze vast amounts of user data to uncover insights, and even generate initial design concepts. This frees up designers to focus on higher-level strategic thinking, empathy, and creativity – areas where human intuition excels." },
-      { type: 'heading', content: 'Ethical Considerations' },
-      { type: 'paragraph', content: "With great power comes great responsibility. The integration of AI into design processes also brings new ethical challenges. Designers must be vigilant about issues like bias in algorithms, data privacy, and the potential for AI-driven designs to manipulate users. A renewed focus on ethical design principles will be paramount." },
-      { type: 'list', items: ["The role of empathy in an AI world.", "Data-driven vs. intuition-led design.", "Upskilling for future design roles."] },
-      { type: 'paragraph', content: "The future is not about AI versus human designers, but AI *with* human designers. By embracing these new tools thoughtfully and ethically, we can unlock unprecedented levels of innovation and create even more meaningful and impactful user experiences." }
-    ],
-    tags: ['Design Thinking', 'AI', 'Future of Design', 'Technology'],
-    coverImage: 'https://placehold.co/800x400.png',
-    coverImageHint: 'futuristic tech interface'
-  },
-  {
-    slug: 'minimalism-in-ui-ux',
-    title: 'The Power of Minimalism in UI/UX Design',
-    date: '2024-06-28',
-    excerpt: 'A deep dive into why less is often more when it comes to creating effective and engaging user interfaces.',
-    content: [
-      { type: 'paragraph', content: "In a world saturated with information and visual stimuli, minimalism in UI/UX design offers a breath of fresh air. It’s more than just an aesthetic trend; it’s a philosophy centered on clarity, purpose, and user focus. But what makes minimalist design so powerful, and how can it be effectively implemented?" },
-      { type: 'heading', content: 'Clarity and Focus' },
-      { type: 'paragraph', content: "Minimalist interfaces remove unnecessary clutter, allowing users to focus on the core content and functionality. By prioritizing essential elements and employing generous white space, designers can guide the user’s attention and make interactions more intuitive." },
-      { type: 'image', src: 'https://placehold.co/800x450.png', alt: 'Minimalist UI example', hint: 'clean minimalist ui' },
-      { type: 'heading', content: 'Improved Performance' },
-      { type: 'paragraph', content: "Fewer elements typically mean faster loading times and smoother performance, especially on mobile devices. This contributes significantly to a positive user experience and can impact conversion rates and user retention." },
-      { type: 'heading', content: 'Timeless Appeal' },
-      { type: 'paragraph', content: "While design trends come and go, the principles of minimalism – clarity, balance, and purposeful design – tend to endure. A well-executed minimalist design can remain relevant and effective for years." },
-      { type: 'paragraph', content: "Achieving true minimalism is not about stripping everything away; it’s about making intentional choices to include only what is truly necessary to achieve the user’s goals and communicate the intended message effectively." }
-    ],
-    tags: ['Minimalism', 'UI Design', 'UX Design', 'User Experience'],
-    coverImage: 'https://placehold.co/800x400.png',
-    coverImageHint: 'simple design elements'
-  },
-];
+// Blog posts data removed
+// export const blogPosts: BlogPost[] = [ ... ];
+
 
 // Detailed data for Projects (if a dedicated /projects/[slug] page is used)
 export const projects: Project[] = [
