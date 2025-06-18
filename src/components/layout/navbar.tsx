@@ -7,12 +7,10 @@ import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
-import { navLinksData } from '@/lib/data';
+import { navLinksData, heroData } from '@/lib/data';
 import { cn } from '@/lib/utils';
-import { heroData } from '@/lib/data';
 
 export function Navbar() {
-  const pathname = usePathname();
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -25,37 +23,72 @@ export function Navbar() {
   }, []);
 
   const NavLinkItem: React.FC<{ href: string; label: string; onClick?: () => void; isBrand?: boolean }> = ({ href, label, onClick, isBrand = false }) => {
-    const isCurrentPageLink = pathname === href.split('#')[0];
-    const hash = href.split('#')[1];
-    let isActive = false;
-    if (typeof window !== 'undefined') {
-       // Check if current hash matches the link's hash, or if it's a top page link and current hash is empty/top
-      isActive = isCurrentPageLink && (hash ? window.location.hash === `#${hash}` : (pathname === href && (window.location.hash === "" || window.location.hash === "#top")));
-    }
+    const currentPathname = usePathname();
+    const [isActive, setIsActive] = useState(false);
 
+    useEffect(() => {
+      const determineActivity = () => {
+        // Ensure href is a string and process
+        const safeHref = typeof href === 'string' ? href : "";
+        const hrefParts = safeHref.split('#');
+        const linkBasePath = hrefParts[0] || "/"; // Default to root if no base path
+        const linkHash = hrefParts[1];
+
+        const isCurrentPageBasePath = currentPathname === linkBasePath;
+        const currentWindowHash = typeof window !== 'undefined' ? window.location.hash : "";
+        let newIsActiveState = false;
+
+        if (safeHref === "/#top") {
+          if (currentPathname === "/") {
+            newIsActiveState = (currentWindowHash === "" || currentWindowHash === "#top");
+          }
+        } else if (isCurrentPageBasePath) {
+          if (linkHash) {
+            newIsActiveState = (currentWindowHash === `#${linkHash}`);
+          } else {
+            // For links without a hash, active if current hash is empty
+            // (This might not be common for SPA-like hash navigation)
+            newIsActiveState = (currentWindowHash === "");
+          }
+        }
+        setIsActive(newIsActiveState);
+      };
+
+      determineActivity(); // Determine active state on mount and when dependencies change
+
+      window.addEventListener('hashchange', determineActivity);
+      return () => {
+        window.removeEventListener('hashchange', determineActivity);
+      };
+    }, [currentPathname, href]); // Dependencies for useEffect
 
     return (
       <Link
-        href={href}
+        href={typeof href === 'string' ? href : "/"} // Fallback href if not string
         onClick={onClick}
         className={cn(
           "px-3 py-2 rounded-md text-sm transition-colors duration-300",
           isBrand 
-            ? "text-xl font-headline font-bold text-foreground hover:text-primary" // Archivo for brand
-            : "font-sans text-muted-foreground hover:text-foreground focus:text-foreground", // Inter Tight for nav links
+            ? "text-xl font-headline font-bold text-foreground hover:text-primary"
+            : "font-sans text-muted-foreground hover:text-foreground focus:text-foreground",
           isActive && !isBrand ? "text-primary font-semibold" : "",
           "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background"
         )}
-        aria-current={isActive ? 'page' : undefined}
+        aria-current={isActive && !isBrand ? 'page' : undefined}
       >
         {label}
       </Link>
     );
   };
   
-  const brandLabel = heroData.name.split(' ')[0]; 
-  const navLinks = navLinksData.filter(link => link.label !== heroData.name);
-
+  const brandName = (heroData.name && typeof heroData.name === 'string') ? heroData.name.split(' ')[0] : 'Priyanshu';
+  const brandLabel = brandName + '.'; 
+  
+  // Filter out the /#top link for the main nav items as it's handled by brandLabel
+  const mainNavLinks = navLinksData.filter(link => typeof link.href === 'string' && link.href !== '/#top');
+  // For the sheet, we might want all links including the top one if it's differently styled or just for completeness.
+  // The current filter in data.ts already makes the first label dynamic for brand.
+  // Here, we ensure `navLinksData` itself is used for the sheet, and filter for main nav.
 
   return (
     <header className={cn(
@@ -67,7 +100,7 @@ export function Navbar() {
           <NavLinkItem href="/#top" label={brandLabel} isBrand />
 
           <nav className="hidden md:flex items-center space-x-1">
-            {navLinks.map((link) => (
+            {mainNavLinks.map((link) => (
               <NavLinkItem key={link.href} href={link.href} label={link.label} />
             ))}
           </nav>
@@ -89,7 +122,7 @@ export function Navbar() {
                        </Button>
                     </SheetClose>
                   </div>
-                  {navLinks.map((link) => (
+                  {navLinksData.map((link) => ( // Use full navLinksData for mobile sheet
                     <SheetClose asChild key={link.href}>
                        <NavLinkItem href={link.href} label={link.label} onClick={() => setIsSheetOpen(false)} />
                     </SheetClose>
