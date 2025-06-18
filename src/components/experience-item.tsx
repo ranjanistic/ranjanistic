@@ -26,18 +26,6 @@ export function ExperienceItem({ experience, animationDelay = 0 }: ExperienceIte
       style={isVisible ? { transitionDelay: `${animationDelay}ms` } : {}}
     >
       <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group bg-card text-card-foreground border border-border">
-        {experience.imageUrl && (
-          <div className="bg-muted/10 p-4">
-            <Image
-              src={experience.imageUrl}
-              alt={`${experience.company} visual representation`}
-              width={500}
-              height={250}
-              className="rounded-md object-cover w-full aspect-[2/1]"
-              data-ai-hint={experience.imageHint || 'company project related'}
-            />
-          </div>
-        )}
         <CardHeader className="p-6 bg-muted/30">
           <div className="flex flex-col sm:flex-row items-start gap-4">
             <div className="flex-1">
@@ -54,13 +42,14 @@ export function ExperienceItem({ experience, animationDelay = 0 }: ExperienceIte
               <div className="flex items-center text-sm text-muted-foreground mt-1 font-sans">
                 <CalendarDays className="h-4 w-4 mr-2" />
                 <span>{experience.period}</span>
+                {experience.location && <span className="ml-2">• {experience.location}</span>}
               </div>
             </div>
           </div>
         </CardHeader>
         <CardContent className="p-6">
           <h4 className="font-semibold font-headline text-foreground/80 mb-2 text-sm">Key Contributions:</h4>
-          <ul className="space-y-2">
+          <ul className="space-y-2 mb-6">
             {experience.description.map((descItem, index) => (
               <li key={index} className="flex items-start text-sm text-muted-foreground">
                 <CheckCircle className="h-4 w-4 mr-2 mt-0.5 text-green-500 shrink-0" />
@@ -68,9 +57,28 @@ export function ExperienceItem({ experience, animationDelay = 0 }: ExperienceIte
               </li>
             ))}
           </ul>
+
+          {experience.imageUrls && experience.imageUrls.length > 0 && (
+            <div className="mt-6 pt-6 border-t border-border/50">
+              <h4 className="text-md font-semibold font-headline text-primary/90 mb-3">Visuals:</h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {experience.imageUrls.map((url, imgIndex) => (
+                  <div key={imgIndex} className="rounded-lg overflow-hidden shadow-md bg-muted/20">
+                    <Image
+                      src={url}
+                      alt={`${experience.company} - Visual ${imgIndex + 1}`}
+                      width={400}
+                      height={250}
+                      className="object-cover w-full h-auto aspect-video transition-transform duration-300 hover:scale-105"
+                      data-ai-hint={experience.imageHints?.[imgIndex] || 'detailed work project'}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </CardContent>
       </Card>
     </div>
   );
 }
-

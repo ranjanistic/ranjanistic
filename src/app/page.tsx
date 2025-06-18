@@ -134,44 +134,49 @@ export default async function Home() {
         <div className="space-y-16">
           {workExperienceData.map((exp, index) => (
             <div key={`${exp.company}-${exp.role}-${index}`} className="pb-10 border-b border-border/50 last:border-b-0 last:pb-0">
-              <div className="grid md:grid-cols-3 gap-6 items-start">
-                {exp.imageUrl && (
-                  <div className="md:col-span-1">
-                    <Image 
-                      src={exp.imageUrl} 
-                      alt={`${exp.company} visual representation`} 
-                      width={300} 
-                      height={150} 
-                      className="rounded-lg shadow-md object-cover w-full"
-                      data-ai-hint={exp.imageHint || 'company tech project'} 
-                    />
-                  </div>
-                )}
-                <div className={exp.imageUrl ? "md:col-span-2" : "md:col-span-3"}>
-                  <h3 className="text-2xl lg:text-3xl font-headline text-primary mb-1">
-                    {exp.role}
-                  </h3>
-                  <div className="flex flex-col sm:flex-row sm:items-baseline gap-x-3 gap-y-1 mb-3">
-                    <span className="text-xl font-semibold text-foreground">
-                      {exp.companyLink ? (
-                        <a href={exp.companyLink.startsWith('http') ? exp.companyLink : `https://${exp.companyLink}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center group hover:text-accent">
-                          {exp.company}
-                          <ExternalLink className="ml-2 h-4 w-4 text-muted-foreground group-hover:text-accent transition-colors" />
-                        </a>
-                      ) : exp.company}
-                    </span>
-                    <span className="text-sm text-muted-foreground font-sans">{exp.period} {exp.location && `• ${exp.location}`}</span>
-                  </div>
-                  <ul className="list-none space-y-2 text-base text-muted-foreground leading-relaxed font-sans">
-                    {exp.description.map((desc, i) => (
-                      <li key={`${exp.company}-${exp.role}-desc-${i}`} className="flex items-start pl-1">
-                        <CheckCircle className="h-4 w-4 mr-2.5 mt-1 text-accent/80 shrink-0" />
-                        {desc}
-                      </li>
-                    ))}
-                  </ul>
+              <div className="mb-6">
+                <h3 className="text-2xl lg:text-3xl font-headline text-primary mb-1">
+                  {exp.role}
+                </h3>
+                <div className="flex flex-col sm:flex-row sm:items-baseline gap-x-3 gap-y-1 mb-3">
+                  <span className="text-xl font-semibold text-foreground">
+                    {exp.companyLink ? (
+                      <a href={exp.companyLink.startsWith('http') ? exp.companyLink : `https://${exp.companyLink}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center group hover:text-accent">
+                        {exp.company}
+                        <ExternalLink className="ml-2 h-4 w-4 text-muted-foreground group-hover:text-accent transition-colors" />
+                      </a>
+                    ) : exp.company}
+                  </span>
+                  <span className="text-sm text-muted-foreground font-sans">{exp.period} {exp.location && `• ${exp.location}`}</span>
                 </div>
+                <ul className="list-none space-y-2 text-base text-muted-foreground leading-relaxed font-sans">
+                  {exp.description.map((desc, i) => (
+                    <li key={`${exp.company}-${exp.role}-desc-${i}`} className="flex items-start pl-1">
+                      <CheckCircle className="h-4 w-4 mr-2.5 mt-1 text-accent/80 shrink-0" />
+                      {desc}
+                    </li>
+                  ))}
+                </ul>
               </div>
+
+              {exp.imageUrls && exp.imageUrls.length > 0 && (
+                <div className="mt-4">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                    {exp.imageUrls.map((url, imgIndex) => (
+                      <div key={imgIndex} className="rounded-lg overflow-hidden shadow-md bg-muted/20">
+                        <Image
+                          src={url}
+                          alt={`${exp.company} - Visual ${imgIndex + 1}`}
+                          width={300} 
+                          height={200} 
+                          className="object-cover w-full h-auto aspect-[3/2] transition-transform duration-300 hover:scale-105"
+                          data-ai-hint={exp.imageHints?.[imgIndex] || 'work project detail'}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           ))}
         </div>
@@ -341,9 +346,9 @@ export default async function Home() {
                       <strong className="font-medium text-foreground/80">Key Projects/Focus:</strong> {detail.projects}{' '}
                       {detail.projectLink && detail.projectLinkText && (
                         <Button variant="link" asChild className="p-0 h-auto text-sm text-accent hover:text-accent/80">
-                        <a href={detail.projectLink} target={detail.projectLink.startsWith('http') ? '_blank' : '_self'} rel="noopener noreferrer" className="inline-flex items-center group">
+                        <a href={detail.projectLink} target={detail.projectLink.startsWith('http') || detail.projectLink.startsWith('/') ? '_blank' : '_self'} rel="noopener noreferrer" className="inline-flex items-center group">
                           {detail.projectLinkText}
-                          {detail.projectLink.startsWith('http') && <ExternalLink className="ml-1.5 h-4 w-4 text-muted-foreground group-hover:text-accent transition-colors" />}
+                          {(detail.projectLink.startsWith('http') || detail.projectLink.startsWith('/')) && <ExternalLink className="ml-1.5 h-4 w-4 text-muted-foreground group-hover:text-accent transition-colors" />}
                         </a>
                         </Button>
                       )}
@@ -406,7 +411,7 @@ export default async function Home() {
           {honorsAwardsData.map((honor, index) => (
             <div key={`${honor.title}-${index}`} className="pb-6 border-b border-border/50 last:border-b-0 last:pb-0">
                <div className="flex items-center mb-1">
-                <Star className="h-6 w-6 mr-3 text-primary" />
+                <Trophy className="h-6 w-6 mr-3 text-primary" /> {/* Changed Star to Trophy */}
                 <h3 className="text-xl lg:text-2xl font-headline text-foreground">
                   {honor.title}
                 </h3>
@@ -459,4 +464,3 @@ export default async function Home() {
     </>
   );
 }
-

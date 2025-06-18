@@ -1,10 +1,10 @@
 
 import type { LucideIcon } from 'lucide-react';
 import {
-  Linkedin, Github, Gitlab, Palette, Code as CodeIcon, Settings, Users, Briefcase, BookOpen, Wand2, Award, Star, Languages as LanguagesIcon, Home, BriefcaseBusiness, UsersRound, Lightbulb, ShieldCheck, MessageCircle, Download, ExternalLink, Mail, MapPin, Phone, CheckCircle, GitFork, SquareTerminal, Palette as PaletteIcon, Brain, Mic, LifeBuoy, GraduationCap, Trophy // Added GraduationCap, Trophy
+  Linkedin, Github, Gitlab, Palette as PaletteIconLucide, Code as CodeIcon, Settings, Users, Briefcase, BookOpen, Wand2, Award, Star, Languages as LanguagesIcon, Home, BriefcaseBusiness, UsersRound, Lightbulb, ShieldCheck, MessageSquare, Download, ExternalLink, Mail, MapPin, Phone, CheckCircle, GitFork, SquareTerminal, Brain, Mic, LifeBuoy, GraduationCap, Trophy 
 } from 'lucide-react';
 import type {
-  WorkExperienceEntry, NavLink, HeroData, ProjectEntry, SkillArea, EducationEntry, SocialLinkInfo, Project, SkillCategory, Skill, Certification, HonorAward
+  WorkExperienceEntry, NavLink, HeroData, ProjectEntry, SkillArea, EducationEntry, SocialLinkInfo, Project, SkillCategory, Skill, Certification, HonorAward 
 } from '@/lib/types';
 
 export const heroData: HeroData = {
@@ -46,10 +46,10 @@ export const workExperienceData: WorkExperienceEntry[] = [
     location: 'Noida, UP, India',
     description: [
       'Built and designed full stack web based interface from backend to frontend.',
-      'Handled deployment, maintenance, and network security, involving AWS infrastructure.',
+      'Handled deployment, maintenance, and network security, involving AWS.',
     ],
-    imageUrl: 'https://placehold.co/300x150.png',
-    imageHint: 'medical tech software'
+    imageUrls: ['https://placehold.co/300x200.png', 'https://placehold.co/300x200.png'],
+    imageHints: ['medical software ui', 'aws architecture diagram']
   },
   {
     role: 'Chief Technology Officer',
@@ -61,8 +61,8 @@ export const workExperienceData: WorkExperienceEntry[] = [
       'Overseeing all technical aspects, from concept to delivery, leading the technology strategy and execution.',
       'Continued leadership from Co-Founder role, focusing on strategic technological advancements.'
     ],
-    imageUrl: 'https://placehold.co/300x150.png',
-    imageHint: 'fintech payment solution'
+    imageUrls: ['https://placehold.co/300x200.png', 'https://placehold.co/300x200.png', 'https://placehold.co/300x200.png'],
+    imageHints: ['fintech dashboard', 'payment gateway flow', 'team collaboration']
   },
   {
     role: 'Co-Founder',
@@ -75,8 +75,8 @@ export const workExperienceData: WorkExperienceEntry[] = [
       'Led designing, team building, and management; rigorously brainstormed solutions.',
       'Successfully onboarded and managed relationships with 4+ B2B clients & 100+ B2C clients.',
     ],
-    imageUrl: 'https://placehold.co/300x150.png',
-    imageHint: 'startup collaboration team'
+    imageUrls: ['https://placehold.co/300x200.png', 'https://placehold.co/300x200.png'],
+    imageHints: ['startup meeting', 'client onboarding process']
   },
   {
     role: 'Integrations Developer',
@@ -88,8 +88,8 @@ export const workExperienceData: WorkExperienceEntry[] = [
       'Extended the existing product by integrating multiple 3rd party HR tools like Greenhouse, JazzHR, SAP SuccessFactors with the Testlify platform.',
       'Developed custom logic for each integration using Loopback 4 (LB4) and TypeScript framework.',
     ],
-    imageUrl: 'https://placehold.co/300x150.png',
-    imageHint: 'hr tech integration api'
+    imageUrls: ['https://placehold.co/300x200.png', 'https://placehold.co/300x200.png'],
+    imageHints: ['api integration diagram', 'typescript code snippet']
   },
   {
     role: 'Product Developer',
@@ -101,8 +101,8 @@ export const workExperienceData: WorkExperienceEntry[] = [
       'Conducted data analysis, contributed to UI-UX design.',
       'Designed and implemented a scalable system with a queue-based fanout mechanism and event-driven architecture.',
     ],
-    imageUrl: 'https://placehold.co/300x150.png',
-    imageHint: 'product development scale'
+    imageUrls: ['https://placehold.co/300x200.png', 'https://placehold.co/300x200.png'],
+    imageHints: ['scalable system architecture', 'ui design sketch']
   },
   {
     role: 'NodeJS Consultant',
@@ -113,8 +113,8 @@ export const workExperienceData: WorkExperienceEntry[] = [
       'Developed and managed realtime multiplayer gaming architecture.',
       'Implemented WebSockets-based logic for multiplayer games and high-level Blockchain features.',
     ],
-    imageUrl: 'https://placehold.co/300x150.png',
-    imageHint: 'gaming architecture blockchain'
+    imageUrls: ['https://placehold.co/300x200.png'],
+    imageHints: ['multiplayer game interface']
   },
   {
     role: 'Technology Team Lead',
@@ -125,8 +125,8 @@ export const workExperienceData: WorkExperienceEntry[] = [
       'Led algorithms, design & platform development for an open platform for open source project collaboration.',
       'Managed deployment & maintenance of the Django-based full-stack application.',
     ],
-    imageUrl: 'https://placehold.co/300x150.png',
-    imageHint: 'open source community platform'
+    imageUrls: ['https://placehold.co/300x200.png', 'https://placehold.co/300x200.png'],
+    imageHints: ['open source platform dashboard', 'django project structure']
   },
   {
     role: 'Co-Founder',
@@ -137,8 +137,8 @@ export const workExperienceData: WorkExperienceEntry[] = [
       'Co-founded the platform, focusing on open source collaboration and competitions for systematic resume building.',
       'Knotters was recognized and sponsored by NASSCOM during this period.',
     ],
-    imageUrl: 'https://placehold.co/300x150.png',
-    imageHint: 'startup founder nasscom'
+    imageUrls: ['https://placehold.co/300x200.png'],
+    imageHints: ['nasscom recognition event']
   },
   {
     role: 'API Engineer',
@@ -149,8 +149,8 @@ export const workExperienceData: WorkExperienceEntry[] = [
       'Developed NodeJS APIs and microservices.',
       'Performed unit testing and database operations using MongoDB.',
     ],
-    imageUrl: 'https://placehold.co/300x150.png',
-    imageHint: 'api development microservices'
+    imageUrls: ['https://placehold.co/300x200.png'],
+    imageHints: ['api endpoint structure']
   },
   {
     role: 'Virtual Labs Lead',
@@ -160,8 +160,8 @@ export const workExperienceData: WorkExperienceEntry[] = [
     description: [
         'Led the initiative for virtual labs development within the company.'
     ],
-    imageUrl: 'https://placehold.co/300x150.png',
-    imageHint: 'virtual labs education'
+    imageUrls: ['https://placehold.co/300x200.png'],
+    imageHints: ['virtual lab interface']
   },
   {
     role: 'Javascript Developer',
@@ -172,8 +172,8 @@ export const workExperienceData: WorkExperienceEntry[] = [
       'Developed beginner-friendly web games & a Web IDE using browser-based JavaScript, HTML5 & Open Sourced Blockly®.',
       'Created a virtual web-based gaming engine, easing development processes for educational content.',
     ],
-    imageUrl: 'https://placehold.co/300x150.png',
-    imageHint: 'javascript game ide'
+    imageUrls: ['https://placehold.co/300x200.png', 'https://placehold.co/300x200.png'],
+    imageHints: ['blockly ide screenshot', 'javascript game preview']
   },
   {
     role: 'Web Developer',
@@ -183,8 +183,8 @@ export const workExperienceData: WorkExperienceEntry[] = [
     description: [
       'Developed a customer and product relationship management (CPRM) website for an ed-tech startup, focusing on e-commerce functionalities.',
     ],
-    imageUrl: 'https://placehold.co/300x150.png',
-    imageHint: 'edtech ecommerce website'
+    imageUrls: ['https://placehold.co/300x200.png'],
+    imageHints: ['edtech crm dashboard']
   },
 ];
 
@@ -370,7 +370,7 @@ export const skillsData: SkillArea[] = [
 export const skillCategories: SkillCategory[] = [
   {
     name: 'Core Expertise',
-    iconName: 'ShieldCheck',
+    iconName: 'ShieldCheck', // Ensure ShieldCheck is imported in component
     skills: [
         { name: 'Technology Leadership', level: 95 },
         { name: 'Amazon Web Services (AWS)', level: 90 },
@@ -381,7 +381,7 @@ export const skillCategories: SkillCategory[] = [
   },
   {
     name: 'Hard Skills & DevOps',
-    iconName: 'SquareTerminal', // Changed from CodeIcon
+    iconName: 'SquareTerminal',
     skills: [
         { name: 'DevOps Practices & CI/CD', level: 88 },
         { name: 'Microservices Architecture', level: 85 },
@@ -395,7 +395,7 @@ export const skillCategories: SkillCategory[] = [
   },
   {
     name: 'Programming Languages',
-    iconName: 'Code', // Keep CodeIcon here
+    iconName: 'Code', 
     skills: [
         { name: 'JavaScript (ES6+ & TypeScript)', level: 95 },
         { name: 'Python', level: 92 },
@@ -473,7 +473,7 @@ export const educationData: EducationEntry[] = [
     period: 'September 2023 - May 2025',
     details: [
       { specialization: 'General Theory of Relativity, Cosmology, Astrophysics, Complex systems & Networks, Nonlinear Dynamics, Computational Physics' },
-      { projects: 'Stellar evolution & modelling using MESA, under the guidance of Prof. T.R. Seshadri & Dr. Sachin Pandey.', projectLinkText: "View Concluding Presentation", projectLink: "#" },
+      { projects: 'Stellar evolution & modelling using MESA, under the guidance of Prof. T.R. Seshadri & Dr. Sachin Pandey.', projectLinkText: "View Concluding Presentation", projectLink: "/projects/stellar-evolution" },
     ],
   },
   {
@@ -505,37 +505,37 @@ export const certificationsData: Certification[] = [
   { 
     name: 'IBM Data Science Specialization', 
     issuingOrganization: 'IBM (Coursera)', 
-    credentialUrl: '#', // Add actual URL if available
-    imageUrl: 'https://placehold.co/120x80.png',
-    imageHint: 'ibm logo data science'
+    credentialUrl: 'https://www.coursera.org/professional-certificates/ibm-data-science', // Example URL
+    imageUrl: 'https://placehold.co/100x60.png',
+    imageHint: 'ibm data science badge'
   },
   { 
     name: 'Applied Data Science Specialization', 
     issuingOrganization: 'Coursera', 
-    credentialUrl: '#',
-    imageUrl: 'https://placehold.co/120x80.png',
-    imageHint: 'coursera logo data'
+    credentialUrl: 'https://www.coursera.org/specializations/applied-data-science', // Example URL
+    imageUrl: 'https://placehold.co/100x60.png',
+    imageHint: 'coursera data science badge'
   },
   { 
     name: 'Python for Data Science, AI & Development', 
     issuingOrganization: 'IBM (Coursera)', 
-    credentialUrl: '#',
-    imageUrl: 'https://placehold.co/120x80.png',
-    imageHint: 'python logo ibm'
+    credentialUrl: 'https://www.coursera.org/learn/python-for-data-science-ai-development', // Example URL
+    imageUrl: 'https://placehold.co/100x60.png',
+    imageHint: 'python ibm badge'
   },
   { 
     name: 'Eduthon 2020', 
     issuingOrganization: 'Competition based', 
-    credentialUrl: '#',
-    imageUrl: 'https://placehold.co/120x80.png',
-    imageHint: 'hackathon education logo'
+    // credentialUrl: '#', // No URL if it's just a competition win without a specific cert page
+    imageUrl: 'https://placehold.co/100x60.png',
+    imageHint: 'eduthon hackathon logo'
   },
   { 
     name: 'Sr. Orange Belt', 
     issuingOrganization: 'Internal/Company specific', 
-    credentialUrl: '#',
-    imageUrl: 'https://placehold.co/120x80.png',
-    imageHint: 'company award belt'
+    // credentialUrl: '#',
+    imageUrl: 'https://placehold.co/100x60.png',
+    imageHint: 'company award graphic'
   },
 ];
 
@@ -545,4 +545,3 @@ export const honorsAwardsData: HonorAward[] = [
   { title: 'Academics and Versatility Recognition' },
   { title: 'Highest scorer in C++' },
 ];
-

@@ -43,8 +43,8 @@ export interface WorkExperienceEntry {
   period: string;
   location?: string;
   description: string[];
-  imageUrl?: string;
-  imageHint?: string;
+  imageUrls?: string[]; // Changed from imageUrl
+  imageHints?: string[]; // Changed from imageHint
 }
 
 export interface Experience { // For detailed experience page if ever needed
@@ -153,4 +153,3 @@ export interface HonorAward {
   date?: string;
   description?: string;
 }
-
