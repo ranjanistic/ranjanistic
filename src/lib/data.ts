@@ -10,7 +10,7 @@ import type {
 export const heroData: HeroData = {
   name: 'Priyanshu Ranjan',
   title: 'Technology Leadership, Software Development | Physics Major',
-  tagline: 'Physics, software, music. My ideal kind of role would be a combination of these three.',
+  tagline: ' Product development lifecycle, technology leadership, communication, designing, problem navigation, public speaking.',
   summary: 'With 5 years of dedicated industry experience, I thrive on the full product development lifecycle, from conceptualization to deployment. My expertise spans technology leadership, effective communication, intuitive design, strategic problem navigation, and engaging public speaking.',
   location: 'Noida, UP (India)',
   email: 'priyanshuranjan88@gmail.com',
