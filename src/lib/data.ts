@@ -1,7 +1,7 @@
 
 import type { LucideIcon } from 'lucide-react';
 import {
-  Linkedin, Github, Gitlab, Palette, Code as CodeIcon, Settings, Users, Briefcase, BookOpen, Wand2, Award, Star, Languages as LanguagesIcon, Home, BriefcaseBusiness, UsersRound, Lightbulb, ShieldCheck, MessageCircle, Download, ExternalLink, Mail, MapPin, Phone, CheckCircle, GitFork
+  Linkedin, Github, Gitlab, Palette, Code as CodeIcon, Settings, Users, Briefcase, BookOpen, Wand2, Award, Star, Languages as LanguagesIcon, Home, BriefcaseBusiness, UsersRound, Lightbulb, ShieldCheck, MessageCircle, Download, ExternalLink, Mail, MapPin, Phone, CheckCircle, GitFork, SquareTerminal, Palette as PaletteIcon, Brain, Mic, LifeBuoy, GraduationCap, Trophy // Added GraduationCap, Trophy
 } from 'lucide-react';
 import type {
   WorkExperienceEntry, NavLink, HeroData, ProjectEntry, SkillArea, EducationEntry, SocialLinkInfo, Project, SkillCategory, Skill, Certification, HonorAward
@@ -10,7 +10,8 @@ import type {
 export const heroData: HeroData = {
   name: 'Priyanshu Ranjan',
   title: 'Technology Leadership, Software Development | Physics Major',
-  tagline: 'Physics, software, music. My ideal kind of role would be a combination of these three. Experienced in the full product development lifecycle, technology leadership, communication, designing, problem navigation, and public speaking.',
+  tagline: 'Physics, software, music. My ideal kind of role would be a combination of these three.',
+  summary: 'With 5 years of dedicated industry experience, I thrive on the full product development lifecycle, from conceptualization to deployment. My expertise spans technology leadership, effective communication, intuitive design, strategic problem navigation, and engaging public speaking.',
   location: 'Noida, UP (India)',
   email: 'priyanshuranjan88@gmail.com',
   gitlab: 'https://gitlab.com/ranjanistic',
@@ -41,12 +42,14 @@ export const workExperienceData: WorkExperienceEntry[] = [
     role: 'Sr. Developer',
     company: 'MedicalHive Solutions',
     companyLink: 'https://hilocmed.com',
-    period: 'APRIL 2025 - Present', // Note: Future date, as provided
+    period: 'APRIL 2025 - Present',
     location: 'Noida, UP, India',
     description: [
       'Built and designed full stack web based interface from backend to frontend.',
       'Handled deployment, maintenance, and network security, involving AWS infrastructure.',
     ],
+    imageUrl: 'https://placehold.co/300x150.png',
+    imageHint: 'medical tech software'
   },
   {
     role: 'Chief Technology Officer',
@@ -58,6 +61,8 @@ export const workExperienceData: WorkExperienceEntry[] = [
       'Overseeing all technical aspects, from concept to delivery, leading the technology strategy and execution.',
       'Continued leadership from Co-Founder role, focusing on strategic technological advancements.'
     ],
+    imageUrl: 'https://placehold.co/300x150.png',
+    imageHint: 'fintech payment solution'
   },
   {
     role: 'Co-Founder',
@@ -66,10 +71,12 @@ export const workExperienceData: WorkExperienceEntry[] = [
     period: 'May 2023 - May 2024 (1 year 1 month)',
     location: 'Noida, Uttar Pradesh, India',
     description: [
-      'Managed B2B & B2C product life cycle, including problem assessment, data management, and logic building.',
+      'Managed B2B & B2C product life cycle, problem assessment, data management, and logic building.',
       'Led designing, team building, and management; rigorously brainstormed solutions.',
       'Successfully onboarded and managed relationships with 4+ B2B clients & 100+ B2C clients.',
     ],
+    imageUrl: 'https://placehold.co/300x150.png',
+    imageHint: 'startup collaboration team'
   },
   {
     role: 'Integrations Developer',
@@ -81,6 +88,8 @@ export const workExperienceData: WorkExperienceEntry[] = [
       'Extended the existing product by integrating multiple 3rd party HR tools like Greenhouse, JazzHR, SAP SuccessFactors with the Testlify platform.',
       'Developed custom logic for each integration using Loopback 4 (LB4) and TypeScript framework.',
     ],
+    imageUrl: 'https://placehold.co/300x150.png',
+    imageHint: 'hr tech integration api'
   },
   {
     role: 'Product Developer',
@@ -92,6 +101,8 @@ export const workExperienceData: WorkExperienceEntry[] = [
       'Conducted data analysis, contributed to UI-UX design.',
       'Designed and implemented a scalable system with a queue-based fanout mechanism and event-driven architecture.',
     ],
+    imageUrl: 'https://placehold.co/300x150.png',
+    imageHint: 'product development scale'
   },
   {
     role: 'NodeJS Consultant',
@@ -102,6 +113,8 @@ export const workExperienceData: WorkExperienceEntry[] = [
       'Developed and managed realtime multiplayer gaming architecture.',
       'Implemented WebSockets-based logic for multiplayer games and high-level Blockchain features.',
     ],
+    imageUrl: 'https://placehold.co/300x150.png',
+    imageHint: 'gaming architecture blockchain'
   },
   {
     role: 'Technology Team Lead',
@@ -112,6 +125,8 @@ export const workExperienceData: WorkExperienceEntry[] = [
       'Led algorithms, design & platform development for an open platform for open source project collaboration.',
       'Managed deployment & maintenance of the Django-based full-stack application.',
     ],
+    imageUrl: 'https://placehold.co/300x150.png',
+    imageHint: 'open source community platform'
   },
   {
     role: 'Co-Founder',
@@ -122,6 +137,8 @@ export const workExperienceData: WorkExperienceEntry[] = [
       'Co-founded the platform, focusing on open source collaboration and competitions for systematic resume building.',
       'Knotters was recognized and sponsored by NASSCOM during this period.',
     ],
+    imageUrl: 'https://placehold.co/300x150.png',
+    imageHint: 'startup founder nasscom'
   },
   {
     role: 'API Engineer',
@@ -132,6 +149,8 @@ export const workExperienceData: WorkExperienceEntry[] = [
       'Developed NodeJS APIs and microservices.',
       'Performed unit testing and database operations using MongoDB.',
     ],
+    imageUrl: 'https://placehold.co/300x150.png',
+    imageHint: 'api development microservices'
   },
   {
     role: 'Virtual Labs Lead',
@@ -141,6 +160,8 @@ export const workExperienceData: WorkExperienceEntry[] = [
     description: [
         'Led the initiative for virtual labs development within the company.'
     ],
+    imageUrl: 'https://placehold.co/300x150.png',
+    imageHint: 'virtual labs education'
   },
   {
     role: 'Javascript Developer',
@@ -151,6 +172,8 @@ export const workExperienceData: WorkExperienceEntry[] = [
       'Developed beginner-friendly web games & a Web IDE using browser-based JavaScript, HTML5 & Open Sourced Blockly®.',
       'Created a virtual web-based gaming engine, easing development processes for educational content.',
     ],
+    imageUrl: 'https://placehold.co/300x150.png',
+    imageHint: 'javascript game ide'
   },
   {
     role: 'Web Developer',
@@ -160,6 +183,8 @@ export const workExperienceData: WorkExperienceEntry[] = [
     description: [
       'Developed a customer and product relationship management (CPRM) website for an ed-tech startup, focusing on e-commerce functionalities.',
     ],
+    imageUrl: 'https://placehold.co/300x150.png',
+    imageHint: 'edtech ecommerce website'
   },
 ];
 
@@ -169,42 +194,48 @@ export const projectData: ProjectEntry[] = [
     description: 'Analysis of pre-main sequence contraction and the role of mass distributions using MESA, focusing on HR diagrams.',
     link: '/projects/stellar-evolution',
     linkText: 'View Concluding Report',
+    imageUrl: 'https://placehold.co/400x225.png',
+    imageHint: 'astronomy simulation stars'
   },
   {
     title: 'Knotters - Open Source Community Portal',
     description: 'A platform for open source project collaboration and competitions, built from idea to production.',
-    link: '/projects/knotters-portal', // Assuming this slug exists from detailed projects
+    link: '/projects/knotters-portal', 
     linkText: 'View Project Details',
+    imageUrl: 'https://placehold.co/400x225.png',
+    imageHint: 'community collaboration code'
   },
   {
     title: 'CovidCare - Pandemic Help Portal',
     description: 'A web platform providing help resources during the Covid-19 pandemic.',
     link: '/projects/covidcare-portal',
     linkText: 'View Project Details',
+    imageUrl: 'https://placehold.co/400x225.png',
+    imageHint: 'health support web'
   },
   {
     title: 'JS Gaming Engine & Web IDE',
     description: 'A custom Javascript-based gaming engine and a Web IDE for creating high-level applications and games, part of an LMS.',
     link: '/projects/js-gaming-engine-ide',
     linkText: 'View Project Details',
+    imageUrl: 'https://placehold.co/400x225.png',
+    imageHint: 'javascript game development'
   },
   {
     title: 'Schemester - B2B Management',
     description: 'An online institution management system focused on the educational niche.',
     link: '/projects/schemester-b2b',
     linkText: 'View Project Details',
+    imageUrl: 'https://placehold.co/400x225.png',
+    imageHint: 'saas education management'
   },
   {
     title: 'Skivvy - Voice Controlled Android App',
     description: 'A native Android app for executing device-based functions through voice commands.',
     link: '/projects/skivvy-android',
     linkText: 'View Project Details',
-  },
-  {
-    title: 'Schemester Android - Schedule Manager',
-    description: 'A native Android app for schedule management, targeted at batchmates.',
-    link: '/projects/schemester-android-app',
-    linkText: 'View Project Details',
+    imageUrl: 'https://placehold.co/400x225.png',
+    imageHint: 'android app voice'
   },
 ];
 
@@ -229,7 +260,7 @@ export const projects: Project[] = [
     imageUrl: 'https://placehold.co/1200x675.png',
     imageHint: 'nebula star formation',
     technologies: ['MESA', 'Python', 'Astrophysics', 'Data Analysis', 'Computational Physics'],
-    liveLink: undefined, // Placeholder for report link
+    liveLink: undefined, 
     repoLink: undefined,
     storyline: genericStoryline("Stellar Evolution Modelling", "research project"),
   },
@@ -316,7 +347,7 @@ export const projects: Project[] = [
 export const skillsData: SkillArea[] = [
   {
     title: 'Hard Skills & DevOps',
-    skills: 'Technology Leadership, AWS, IAM, DevOps, System Design, Software Testing, Linux Sys Admin, Network Security, CI/CD, Microservices, Queue-based Systems, High Volume Web Apps (Django, Node.js, LB4, Beego, React), Web Protocols, Code Optimization, SEO, Database Ops (MongoDB, MySQL, PostgreSQL, Redis, CouchDB, Cassandra), VCS (Git, GitHub, GitLab, AWS CodeCommit).',
+    skills: 'DevOps, System Design, Software Testing, Linux Sys Admin, Network Security, CI/CD, Microservices, Queue-based Systems, High Volume Web Apps (Django, Node.js, LB4, Beego, React), Web Protocols, Code Optimization, SEO, Database Ops (MongoDB, MySQL, PostgreSQL, Redis, CouchDB, Cassandra), VCS (Git, GitHub, GitLab, AWS CodeCommit).',
   },
   {
     title: 'Soft Skills & Design',
@@ -339,33 +370,32 @@ export const skillsData: SkillArea[] = [
 export const skillCategories: SkillCategory[] = [
   {
     name: 'Core Expertise',
-    iconName: 'ShieldCheck', // Using a different icon for emphasis
+    iconName: 'ShieldCheck',
     skills: [
         { name: 'Technology Leadership', level: 95 },
         { name: 'Amazon Web Services (AWS)', level: 90 },
-        { name: 'Identity and Access Management (IAM)', level: 85 },
-        { name: 'System Design & Architecture', level: 90 },
-        { name: 'Product Development Lifecycle', level: 92 },
+        { name: 'Identity and Access Management (IAM)', level: 88 },
+        { name: 'System Design & Architecture', level: 92 },
+        { name: 'Product Development Lifecycle', level: 93 },
     ],
   },
   {
     name: 'Hard Skills & DevOps',
-    iconName: 'Code',
+    iconName: 'SquareTerminal', // Changed from CodeIcon
     skills: [
-        { name: 'DevOps Practices', level: 88 },
-        { name: 'CI/CD Pipelines', level: 85 },
+        { name: 'DevOps Practices & CI/CD', level: 88 },
         { name: 'Microservices Architecture', level: 85 },
         { name: 'Linux System Administration', level: 85 },
-        { name: 'Network Security Fundamentals', level: 80 },
-        { name: 'Database Operations & Management', level: 80 },
-        { name: 'Software Testing & QA', level: 80 },
+        { name: 'Network Security & Protocols', level: 82 },
+        { name: 'Database Operations & Management', level: 80, detail: 'Mongo, MySQL, PSQL, Redis' },
+        { name: 'Software Testing & QA', level: 78 },
         { name: 'Code Optimization & Performance', level: 85 },
         { name: 'VCS (Git, GitHub, GitLab)', level: 95 },
     ],
   },
   {
     name: 'Programming Languages',
-    iconName: 'BookOpen',
+    iconName: 'Code', // Keep CodeIcon here
     skills: [
         { name: 'JavaScript (ES6+ & TypeScript)', level: 95 },
         { name: 'Python', level: 92 },
@@ -427,7 +457,7 @@ export const skillCategories: SkillCategory[] = [
   },
   {
     name: 'Human Languages',
-    iconName: 'Languages', // Ensure this icon is mapped in SkillCategory.tsx
+    iconName: 'Languages', 
     skills: [
         { name: 'English', level: 90, detail: 'Professional Working' },
         { name: 'Hindi', level: 100, detail: 'Native or Bilingual' },
@@ -443,7 +473,7 @@ export const educationData: EducationEntry[] = [
     period: 'September 2023 - May 2025',
     details: [
       { specialization: 'General Theory of Relativity, Cosmology, Astrophysics, Complex systems & Networks, Nonlinear Dynamics, Computational Physics' },
-      { projects: 'Stellar evolution & modelling using MESA, under the guidance of Prof. T.R. Seshadri & Dr. Sachin Pandey.', projectLinkText: "View Concluding Presentation", projectLink: "#" /* Placeholder */ },
+      { projects: 'Stellar evolution & modelling using MESA, under the guidance of Prof. T.R. Seshadri & Dr. Sachin Pandey.', projectLinkText: "View Concluding Presentation", projectLink: "#" },
     ],
   },
   {
@@ -472,11 +502,41 @@ export const educationData: EducationEntry[] = [
 ];
 
 export const certificationsData: Certification[] = [
-  { name: 'IBM Data Science Specialization', issuingOrganization: 'IBM (Coursera)' },
-  { name: 'Applied Data Science Specialization', issuingOrganization: 'Coursera' },
-  { name: 'Python for Data Science, AI & Development', issuingOrganization: 'IBM (Coursera)' },
-  { name: 'Eduthon 2020', issuingOrganization: 'Competition based' },
-  { name: 'Sr. Orange Belt', issuingOrganization: 'Internal/Company specific - clarify if possible' },
+  { 
+    name: 'IBM Data Science Specialization', 
+    issuingOrganization: 'IBM (Coursera)', 
+    credentialUrl: '#', // Add actual URL if available
+    imageUrl: 'https://placehold.co/120x80.png',
+    imageHint: 'ibm logo data science'
+  },
+  { 
+    name: 'Applied Data Science Specialization', 
+    issuingOrganization: 'Coursera', 
+    credentialUrl: '#',
+    imageUrl: 'https://placehold.co/120x80.png',
+    imageHint: 'coursera logo data'
+  },
+  { 
+    name: 'Python for Data Science, AI & Development', 
+    issuingOrganization: 'IBM (Coursera)', 
+    credentialUrl: '#',
+    imageUrl: 'https://placehold.co/120x80.png',
+    imageHint: 'python logo ibm'
+  },
+  { 
+    name: 'Eduthon 2020', 
+    issuingOrganization: 'Competition based', 
+    credentialUrl: '#',
+    imageUrl: 'https://placehold.co/120x80.png',
+    imageHint: 'hackathon education logo'
+  },
+  { 
+    name: 'Sr. Orange Belt', 
+    issuingOrganization: 'Internal/Company specific', 
+    credentialUrl: '#',
+    imageUrl: 'https://placehold.co/120x80.png',
+    imageHint: 'company award belt'
+  },
 ];
 
 export const honorsAwardsData: HonorAward[] = [
@@ -485,3 +545,4 @@ export const honorsAwardsData: HonorAward[] = [
   { title: 'Academics and Versatility Recognition' },
   { title: 'Highest scorer in C++' },
 ];
+

@@ -26,6 +26,18 @@ export function ExperienceItem({ experience, animationDelay = 0 }: ExperienceIte
       style={isVisible ? { transitionDelay: `${animationDelay}ms` } : {}}
     >
       <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group bg-card text-card-foreground border border-border">
+        {experience.imageUrl && (
+          <div className="bg-muted/10 p-4">
+            <Image
+              src={experience.imageUrl}
+              alt={`${experience.company} visual representation`}
+              width={500}
+              height={250}
+              className="rounded-md object-cover w-full aspect-[2/1]"
+              data-ai-hint={experience.imageHint || 'company project related'}
+            />
+          </div>
+        )}
         <CardHeader className="p-6 bg-muted/30">
           <div className="flex flex-col sm:flex-row items-start gap-4">
             <div className="flex-1">
@@ -61,3 +73,4 @@ export function ExperienceItem({ experience, animationDelay = 0 }: ExperienceIte
     </div>
   );
 }
+

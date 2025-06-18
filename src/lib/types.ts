@@ -43,6 +43,8 @@ export interface WorkExperienceEntry {
   period: string;
   location?: string;
   description: string[];
+  imageUrl?: string;
+  imageHint?: string;
 }
 
 export interface Experience { // For detailed experience page if ever needed
@@ -62,6 +64,7 @@ export interface HeroData {
   name: string;
   title?: string; // e.g., "Technology Leadership, Software Development | Physics Major"
   tagline: string; // More detailed summary
+  summary?: string; // Short bio for about section
   location: string;
   email: string;
   gitlab?: string;
@@ -79,6 +82,8 @@ export interface ProjectEntry { // Simple project entry for homepage
   description: string;
   link?: string;
   linkText?: string;
+  imageUrl?: string;
+  imageHint?: string;
 }
 
 export interface SkillArea { // Simple skill area for homepage
@@ -138,6 +143,8 @@ export interface Certification {
   date?: string;
   credentialId?: string;
   credentialUrl?: string;
+  imageUrl?: string;
+  imageHint?: string;
 }
 
 export interface HonorAward {
@@ -146,3 +153,4 @@ export interface HonorAward {
   date?: string;
   description?: string;
 }
+

@@ -4,10 +4,8 @@ import Image from 'next/image';
 import {
   heroData,
   workExperienceData,
-  projectData, // Overview for homepage
-  // projects as detailedProjects, // For dedicated project pages
-  skillsData, // Overview for homepage
-  // skillCategories, // For dedicated skills page
+  projectData, 
+  skillsData, 
   educationData,
   certificationsData,
   honorsAwardsData,
@@ -45,13 +43,13 @@ export default async function Home() {
         fullWidthBg
       >
         <div className="text-center max-w-4xl">
-          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-headline font-extrabold mb-4">
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-headline font-extrabold mb-6">
             <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
               {heroData.name}
             </span>
           </h1>
           {heroData.title && (
-            <p className="text-lg md:text-xl text-primary mb-6 font-sans max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-primary mb-4 font-sans max-w-2xl mx-auto">
               {heroData.title}
             </p>
           )}
@@ -83,7 +81,7 @@ export default async function Home() {
               <Link href="/#contact">Let's Collaborate</Link>
             </Button>
             <Button variant="outline" size="lg" className="group border-primary text-primary hover:bg-primary hover:text-primary-foreground w-full sm:w-auto" asChild>
-              <a href="/path-to-resume.pdf" download> {/* Update this path */}
+              <a href="/path-to-resume.pdf" download> 
                 Download Resume <Download className="ml-2 h-5 w-5 group-hover:animate-bounce" />
               </a>
             </Button>
@@ -95,7 +93,7 @@ export default async function Home() {
         <div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-center">
           <div className="lg:col-span-2 flex justify-center lg:justify-start">
             <Image
-              src="https://placehold.co/600x750.png" // Replace with actual professional portrait
+              src="https://placehold.co/600x750.png" 
               alt="Priyanshu Ranjan - Professional Portrait"
               width={600}
               height={750}
@@ -133,31 +131,47 @@ export default async function Home() {
 
       <SectionContainer id="experience" bgColorClass="bg-section-experience" fullWidthBg animated>
         <SectionHeader title="Work Experience" subtitle="Professional Journey" alignment="left" />
-        <div className="space-y-12">
+        <div className="space-y-16">
           {workExperienceData.map((exp, index) => (
             <div key={`${exp.company}-${exp.role}-${index}`} className="pb-10 border-b border-border/50 last:border-b-0 last:pb-0">
-              <h3 className="text-2xl lg:text-3xl font-headline text-primary mb-1">
-                {exp.role}
-              </h3>
-              <div className="flex flex-col sm:flex-row sm:items-baseline gap-x-3 gap-y-1 mb-3">
-                <span className="text-xl font-semibold text-foreground">
-                  {exp.companyLink ? (
-                    <a href={exp.companyLink.startsWith('http') ? exp.companyLink : `https://${exp.companyLink}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center group hover:text-accent">
-                      {exp.company}
-                      <ExternalLink className="ml-2 h-4 w-4 text-muted-foreground group-hover:text-accent transition-colors" />
-                    </a>
-                  ) : exp.company}
-                </span>
-                <span className="text-sm text-muted-foreground font-sans">{exp.period} {exp.location && `• ${exp.location}`}</span>
+              <div className="grid md:grid-cols-3 gap-6 items-start">
+                {exp.imageUrl && (
+                  <div className="md:col-span-1">
+                    <Image 
+                      src={exp.imageUrl} 
+                      alt={`${exp.company} visual representation`} 
+                      width={300} 
+                      height={150} 
+                      className="rounded-lg shadow-md object-cover w-full"
+                      data-ai-hint={exp.imageHint || 'company tech project'} 
+                    />
+                  </div>
+                )}
+                <div className={exp.imageUrl ? "md:col-span-2" : "md:col-span-3"}>
+                  <h3 className="text-2xl lg:text-3xl font-headline text-primary mb-1">
+                    {exp.role}
+                  </h3>
+                  <div className="flex flex-col sm:flex-row sm:items-baseline gap-x-3 gap-y-1 mb-3">
+                    <span className="text-xl font-semibold text-foreground">
+                      {exp.companyLink ? (
+                        <a href={exp.companyLink.startsWith('http') ? exp.companyLink : `https://${exp.companyLink}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center group hover:text-accent">
+                          {exp.company}
+                          <ExternalLink className="ml-2 h-4 w-4 text-muted-foreground group-hover:text-accent transition-colors" />
+                        </a>
+                      ) : exp.company}
+                    </span>
+                    <span className="text-sm text-muted-foreground font-sans">{exp.period} {exp.location && `• ${exp.location}`}</span>
+                  </div>
+                  <ul className="list-none space-y-2 text-base text-muted-foreground leading-relaxed font-sans">
+                    {exp.description.map((desc, i) => (
+                      <li key={`${exp.company}-${exp.role}-desc-${i}`} className="flex items-start pl-1">
+                        <CheckCircle className="h-4 w-4 mr-2.5 mt-1 text-accent/80 shrink-0" />
+                        {desc}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-              <ul className="list-none space-y-2 text-base text-muted-foreground leading-relaxed font-sans">
-                {exp.description.map((desc, i) => (
-                  <li key={`${exp.company}-${exp.role}-desc-${i}`} className="flex items-start pl-1">
-                    <CheckCircle className="h-4 w-4 mr-2.5 mt-1 text-accent/80 shrink-0" />
-                    {desc}
-                  </li>
-                ))}
-              </ul>
             </div>
           ))}
         </div>
@@ -171,9 +185,21 @@ export default async function Home() {
       <SectionContainer id="projects" bgColorClass="bg-section-projects" fullWidthBg animated>
         <SectionHeader title="Projects" subtitle="Selected Works" alignment="left" />
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projectData.slice(0, 3).map((proj: ProjectEntry, index) => ( // Display first 3 projects on homepage
-            <div key={proj.title + index} className="p-6 border border-border/50 rounded-lg bg-card hover:shadow-md transition-shadow flex flex-col">
-              <h3 className="text-xl lg:text-2xl font-headline text-primary mb-2">
+          {projectData.slice(0, 6).map((proj: ProjectEntry, index) => ( 
+            <div key={proj.title + index} className="p-6 border border-border/50 rounded-lg bg-card hover:shadow-xl transition-all duration-300 flex flex-col group transform hover:-translate-y-1">
+              {proj.imageUrl && (
+                <div className="mb-4 rounded-md overflow-hidden">
+                  <Image 
+                    src={proj.imageUrl} 
+                    alt={proj.title} 
+                    width={400} 
+                    height={225} 
+                    className="rounded-md object-cover w-full aspect-video transition-transform duration-300 group-hover:scale-105" 
+                    data-ai-hint={proj.imageHint || 'project preview'} 
+                  />
+                </div>
+              )}
+              <h3 className="text-xl lg:text-2xl font-headline text-primary mb-2 group-hover:text-accent transition-colors">
                 {proj.title}
               </h3>
               <p className="text-sm text-muted-foreground leading-relaxed font-sans mb-4 flex-grow line-clamp-3">
@@ -332,27 +358,45 @@ export default async function Home() {
 
       <SectionContainer id="certifications" bgColorClass="bg-section-skills" fullWidthBg animated>
         <SectionHeader title="Certifications" subtitle="Professional Accreditations" alignment="left" />
-        <div className="space-y-8">
-          {certificationsData.map((cert, index) => (
-            <div key={`${cert.name}-${index}`} className="pb-6 border-b border-border/50 last:border-b-0 last:pb-0">
-              <div className="flex items-center mb-1">
-                 <Award className="h-6 w-6 mr-3 text-primary" />
-                <h3 className="text-xl lg:text-2xl font-headline text-foreground">
-                  {cert.name}
-                </h3>
+        <div className="grid md:grid-cols-2 gap-8">
+          {certificationsData.map((cert, index) => {
+            const CertContent = (
+              <div className="flex items-start gap-4 group p-4 rounded-lg hover:bg-card transition-colors h-full">
+                {cert.imageUrl && (
+                  <Image 
+                    src={cert.imageUrl} 
+                    alt={cert.name} 
+                    width={80} 
+                    height={50} 
+                    className="rounded-sm object-contain mt-1 transition-transform group-hover:scale-105" 
+                    data-ai-hint={cert.imageHint || 'certification logo badge'} />
+                )}
+                <div className="flex-1">
+                  <h3 className={`text-xl font-headline mb-1 ${cert.credentialUrl ? 'text-primary group-hover:text-accent' : 'text-foreground'}`}>
+                    {cert.name}
+                    {cert.credentialUrl && <ExternalLink className="inline-block ml-2 h-4 w-4 text-muted-foreground group-hover:text-accent transition-colors" />}
+                  </h3>
+                  {cert.issuingOrganization && (
+                    <p className="text-sm text-muted-foreground font-sans">
+                      {cert.issuingOrganization} {cert.date && `• ${cert.date}`}
+                    </p>
+                  )}
+                </div>
               </div>
-              {cert.issuingOrganization && (
-                <p className="text-md text-primary/90 ml-9">{cert.issuingOrganization} {cert.date && `(${cert.date})`}</p>
-              )}
-              {cert.credentialUrl && (
-                <Button variant="link" asChild className="p-0 h-auto text-sm text-accent hover:text-accent/80 ml-9 mt-1">
-                  <a href={cert.credentialUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center group">
-                    View Credential <ExternalLink className="ml-1.5 h-4 w-4" />
+            );
+
+            return (
+              <div key={`${cert.name}-${index}`} className="border border-border/30 rounded-lg bg-muted/20">
+                {cert.credentialUrl ? (
+                  <a href={cert.credentialUrl} target="_blank" rel="noopener noreferrer" className="block">
+                    {CertContent}
                   </a>
-                </Button>
-              )}
-            </div>
-          ))}
+                ) : (
+                  CertContent
+                )}
+              </div>
+            );
+          })}
         </div>
       </SectionContainer>
 
@@ -415,3 +459,4 @@ export default async function Home() {
     </>
   );
 }
+
