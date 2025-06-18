@@ -4,7 +4,8 @@ import {
   Linkedin, Github, Gitlab, Palette as PaletteIconLucide, Code as CodeIcon, Settings, Users, Briefcase, BookOpen, Wand2, Award, Star, Languages as LanguagesIcon, Home, BriefcaseBusiness, UsersRound, Lightbulb, ShieldCheck, MessageSquare, Download, ExternalLink, Mail, MapPin, Phone, CheckCircle, GitFork, SquareTerminal, Brain, Mic, LifeBuoy, GraduationCap, Trophy 
 } from 'lucide-react';
 import type {
-  WorkExperienceEntry, NavLink, HeroData, ProjectEntry, SkillArea, EducationEntry, SocialLinkInfo, Project, SkillCategory, Skill, Certification, HonorAward 
+  WorkExperienceEntry, NavLink, HeroData, ProjectEntry, SkillArea, EducationEntry, SocialLinkInfo, Project, SkillCategory, Skill, Certification, HonorAward, 
+  ProjectStorylineItem
 } from '@/lib/types';
 
 export const heroData: HeroData = {
