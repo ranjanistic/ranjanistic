@@ -25,7 +25,6 @@ export const navLinksData: NavLink[] = [
   { href: '/#about', label: 'About' },
   { href: '/#experience', label: 'Experience' },
   { href: '/#projects', label: 'Projects' },
-  { href: '/#github-showcase', label: 'GitHub' },
   { href: '/#skills', label: 'Skills' },
   { href: '/#education', label: 'Education' },
   { href: '/#certifications', label: 'Certifications' },
@@ -44,13 +43,13 @@ export const workExperienceData: WorkExperienceEntry[] = [
     role: 'Sr. Developer',
     company: 'MedicalHive Solutions',
     companyLink: 'https://hilocmed.com',
-    period: 'APRIL 2025 - Present', // As per user, keep this future date
+    period: 'APRIL 2025 - Present', 
     location: 'Noida, UP, India',
     description: [
       'Built and designed full stack web based interface from backend to frontend.',
       'Handled deployment, maintenance, and network security, involving AWS.',
     ],
-    imageUrls: ['https://placehold.co/300x200.png', 'https://placehold.co/300x200.png'],
+    imageUrls: ['https://placehold.co/400x250.png', 'https://placehold.co/400x250.png'],
     imageHints: ['medical software ui', 'aws architecture diagram']
   },
   {
@@ -63,7 +62,7 @@ export const workExperienceData: WorkExperienceEntry[] = [
       'Overseeing all technical aspects, from concept to delivery, leading the technology strategy and execution.',
       'Continued leadership from Co-Founder role, focusing on strategic technological advancements. Involved 4+ B2B clients & 100+ B2C clients.'
     ],
-    imageUrls: ['https://placehold.co/300x200.png', 'https://placehold.co/300x200.png', 'https://placehold.co/300x200.png'],
+    imageUrls: ['https://placehold.co/400x250.png', 'https://placehold.co/400x250.png', 'https://placehold.co/400x250.png'],
     imageHints: ['fintech dashboard', 'payment gateway flow', 'team collaboration']
   },
   {
@@ -76,33 +75,33 @@ export const workExperienceData: WorkExperienceEntry[] = [
       'Managed B2B & B2C product life cycle, problem assessment, data management, and logic building.',
       'Led designing, team building, and management; rigorously brainstormed solutions.',
     ],
-    imageUrls: ['https://placehold.co/300x200.png', 'https://placehold.co/300x200.png'],
+    imageUrls: ['https://placehold.co/400x250.png', 'https://placehold.co/400x250.png'],
     imageHints: ['startup meeting', 'client onboarding process']
   },
   {
     role: 'Integrations Developer',
     company: 'Testlify',
     companyLink: 'https://testlify.com',
-    period: 'February 2023 - February 2024 (1 year 1 month)', // Corrected from OCT 2023
+    period: 'February 2023 - February 2024 (1 year 1 month)', 
     location: 'India',
     description: [
       'Extended the existing product by integrating multiple 3rd party HR tools like Greenhouse, JazzHR, SAP SuccessFactors with the Testlify platform.',
       'Developed custom logic for each integration using Loopback 4 (LB4) and TypeScript framework.',
     ],
-    imageUrls: ['https://placehold.co/300x200.png', 'https://placehold.co/300x200.png'],
+    imageUrls: ['https://placehold.co/400x250.png', 'https://placehold.co/400x250.png'],
     imageHints: ['api integration diagram', 'typescript code snippet']
   },
   {
     role: 'Product Developer',
     company: 'Clan',
-    period: 'May 2022 - November 2022 (7 months)', // Corrected from APR
+    period: 'May 2022 - November 2022 (7 months)', 
     location: 'India',
     description: [
       'Led NodeJS based product development and managed AWS infrastructure, focusing on product revamp and scalability.',
       'Conducted data analysis, contributed to UI-UX design.',
       'Designed and implemented a scalable system with a queue-based fanout mechanism and event-driven architecture.',
     ],
-    imageUrls: ['https://placehold.co/300x200.png', 'https://placehold.co/300x200.png'],
+    imageUrls: ['https://placehold.co/400x250.png', 'https://placehold.co/400x250.png'],
     imageHints: ['scalable system architecture', 'ui design sketch']
   },
   {
@@ -114,19 +113,19 @@ export const workExperienceData: WorkExperienceEntry[] = [
       'Developed and managed realtime multiplayer gaming architecture.',
       'Implemented WebSockets-based logic for multiplayer games and high-level Blockchain features.',
     ],
-    imageUrls: ['https://placehold.co/300x200.png'],
+    imageUrls: ['https://placehold.co/400x250.png'],
     imageHints: ['multiplayer game interface']
   },
   {
     role: 'Technology Team Lead',
     company: 'Knotters',
-    period: 'August 2021 - December 2021 (5 months)', // Corrected from MAR 2022
+    period: 'August 2021 - December 2021 (5 months)', 
     location: 'Noida',
     description: [
       'Led algorithms, design & platform development for an open platform for open source project collaboration.',
       'Managed deployment & maintenance of the Django-based full-stack application.',
     ],
-    imageUrls: ['https://placehold.co/300x200.png', 'https://placehold.co/300x200.png'],
+    imageUrls: ['https://placehold.co/400x250.png', 'https://placehold.co/400x250.png'],
     imageHints: ['open source platform dashboard', 'django project structure']
   },
   {
@@ -138,7 +137,7 @@ export const workExperienceData: WorkExperienceEntry[] = [
       'Co-founded the platform, focusing on open source collaboration and competitions for systematic resume building.',
       'Knotters was recognized and sponsored by NASSCOM during this period.',
     ],
-    imageUrls: ['https://placehold.co/300x200.png'],
+    imageUrls: ['https://placehold.co/400x250.png'],
     imageHints: ['nasscom recognition event']
   },
   {
@@ -150,7 +149,7 @@ export const workExperienceData: WorkExperienceEntry[] = [
       'Developed NodeJS APIs and microservices.',
       'Performed unit testing and database operations using MongoDB.',
     ],
-    imageUrls: ['https://placehold.co/300x200.png'],
+    imageUrls: ['https://placehold.co/400x250.png'],
     imageHints: ['api endpoint structure']
   },
   {
@@ -161,7 +160,7 @@ export const workExperienceData: WorkExperienceEntry[] = [
     description: [
         'Led the initiative for virtual labs development within the company.'
     ],
-    imageUrls: ['https://placehold.co/300x200.png'],
+    imageUrls: ['https://placehold.co/400x250.png'],
     imageHints: ['virtual lab interface']
   },
   {
@@ -173,29 +172,30 @@ export const workExperienceData: WorkExperienceEntry[] = [
       'Developed beginner-friendly web games & a Web IDE using browser-based JavaScript, HTML5 & Open Sourced Blockly®.',
       'Created a virtual web-based gaming engine, easing development processes for educational content.',
     ],
-    imageUrls: ['https://placehold.co/300x200.png', 'https://placehold.co/300x200.png'],
+    imageUrls: ['https://placehold.co/400x250.png', 'https://placehold.co/400x250.png'],
     imageHints: ['blockly ide screenshot', 'javascript game preview']
   },
   {
     role: 'Web Developer',
-    company: 'Edu2Live', // Corrected from Edu2live
+    company: 'Edu2Live', 
     period: 'August 2020 - September 2020 (2 months)',
     location: 'India',
     description: [
       'Developed a customer and product relationship management (CPRM) website for an ed-tech startup, for e-commerce.',
     ],
-    imageUrls: ['https://placehold.co/300x200.png'],
+    imageUrls: ['https://placehold.co/400x250.png'],
     imageHints: ['edtech crm dashboard']
   },
 ];
 
-export const projectData: ProjectEntry[] = [ // This is for the OLD homepage brief project list, will be replaced by detailed 'projects'
+// This is the old projectData structure for homepage overview, not used if displaying full projects
+export const projectData: ProjectEntry[] = [ 
   {
     title: 'Stellar Evolution Modelling (MESA)',
     description: 'Analysis of pre-main sequence contraction and the role of mass distributions using MESA, focusing on HR diagrams.',
-    link: '/#projects', // Updated to hash link
+    link: '/#projects', 
     linkText: 'View Details Below',
-    imageUrl: 'https://placehold.co/400x225.png',
+    imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'astronomy simulation stars'
   },
   {
@@ -203,7 +203,7 @@ export const projectData: ProjectEntry[] = [ // This is for the OLD homepage bri
     description: 'A platform for open source project collaboration and competitions, built from idea to production.',
     link: '/#projects', 
     linkText: 'View Details Below',
-    imageUrl: 'https://placehold.co/400x225.png',
+    imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'community collaboration code'
   },
   {
@@ -211,7 +211,7 @@ export const projectData: ProjectEntry[] = [ // This is for the OLD homepage bri
     description: 'A web platform providing help resources during the Covid-19 pandemic.',
     link: '/#projects',
     linkText: 'View Details Below',
-    imageUrl: 'https://placehold.co/400x225.png',
+    imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'health support web'
   },
 ];
@@ -231,7 +231,7 @@ const genericStoryline = (title: string, type: string = "software project"): Pro
 export const projects: Project[] = [
   {
     id: 'stellar-evolution',
-    slug: 'stellar-evolution', // Slug is kept for potential future use, but not for navigation now
+    slug: 'stellar-evolution',
     title: 'Stellar Evolution Modelling using MESA',
     shortDescription: 'Analysis of pre-main sequence contraction and stellar mass distributions using MESA.',
     description: 'Detailed study of pre-main sequence stellar contraction and the impact of mass distributions, guided by the Initial Mass Function, involving Hertzsprung-Russell diagrams. Project conducted using the MESA (Modules for Experiments in Stellar Astrophysics) software suite.',
@@ -239,7 +239,7 @@ export const projects: Project[] = [
     imageHint: 'nebula star formation',
     technologies: ['MESA', 'Python', 'Astrophysics', 'Data Analysis', 'Computational Physics'],
     liveLink: undefined, 
-    repoLink: undefined, // Can add a link to the concluding report if available elsewhere
+    repoLink: undefined, 
     storyline: genericStoryline("Stellar Evolution Modelling", "research project"),
   },
   {
@@ -251,7 +251,7 @@ export const projects: Project[] = [
     imageUrl: 'https://placehold.co/1200x675.png',
     imageHint: 'collaboration network community',
     technologies: ['Django', 'Python', 'Full Stack', 'Web Development', 'Community Platform'],
-    liveLink: 'https://knotters.org', // Assuming this is a live link
+    liveLink: 'https://knotters.org', 
     repoLink: undefined,
     storyline: genericStoryline("Knotters Community Portal"),
   },
@@ -264,7 +264,7 @@ export const projects: Project[] = [
     imageUrl: 'https://placehold.co/1200x675.png',
     imageHint: 'health support community',
     technologies: ['Web Development', 'Django', 'Python', 'Information Portal'],
-    liveLink: 'https://covidcare.knotters.org', // Assuming this is a live link
+    liveLink: 'https://covidcare.knotters.org', 
     repoLink: undefined,
     storyline: genericStoryline("CovidCare Pandemic Portal"),
   },
@@ -316,13 +316,13 @@ export const projects: Project[] = [
     imageUrl: 'https://placehold.co/1200x675.png',
     imageHint: 'mobile calendar schedule',
     technologies: ['Android Native', 'Kotlin', 'Java', 'Mobile Development', 'Utility App'],
-    liveLink: 'https://schemester.app', // Assuming this is live
+    liveLink: 'https://schemester.app', 
     repoLink: undefined,
     storyline: genericStoryline("Schemester Android Schedule App"),
   },
 ];
 
-export const skillsData: SkillArea[] = [ // For homepage overview - kept concise
+export const skillsData: SkillArea[] = [ 
   {
     title: 'Hard Skills & DevOps',
     skills: 'DevOps, System Design, Software Testing, Linux Sys Admin, Network Security, CI/CD, Microservices, High Volume Web Apps (Django, Node.js, React), Database Ops (MongoDB, MySQL, PostgreSQL, Redis), VCS (Git, GitHub, GitLab).',
@@ -380,7 +380,7 @@ export const skillCategories: SkillCategory[] = [
   },
   {
     name: 'Databases & DevOps Tools',
-    iconName: 'Settings', // Re-using for broad category
+    iconName: 'Settings', 
     skills: [
         { name: 'MongoDB', level: 85 },
         { name: 'MySQL / PostgreSQL', level: 80 },
@@ -436,17 +436,17 @@ export const skillCategories: SkillCategory[] = [
 
 export const educationData: EducationEntry[] = [
   {
-    degree: "Master's degree, Physics", // Updated from M.Sc. Physics
+    degree: "Master's degree, Physics", 
     institution: 'Department of Physics & Astrophysics, University of Delhi',
     campus: 'Ramjas College, North Campus',
     period: 'September 2023 - May 2025',
     details: [
       { specialization: 'General Theory of Relativity, Cosmology, Astrophysics, Complex systems & Networks, Nonlinear Dynamics, Computational Physics' },
-      { projects: 'Stellar evolution & modelling using MESA, under the guidance of Prof. T.R. Seshadri & Dr. Sachin Pandey.', projectLinkText: "View Concluding Presentation", projectLink: "/#projects" }, // Link to project section on homepage
+      { projects: 'Stellar evolution & modelling using MESA, under the guidance of Prof. T.R. Seshadri & Dr. Sachin Pandey.', projectLinkText: "View Concluding Presentation", projectLink: "/#projects" }, 
     ],
   },
   {
-    degree: "Bachelor's degree (honours), Physics", // Updated from B.Sc. (Honours) Physics
+    degree: "Bachelor's degree (honours), Physics", 
     institution: 'University of Delhi',
     campus: 'Deshbandhu College, South Campus',
     period: '2018 - 2021',
@@ -455,7 +455,7 @@ export const educationData: EducationEntry[] = [
     ],
   },
   {
-    degree: 'Senior Secondary Education, CBSE, Science', // Combined info
+    degree: 'Senior Secondary Education, CBSE, Science', 
     institution: 'Nehru International Public School, Noida',
     period: '2016 - 2018',
     details: [
@@ -463,8 +463,8 @@ export const educationData: EducationEntry[] = [
     ],
   },
   {
-    degree: 'Primary & Secondary Education, CBSE, All', // Combined info
-    institution: 'Maharishi Vidya Mandir Senior Secondary School', // Full name
+    degree: 'Primary & Secondary Education, CBSE, All', 
+    institution: 'Maharishi Vidya Mandir Senior Secondary School', 
     period: '2004 - 2016',
     details: [],
   },
@@ -495,14 +495,14 @@ export const certificationsData: Certification[] = [
   { 
     name: 'Eduthon 2020', 
     issuingOrganization: 'Competition based', 
-    credentialUrl: '#', // Placeholder, can be updated
+    credentialUrl: '#', 
     imageUrl: 'https://placehold.co/100x60.png',
     imageHint: 'eduthon hackathon logo'
   },
   { 
     name: 'Sr. Orange Belt', 
     issuingOrganization: 'Internal/Company specific', 
-    credentialUrl: '#', // Placeholder
+    credentialUrl: '#', 
     imageUrl: 'https://placehold.co/100x60.png',
     imageHint: 'company award graphic'
   },
@@ -514,3 +514,4 @@ export const honorsAwardsData: HonorAward[] = [
   { title: 'Academics and Versatility Recognition' },
   { title: 'Highest scorer in C++' },
 ];
+

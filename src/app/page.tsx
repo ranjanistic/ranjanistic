@@ -4,28 +4,27 @@ import Image from 'next/image';
 import {
   heroData,
   workExperienceData,
-  projects, // Use detailed projects array
-  skillCategories, // Use detailed skillCategories array
+  projects, 
+  skillCategories, 
   educationData,
   certificationsData,
   honorsAwardsData,
   socialLinksFooter,
 } from '@/lib/data';
-import type { Project, ProjectStorylineItem, WorkExperienceEntry, SkillCategory as SkillCategoryType, EducationEntry, GitHubUser, GitHubRepo, Certification, HonorAward } from '@/lib/types';
+import type { ProjectStorylineItem, WorkExperienceEntry, SkillCategory as SkillCategoryType, EducationEntry, Certification, HonorAward } from '@/lib/types';
 import { SectionContainer, SectionHeader } from '@/components/ui/section-container';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { 
-  Download, ExternalLink, Mail, MapPin, Phone, Briefcase, Lightbulb, Code2, Settings, Users, Award, BookOpen, MessageSquare, CheckCircle, Star, GitFork, UsersRound, FolderKanban, Zap, Languages as LanguagesIcon, Trophy, GraduationCap, SquareTerminal, Brain, Mic, Palette as PaletteIcon, LifeBuoy, ShieldCheck, Github as GithubIcon // Renamed to avoid conflict
+  Download, ExternalLink, Mail, MapPin, Phone, Briefcase, Lightbulb, Code2 as CodeIconLucide, Settings, Users, Award, BookOpen, MessageSquare, CheckCircle, Star, GitFork, UsersRound, FolderKanban, Zap, Languages as LanguagesIcon, Trophy, GraduationCap, SquareTerminal, Brain, Mic, Palette as PaletteIcon, LifeBuoy, ShieldCheck, Github as GithubIcon 
 } from 'lucide-react';
 import { ContactForm } from '@/components/contact-form';
-import { getGitHubUser, getGitHubRepos } from '@/lib/github-api';
 import { format } from 'date-fns';
-import { ExperienceItem } from '@/components/experience-item'; // For detailed experience
-import { SkillCategory } from '@/components/skill-category'; // For detailed skills
+import { ExperienceItem } from '@/components/experience-item'; 
+import { SkillCategory } from '@/components/skill-category'; 
 
 
-// Helper function to render project storyline items (can be moved to a utils file if preferred)
+// Helper function to render project storyline items
 function renderStorylineItem(item: ProjectStorylineItem, index: number, projectTitle: string) {
   switch (item.type) {
     case 'heading':
@@ -59,8 +58,6 @@ function renderStorylineItem(item: ProjectStorylineItem, index: number, projectT
 
 
 export default async function Home() {
-  const githubUser: GitHubUser | null = await getGitHubUser();
-  const githubRepos: GitHubRepo[] | null = await getGitHubRepos(6);
 
   const aboutMeIcons = [
     { icon: UsersRound, text: "User-Centricity: Placing the user at the heart of every decision." },
@@ -133,7 +130,7 @@ export default async function Home() {
         <div className="grid lg:grid-cols-3 gap-12 items-start">
           <div className="lg:col-span-1 flex flex-col items-center">
             <Image
-              src="https://placehold.co/400x500.png" // Consistent with about page
+              src="https://placehold.co/400x500.png" 
               alt="Priyanshu Ranjan"
               width={400}
               height={500}
@@ -190,6 +187,11 @@ export default async function Home() {
             <p>
               My goal is to leverage my skills and passion to contribute to projects that make a positive impact, drive innovation, and ultimately, make technology more human.
             </p>
+            <div className="mt-8">
+              <Button asChild size="lg" className="font-sans">
+                <Link href="/#contact">Let's Collaborate</Link>
+              </Button>
+            </div>
           </div>
         </div>
       </SectionContainer>
@@ -197,7 +199,7 @@ export default async function Home() {
       {/* Work Experience Section - Detailed */}
       <SectionContainer id="experience" bgColorClass="bg-section-experience" fullWidthBg animated>
         <SectionHeader title="Work Experience" subtitle="Professional Journey" alignment="left" />
-        <div className="space-y-12 max-w-4xl mx-auto"> {/* Increased max-width for detailed items */}
+        <div className="space-y-12 max-w-4xl mx-auto"> 
           {workExperienceData.map((exp, index) => (
             <ExperienceItem key={exp.company + exp.role + index} experience={exp} animationDelay={index * 100}/>
           ))}
@@ -205,9 +207,9 @@ export default async function Home() {
       </SectionContainer>
 
       {/* Projects Section - Detailed */}
-      <SectionContainer id="projects" bgColorClass="bg-section-projects" fullWidthBg animated>
+      <SectionContainer id="projects" bgColorClass="bg-section-experience" fullWidthBg animated>
         <SectionHeader title="Projects" subtitle="Selected Works & Case Studies" alignment="left" />
-        <div className="space-y-20"> {/* Increased spacing between detailed projects */}
+        <div className="space-y-20"> 
           {projects.map((project, index) => (
             <article key={project.id + index} className="p-6 md:p-8 border border-border/50 rounded-lg bg-card hover:shadow-xl transition-all duration-300 flex flex-col group transform hover:-translate-y-1">
               <header className="mb-8">
@@ -245,7 +247,7 @@ export default async function Home() {
                 height={675}
                 className="rounded-xl shadow-lg object-cover w-full aspect-video mb-8"
                 data-ai-hint={project.imageHint || 'project main image'}
-                priority={index < 2} // Prioritize loading for first few projects
+                priority={index < 2} 
               />
               
               <div className="prose prose-lg dark:prose-invert max-w-none prose-headings:font-headline prose-p:font-sans prose-li:font-sans prose-p:text-muted-foreground prose-headings:text-foreground">
@@ -258,70 +260,6 @@ export default async function Home() {
         </div>
       </SectionContainer>
 
-      {/* GitHub Showcase Section */}
-      {githubUser && (
-        <SectionContainer id="github-showcase" bgColorClass="bg-section-experience" fullWidthBg animated>
-          <SectionHeader title="GitHub Showcase" subtitle="My Open Source Activity" alignment="left" />
-          <div className="grid md:grid-cols-3 gap-8 items-start mb-12">
-            <div className="md:col-span-1 flex flex-col items-center md:items-start">
-              {githubUser.avatar_url && (
-                <Image
-                  src={githubUser.avatar_url}
-                  alt={githubUser.name || githubUser.login || 'GitHub User'}
-                  width={150}
-                  height={150}
-                  className="rounded-full shadow-lg mb-4"
-                  data-ai-hint="github avatar"
-                />
-              )}
-              <h3 className="text-2xl font-headline text-foreground mb-1">{githubUser.name || githubUser.login}</h3>
-              {githubUser.bio && <p className="text-muted-foreground font-sans text-center md:text-left mb-2">{githubUser.bio}</p>}
-              <div className="flex items-center text-muted-foreground text-sm mb-1">
-                <UsersRound className="h-4 w-4 mr-2 text-primary" /> Followers: {githubUser.followers}
-              </div>
-              <div className="flex items-center text-muted-foreground text-sm mb-4">
-                <FolderKanban className="h-4 w-4 mr-2 text-primary" /> Public Repos: {githubUser.public_repos}
-              </div>
-              <Button variant="outline" asChild className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                <a href={githubUser.html_url} target="_blank" rel="noopener noreferrer">
-                  View GitHub Profile <ExternalLink className="ml-2 h-4 w-4" />
-                </a>
-              </Button>
-            </div>
-            <div className="md:col-span-2">
-              <h4 className="text-xl font-headline text-primary mb-4">Recent Repositories</h4>
-              {githubRepos && githubRepos.length > 0 ? (
-                <div className="space-y-6">
-                  {githubRepos.map(repo => (
-                    <div key={repo.id} className="p-4 border border-border/50 rounded-lg bg-card hover:shadow-md transition-shadow">
-                      <a href={repo.html_url} target="_blank" rel="noopener noreferrer" className="group">
-                        <h5 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors mb-1">{repo.name}</h5>
-                      </a>
-                      {repo.description && <p className="text-sm text-muted-foreground font-sans mb-2 line-clamp-2">{repo.description}</p>}
-                      <div className="flex items-center space-x-4 text-xs text-muted-foreground">
-                        {repo.language && (
-                          <div className="flex items-center">
-                            <Code2 className="h-3 w-3 mr-1 text-primary/80" /> {repo.language}
-                          </div>
-                        )}
-                        <div className="flex items-center">
-                          <Star className="h-3 w-3 mr-1 text-yellow-500" /> {repo.stargazers_count}
-                        </div>
-                        <div className="flex items-center">
-                          <GitFork className="h-3 w-3 mr-1 text-blue-500" /> {repo.forks_count}
-                        </div>
-                        <span>Updated: {format(new Date(repo.updated_at), 'MMM dd, yyyy')}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <p className="text-muted-foreground font-sans">No public repositories found or could not fetch data.</p>
-              )}
-            </div>
-          </div>
-        </SectionContainer>
-      )}
 
       {/* Skills Section - Detailed */}
       <SectionContainer id="skills" bgColorClass="bg-section-skills" fullWidthBg animated>
