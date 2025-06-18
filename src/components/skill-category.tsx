@@ -1,11 +1,13 @@
+
 // @ts-nocheck
 "use client";
-import type { SkillCategory as SkillCategoryType } from '@/lib/types';
+import type { SkillCategory as SkillCategoryType, Skill } from '@/lib/types'; // Added Skill type
 import { Progress } from '@/components/ui/progress';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useScrollReveal } from '@/hooks/use-scroll-reveal';
 import { cn } from '@/lib/utils';
-import { Palette, Code as CodeIcon, Briefcase, type LucideIcon } from 'lucide-react'; // Import specific icons
+import { Palette, Code as CodeIcon, Briefcase, Settings, Users, BookOpen, Wand2, Award, Star, Languages as LanguagesIcon, ShieldCheck } from 'lucide-react'; 
+import type { LucideIcon } from 'lucide-react';
 
 interface SkillCategoryProps {
   category: SkillCategoryType;
@@ -14,13 +16,21 @@ interface SkillCategoryProps {
 
 const iconMap: Record<string, LucideIcon> = {
   Palette,
-  Code: CodeIcon, // Renamed to avoid conflict if 'Code' is used as a var name
+  Code: CodeIcon, 
   Briefcase,
+  Settings,
+  Users,
+  BookOpen,
+  Wand2,
+  Award, 
+  Star,  
+  Languages: LanguagesIcon,
+  ShieldCheck, // For Core Expertise
 };
 
 export function SkillCategory({ category, animationDelay = 0 }: SkillCategoryProps) {
   const { ref, isVisible } = useScrollReveal<HTMLDivElement>({ once: true });
-  const IconComponent = iconMap[category.iconName];
+  const IconComponent = iconMap[category.iconName] || Briefcase; // Fallback icon
 
   return (
     <div
@@ -31,20 +41,26 @@ export function SkillCategory({ category, animationDelay = 0 }: SkillCategoryPro
       )}
       style={isVisible ? { transitionDelay: `${animationDelay}ms` } : {}}
     >
-      <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300 h-full">
+      <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300 h-full bg-card text-card-foreground">
         <CardHeader className="flex flex-row items-center gap-4 pb-4">
           {IconComponent && <IconComponent className="h-8 w-8 text-primary" />}
           <CardTitle className="text-2xl font-headline text-foreground">{category.name}</CardTitle>
         </CardHeader>
         <CardContent>
           <ul className="space-y-5">
-            {category.skills.map((skill) => (
+            {category.skills.map((skill: Skill) => ( // Explicitly type skill
               <li key={skill.name}>
                 <div className="flex justify-between mb-1">
                   <span className="text-sm font-medium text-foreground">{skill.name}</span>
-                  <span className="text-sm font-medium text-muted-foreground">{skill.level}%</span>
+                  <span className="text-sm font-medium text-muted-foreground">
+                    {skill.detail ? `${skill.level}% (${skill.detail})` : `${skill.level}%`}
+                  </span>
                 </div>
-                <Progress value={isVisible ? skill.level : 0} aria-label={`${skill.name} proficiency ${skill.level}%`} className="h-2 transition-all duration-1000 ease-out" />
+                <Progress 
+                  value={isVisible ? skill.level : 0} 
+                  aria-label={`${skill.name} proficiency ${skill.level}% ${skill.detail || ''}`} 
+                  className="h-2 transition-all duration-1000 ease-out [&>div]:bg-primary" 
+                />
               </li>
             ))}
           </ul>

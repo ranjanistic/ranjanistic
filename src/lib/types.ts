@@ -25,7 +25,8 @@ export interface Project {
 // Skill types
 export interface Skill {
   name: string;
-  level: number; 
+  level: number;
+  detail?: string; // For proficiency level like "Professional Working"
 }
 
 export interface SkillCategory {
@@ -40,6 +41,7 @@ export interface WorkExperienceEntry {
   company: string;
   companyLink?: string;
   period: string;
+  location?: string;
   description: string[];
 }
 
@@ -58,7 +60,8 @@ export interface Experience { // For detailed experience page if ever needed
 // General types for portfolio structure
 export interface HeroData {
   name: string;
-  tagline: string;
+  title?: string; // e.g., "Technology Leadership, Software Development | Physics Major"
+  tagline: string; // More detailed summary
   location: string;
   email: string;
   gitlab?: string;
@@ -93,6 +96,7 @@ export interface EducationEntry {
   degree: string;
   institution: string;
   period: string;
+  campus?: string;
   details?: EducationDetail[];
 }
 
@@ -125,4 +129,20 @@ export interface GitHubRepo {
   forks_count: number;
   language?: string | null;
   updated_at: string;
+}
+
+// New Types
+export interface Certification {
+  name: string;
+  issuingOrganization?: string;
+  date?: string;
+  credentialId?: string;
+  credentialUrl?: string;
+}
+
+export interface HonorAward {
+  title: string;
+  associatedWith?: string;
+  date?: string;
+  description?: string;
 }
