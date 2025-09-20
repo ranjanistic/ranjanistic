@@ -40,3 +40,4 @@ next-env.d.ts
 # UI state
 .idx/
 components.json
+.genkit/

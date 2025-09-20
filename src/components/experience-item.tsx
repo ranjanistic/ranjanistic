@@ -60,7 +60,7 @@ export function ExperienceItem({ experience, animationDelay = 0 }: ExperienceIte
 
           {experience.imageUrls && experience.imageUrls.length > 0 && (
             <div className="mt-6 pt-6 border-t border-border/50">
-              <h4 className="text-md font-semibold font-headline text-primary/90 mb-3">Visuals:</h4>
+              <h4 className="text-md font-semibold font-headline text-primary/90 mb-3">Visuals</h4>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {experience.imageUrls.map((url, imgIndex) => (
                   <div key={imgIndex} className="rounded-lg overflow-hidden shadow-md bg-muted/20">

@@ -14,8 +14,8 @@ export interface Project {
   title: string;
   shortDescription: string;
   description: string;
-  imageUrl: string;
-  imageHint?: string; // hint is optional
+  imageUrls: string[];
+  imageHints?: string[]; // hint is optional
   technologies: string[];
   liveLink?: string;
   repoLink?: string;
@@ -82,8 +82,8 @@ export interface ProjectEntry { // Simple project entry for homepage
   description: string;
   link?: string;
   linkText?: string;
-  imageUrl?: string;
-  imageHint?: string;
+  imageUrls?: string[];
+  imageHints?: string[];
 }
 
 export interface SkillArea { // Simple skill area for homepage
