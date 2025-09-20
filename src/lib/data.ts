@@ -289,7 +289,7 @@ export const projectData: ProjectEntry[] = [
 const genericStoryline = (
   title: string,
   type: string = 'software project',
-  imageSrc: string
+  imageSrc?: string
 ): ProjectStorylineItem[] => [
   { type: 'heading', content: `Overview` },
   {
@@ -626,38 +626,38 @@ export const certificationsData: Certification[] = [
     issuingOrganization: 'IBM (Coursera)',
     credentialUrl:
       'https://www.coursera.org/professional-certificates/ibm-data-science',
-    imageUrls: 'https://placehold.co/100x60.png',
-    imageHints: 'ibm data science badge'
+    imageUrl: 'https://placehold.co/100x60.png',
+    imageHint: 'ibm data science badge'
   },
   {
     name: 'Applied Data Science Specialization',
     issuingOrganization: 'Coursera',
     credentialUrl:
       'https://www.coursera.org/specializations/applied-data-science',
-    imageUrls: 'https://placehold.co/100x60.png',
-    imageHints: 'coursera data science badge'
+    imageUrl: 'https://placehold.co/100x60.png',
+    imageHint: 'coursera data science badge'
   },
   {
     name: 'Python for Data Science, AI & Development',
     issuingOrganization: 'IBM (Coursera)',
     credentialUrl:
       'https://www.coursera.org/learn/python-for-data-science-ai-development',
-    imageUrls: 'https://placehold.co/100x60.png',
-    imageHints: 'python ibm badge'
+    imageUrl: 'https://placehold.co/100x60.png',
+    imageHint: 'python ibm badge'
   },
   {
     name: 'Eduthon 2020',
     issuingOrganization: 'Competition based',
     credentialUrl: '#',
-    imageUrls: 'https://placehold.co/100x60.png',
-    imageHints: 'eduthon hackathon logo'
+    imageUrl: 'https://placehold.co/100x60.png',
+    imageHint: 'eduthon hackathon logo'
   },
   {
     name: 'Sr. Orange Belt',
     issuingOrganization: 'Internal/Company specific',
     credentialUrl: '#',
-    imageUrls: 'https://placehold.co/100x60.png',
-    imageHints: 'company award graphic'
+    imageUrl: 'https://placehold.co/100x60.png',
+    imageHint: 'company award graphic'
   }
 ]
 
