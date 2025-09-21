@@ -62,6 +62,14 @@ import payr4 from '@/assets/experience/payr/4.png'
 import payr5 from '@/assets/experience/payr/5.png'
 import payr6 from '@/assets/experience/payr/6.png'
 
+import testlify1 from '@/assets/experience/testlify/1.png'
+import testlify2 from '@/assets/experience/testlify/2.png'
+import testlify3 from '@/assets/experience/testlify/3.png'
+
+import clan1 from '@/assets/experience/clan/1.png'
+import clan2 from '@/assets/experience/clan/2.png'
+import clan3 from '@/assets/experience/clan/3.png'
+
 import mesa1 from '@/assets/projects/mesa/1.png'
 import mesa2 from '@/assets/projects/mesa/2.png'
 
@@ -163,8 +171,9 @@ export const workExperienceData: WorkExperienceEntry[] = [
       'Developed custom logic for each integration using Loopback 4 (LB4) and TypeScript framework.'
     ],
     imageUrls: [
-      'https://placehold.co/400x250.png',
-      'https://placehold.co/400x250.png'
+      testlify1.src,
+      testlify3.src,
+      testlify2.src,
     ],
     imageHints: ['api integration diagram', 'typescript code snippet']
   },
@@ -179,8 +188,10 @@ export const workExperienceData: WorkExperienceEntry[] = [
       'Designed and implemented a scalable system with a queue-based fanout mechanism and event-driven architecture.'
     ],
     imageUrls: [
-      'https://placehold.co/400x250.png',
-      'https://placehold.co/400x250.png'
+      clan1.src,
+      clan3.src,
+      clan2.src,
+
     ],
     imageHints: ['scalable system architecture', 'ui design sketch']
   },
