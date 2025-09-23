@@ -54,7 +54,8 @@ import {
   Palette as PaletteIcon,
   LifeBuoy,
   Github as GithubIcon,
-  ShieldCheck
+  ShieldCheck,
+  TrendingUpDown
 } from 'lucide-react'
 import { ContactForm } from '@/components/contact-form'
 import { format } from 'date-fns'
@@ -126,24 +127,28 @@ export default async function Home () {
   const aboutMeIcons = [
     {
       icon: UsersRound,
-      text: 'Business Centric: Developing effective tech-strategies and solutions for any business requirements, not limiting the business to just the tools in my arsenal.'
+      text: 'Developing effective tech-strategies and solutions for any business requirements, not limiting the business to just the tools in my arsenal.'
     },
     {
       icon: Briefcase,
-      text: 'Technology Leadership: Guiding technical direction and fostering innovation.'
+      text: 'Guiding technical direction and fostering innovation in my team.'
     },
     {
       icon: Brain,
-      text: 'Strategic Problem-Solving: Tackling challenges with analytical and creative thinking, as well as prompt disaster management.'
+      text: 'Navigating challenges with analytical and creative thinking, as well as prompt disaster management.'
     },
     {
       icon: ShieldCheck,
-      text: 'Quality Craftsmanship: Delivering polished, functional, and scalable solutions.'
+      text: 'Delivering polished, functional, and scalable solutions.'
+    },
+    {
+      icon: TrendingUpDown,
+      text: 'Balancing vision & strategy with data-backed evidences to achieve optimal outcomes.'
     },
     {
       icon: MessageSquare,
-      text: 'Clear Communication: Ensuring alignment across teams and non-tech stakeholders.'
-    }
+      text: 'Ensuring alignment across teams and non-tech stakeholders.'
+    },
   ]
 
   return (
@@ -168,6 +173,9 @@ export default async function Home () {
           )}
           <p className='text-lg md:text-xl text-muted-foreground mb-8 font-sans max-w-3xl mx-auto'>
             {heroData.tagline}
+          </p>
+          <p className='text-lg md:text-lg  mb-4 font-sans max-w-3xl mx-auto'>
+            Great things are created when empathy, strategy, and artistry come together.
           </p>
           <div className='text-sm text-muted-foreground space-y-3 sm:space-y-0 sm:flex sm:items-center sm:justify-center sm:space-x-6 mb-10'>
             <div className='flex items-center justify-center'>
@@ -302,50 +310,10 @@ export default async function Home () {
                 </li>
               ))}
             </ul>
+            
             <h3 className='font-headline text-2xl mt-8 mb-4'>
-              My Design Philosophy
+              Beyond the code
             </h3>
-            <p>
-              I believe that great design is born at the intersection of
-              empathy, strategy, and artistry. It's about understanding the
-              user's needs, aligning with business goals, and then weaving those
-              elements into a seamless and delightful experience. My process is
-              iterative and collaborative, always striving for clarity and
-              impact. I advocate for:
-            </p>
-            <ul className='list-disc list-inside space-y-2 my-4'>
-              <li>
-                <strong>User-Centricity:</strong> Placing the user at the heart
-                of every design decision.
-              </li>
-              <li>
-                <strong>Simplicity & Clarity:</strong> Distilling complexity
-                into intuitive and accessible solutions.
-              </li>
-              <li>
-                <strong>Meaningful Innovation:</strong> Pushing boundaries
-                thoughtfully to create novel and valuable experiences.
-              </li>
-              <li>
-                <strong>Data-Informed Creativity:</strong> Balancing artistic
-                vision with empirical evidence to achieve optimal outcomes.
-              </li>
-              <li>
-                <strong>Ethical Design:</strong> Creating responsible and
-                inclusive products that respect user autonomy and privacy.
-              </li>
-            </ul>
-
-            <h3 className='font-headline text-2xl mt-8 mb-4'>
-              Beyond the Pixels
-            </h3>
-            <p>
-              When I'm not immersed in design projects, I enjoy exploring new
-              technologies, contributing to open-source projects, and
-              continuously learning to stay at the forefront of the
-              ever-evolving digital landscape. I'm always eager to connect with
-              fellow creatives and innovators, so feel free to reach out!
-            </p>
             <p>
               My goal is to leverage my skills and passion to contribute to
               projects that make a positive impact, drive innovation, and
@@ -360,6 +328,33 @@ export default async function Home () {
         </div>
       </SectionContainer>
 
+      {/* Skills Section - Detailed */}
+      <SectionContainer
+        id='skills'
+        bgColorClass='bg-section-skills'
+        fullWidthBg
+        animated
+      >
+        <SectionHeader
+          title='Skills &amp; Expertise'
+          subtitle='Core Competencies & Proficiency'
+          alignment='left'
+        />
+        <p className='text-left text-lg text-muted-foreground mb-12 max-w-3xl font-sans'>
+          With a diverse range of skills spanning technology leadership, following are some of my core
+          competencies that I have leveraged to bring ideas to life, so far.
+        </p>
+        <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8'>
+          {skillCategories.map((category, index) => (
+            <SkillCategory
+              key={category.name + index}
+              category={category}
+              animationDelay={index * 10}
+            />
+          ))}
+        </div>
+      </SectionContainer>
+      
       {/* Work Experience Section - Detailed */}
       <SectionContainer
         id='experience'
@@ -377,7 +372,7 @@ export default async function Home () {
             <ExperienceItem
               key={exp.company + exp.role + index}
               experience={exp}
-              animationDelay={index * 100}
+              animationDelay={index * 10}
             />
           ))}
         </div>
@@ -451,6 +446,7 @@ export default async function Home () {
               </header>
               {project.imageUrls.map((imageUrl: string, i: number) => (
                 <Image
+                key={i}
                   src={imageUrl}
                   alt={project.title}
                   width={1200}
@@ -478,33 +474,6 @@ export default async function Home () {
         </div>
       </SectionContainer>
 
-      {/* Skills Section - Detailed */}
-      <SectionContainer
-        id='skills'
-        bgColorClass='bg-section-skills'
-        fullWidthBg
-        animated
-      >
-        <SectionHeader
-          title='Skills &amp; Expertise'
-          subtitle='Core Competencies & Technical Proficiency'
-          alignment='left'
-        />
-        <p className='text-left text-lg text-muted-foreground mb-12 max-w-3xl font-sans'>
-          I possess a diverse range of skills spanning technology leadership,
-          full-stack development, and design. Here's a breakdown of my core
-          competencies and the tools I leverage to bring ideas to life.
-        </p>
-        <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8'>
-          {skillCategories.map((category, index) => (
-            <SkillCategory
-              key={category.name + index}
-              category={category}
-              animationDelay={index * 100}
-            />
-          ))}
-        </div>
-      </SectionContainer>
 
       {/* Education Section */}
       <SectionContainer

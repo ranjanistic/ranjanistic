@@ -70,6 +70,23 @@ import clan1 from '@/assets/experience/clan/1.png'
 import clan2 from '@/assets/experience/clan/2.png'
 import clan3 from '@/assets/experience/clan/3.png'
 
+import knotters1 from '@/assets/experience/knotters/1.png'
+import knotters2 from '@/assets/experience/knotters/2.png'
+import knotters3 from '@/assets/experience/knotters/3.png'
+import knotters4 from '@/assets/experience/knotters/4.png'
+
+import soco1 from '@/assets/experience/soco/1.png'
+import soco2 from '@/assets/experience/soco/2.png'
+import soco3 from '@/assets/experience/soco/3.png'
+
+import pm1 from '@/assets/experience/pm/1.png'
+import pm2 from '@/assets/experience/pm/2.png'
+import pm3 from '@/assets/experience/pm/3.png'
+
+import dcrew1 from '@/assets/experience/dcrew/1.png'
+import e2l1 from '@/assets/experience/e2l/1.png'
+import e2l2 from '@/assets/experience/e2l/2.png'
+
 import mesa1 from '@/assets/projects/mesa/1.png'
 import mesa2 from '@/assets/projects/mesa/2.png'
 
@@ -79,7 +96,7 @@ export const heroData: HeroData = {
   tagline:
     '[System architect] [DevOps engineer] [Software developer] [UI-UX designer]',
   summary:
-    'With 5 years of dedicated industry experience, I thrive on the full product development lifecycle, from strategy to production. My expertise spans but not limited to - technology leadership, effective communication, intuitive design, strategic problem navigation & solving, and engaging presentation.',
+    'From strategy to production, my expertise spans but is not limited to - technology leadership, effective communication, intuitive design, strategic problem navigation & solving, and engaging presentation.',
   location: 'Noida, UP (India)',
   email: 'priyanshuranjan88@gmail.com',
   gitlab: 'https://gitlab.com/ranjanistic',
@@ -93,9 +110,9 @@ export const navLinksData: NavLink[] = [
     label: (heroData.name ? heroData.name.split(' ')[0] : 'Priyanshu') + '.'
   },
   { href: '/#about', label: 'About' },
+  { href: '/#skills', label: 'Skills' },
   { href: '/#experience', label: 'Experience' },
   { href: '/#projects', label: 'Projects' },
-  { href: '/#skills', label: 'Skills' },
   { href: '/#education', label: 'Education' },
   { href: '/#certifications', label: 'Certifications' },
   { href: '/#honors', label: 'Honors' },
@@ -204,7 +221,9 @@ export const workExperienceData: WorkExperienceEntry[] = [
       'Developed and managed realtime multiplayer gaming architecture.',
       'Implemented WebSockets-based logic for multiplayer games and high-level Blockchain features.'
     ],
-    imageUrls: ['https://placehold.co/400x250.png'],
+    imageUrls: [
+      dcrew1.src
+    ],
     imageHints: ['multiplayer game interface']
   },
   {
@@ -219,8 +238,10 @@ export const workExperienceData: WorkExperienceEntry[] = [
       'Knotters was recognized and sponsored by NASSCOM during this period.'
     ],
     imageUrls: [
-      'https://placehold.co/400x250.png',
-      'https://placehold.co/400x250.png'
+      knotters1.src,
+      knotters2.src,
+      knotters3.src,
+      knotters4.src,
     ],
     imageHints: ['open source platform dashboard', 'django project structure']
   },
@@ -233,7 +254,11 @@ export const workExperienceData: WorkExperienceEntry[] = [
       'Developed NodeJS APIs and microservices.',
       'Performed unit testing and database operations using MongoDB.'
     ],
-    imageUrls: ['https://placehold.co/400x250.png'],
+    imageUrls: [
+      soco1.src,
+      soco2.src,
+      soco3.src,
+    ],
     imageHints: ['api endpoint structure']
   },
   {
@@ -246,7 +271,11 @@ export const workExperienceData: WorkExperienceEntry[] = [
       'Created a virtual web-based gaming engine, easing development processes for educational content.',
       'Led the initiative for virtual labs development within the company.'
     ],
-    imageUrls: ['https://placehold.co/400x250.png'],
+    imageUrls: [
+      pm1.src,
+      pm2.src,
+      pm3.src,
+    ],
     imageHints: [
       'virtual lab interface',
       'blockly ide screenshot',
@@ -261,7 +290,10 @@ export const workExperienceData: WorkExperienceEntry[] = [
     description: [
       'Developed a customer and product relationship management (CPRM) website for an ed-tech startup, for e-commerce.'
     ],
-    imageUrls: ['https://placehold.co/400x250.png'],
+    imageUrls: [
+      e2l1.src,
+      e2l2.src,
+    ],
     imageHints: ['edtech crm dashboard']
   }
 ]
@@ -278,7 +310,7 @@ export const projectData: ProjectEntry[] = [
     imageHints: ['astronomy simulation stars']
   },
   {
-    title: 'Knotters - Open Source Community Portal',
+    title: 'Knotters - Open Source Community',
     description:
       'A platform for open source project collaboration and competitions, built from idea to production.',
     link: '/#projects',
@@ -302,11 +334,11 @@ const genericStoryline = (
   type: string = 'software project',
   imageSrc?: string
 ): ProjectStorylineItem[] => [
-  { type: 'heading', content: `Overview` },
-  {
-    type: 'paragraph',
-    content: `This section provides a detailed look into the ${title} ${type}, covering its objectives, development process, and outcomes.`
-  },
+  // { type: 'heading', content: `Overview` },
+  // {
+  //   type: 'paragraph',
+  //   content: `This section provides a detailed look into the ${title} ${type}, covering its objectives, development process, and outcomes.`
+  // },
   {
     type: 'image',
     src: imageSrc || 'https://placehold.co/800x450.png',
@@ -359,7 +391,7 @@ export const projects: Project[] = [
   {
     id: 'knotters-portal',
     slug: 'knotters-portal',
-    title: 'Knotters - Open Source Community Portal',
+    title: 'Knotters - Open Source Community',
     shortDescription:
       'Community platform for open source collaboration and resume-building competitions.',
     description:
@@ -496,20 +528,20 @@ export const skillsData: SkillArea[] = [
 
 export const skillCategories: SkillCategory[] = [
   {
-    name: 'Core Expertise',
+    name: 'Core',
     iconName: 'ShieldCheck',
     skills: [
       { name: 'Technology Leadership', level: 95 },
       { name: 'Amazon Web Services (AWS)', level: 90 },
       { name: 'Identity and Access Management (IAM)', level: 88 },
       { name: 'System Design & Architecture', level: 92 },
-      { name: 'Product Development Lifecycle', level: 93 },
-      { name: 'DevOps Practices & CI/CD', level: 88 },
+      { name: 'Software Development Lifecycle', level: 93 },
+      { name: 'DevOps & CI/CD', level: 88 },
       { name: 'Microservices Architecture', level: 85 }
     ]
   },
   {
-    name: 'Programming Languages',
+    name: 'Programming',
     iconName: 'Code',
     skills: [
       { name: 'JavaScript (ES6+ & TypeScript)', level: 95 },
@@ -518,25 +550,25 @@ export const skillCategories: SkillCategory[] = [
       { name: 'Kotlin', level: 78 },
       { name: 'Java', level: 75 },
       { name: 'C/C++', level: 70 },
-      { name: 'HTML5 / CSS3', level: 95 },
+      // { name: 'HTML5 / CSS3', level: 95 },
       { name: 'Bash Scripting', level: 80 }
     ]
   },
   {
-    name: 'Frameworks & Libraries',
+    name: 'Frameworks',
     iconName: 'Briefcase',
     skills: [
-      { name: 'Node.js (Express, Loopback 4)', level: 92 },
-      { name: 'ReactJS / Next.js', level: 90 },
+      { name: 'Node.js (Express, Loopback)', level: 92 },
+      { name: 'ReactJS, Next.js', level: 90 },
       { name: 'Django', level: 88 },
       { name: 'Beego (Golang)', level: 75 },
-      { name: 'Apache / Nginx', level: 80 },
+      { name: 'Apache, Nginx', level: 80 },
       { name: 'Redis', level: 80 },
-      { name: 'PM2 / Gunicorn', level: 80 }
+      { name: 'PM2, Gunicorn', level: 80 }
     ]
   },
   {
-    name: 'Databases & DevOps Tools',
+    name: 'DB & DevOps',
     iconName: 'Settings',
     skills: [
       { name: 'MongoDB', level: 85 },
@@ -549,7 +581,7 @@ export const skillCategories: SkillCategory[] = [
     ]
   },
   {
-    name: 'Software & Design Tools',
+    name: 'Tools',
     iconName: 'Palette',
     skills: [
       { name: 'Figma', level: 85 },
@@ -573,16 +605,16 @@ export const skillCategories: SkillCategory[] = [
     ]
   },
   {
-    name: 'AI & Emerging Tech',
+    name: 'AI Integration',
     iconName: 'Wand2',
     skills: [
-      { name: 'Genkit Fundamentals', level: 70 },
-      { name: 'LLM Integration (Conceptual)', level: 65 },
-      { name: 'Prompt Engineering Basics', level: 75 }
+      { name: 'LLM Integration', level: 65 },
+      // { name: 'Genkit', level: 70 },
+      { name: 'Prompt Engineering', level: 75 }
     ]
   },
   {
-    name: 'Human Languages',
+    name: 'Languages',
     iconName: 'Languages',
     skills: [
       { name: 'English', level: 90, detail: 'Professional Working' },

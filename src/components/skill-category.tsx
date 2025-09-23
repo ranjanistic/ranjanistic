@@ -6,7 +6,7 @@ import { Progress } from '@/components/ui/progress';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useScrollReveal } from '@/hooks/use-scroll-reveal';
 import { cn } from '@/lib/utils';
-import { Palette, Code as CodeIcon, Briefcase, Settings, Users, BookOpen, Wand2, Award, Star, Languages as LanguagesIcon, ShieldCheck } from 'lucide-react'; 
+import { Palette, Code as CodeIcon, Briefcase, Settings, Users, BookOpen, Wand2, Award, Star, Languages as LanguagesIcon, ShieldCheck, CheckCircle } from 'lucide-react'; 
 import type { LucideIcon } from 'lucide-react';
 
 interface SkillCategoryProps {
@@ -42,7 +42,7 @@ export function SkillCategory({ category, animationDelay = 0 }: SkillCategoryPro
       style={isVisible ? { transitionDelay: `${animationDelay}ms` } : {}}
     >
       <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300 h-full bg-card text-card-foreground">
-        <CardHeader className="flex flex-row items-center gap-4 pb-4">
+        <CardHeader className="flex flex-row items-center gap-4 pb-6">
           {IconComponent && <IconComponent className="h-8 w-8 text-primary" />}
           <CardTitle className="text-2xl font-headline text-foreground">{category.name}</CardTitle>
         </CardHeader>
@@ -52,15 +52,16 @@ export function SkillCategory({ category, animationDelay = 0 }: SkillCategoryPro
               <li key={skill.name}>
                 <div className="flex justify-between mb-1">
                   <span className="text-sm font-medium text-foreground">{skill.name}</span>
-                  <span className="text-sm font-medium text-muted-foreground">
+                  <CheckCircle className="h-4 w-4 mr-2 mt-0.5 text-green-500 shrink-0" />
+                  {/* <span className="text-sm font-medium text-muted-foreground">
                     {skill.detail ? `${skill.level}% (${skill.detail})` : `${skill.level}%`}
-                  </span>
+                  </span> */}
                 </div>
-                <Progress 
+                {/* <Progress 
                   value={isVisible ? skill.level : 0} 
                   aria-label={`${skill.name} proficiency ${skill.level}% ${skill.detail || ''}`} 
                   className="h-2 transition-all duration-1000 ease-out [&>div]:bg-primary" 
-                />
+                /> */}
               </li>
             ))}
           </ul>
