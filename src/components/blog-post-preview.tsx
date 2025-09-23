@@ -1,4 +1,3 @@
-
 // "use client"; // No longer needed as it's a simple return
 // import Image from 'next/image';
 // import Link from 'next/link';
@@ -19,5 +18,5 @@
 // This component is no longer used as the blog section has been removed.
 // Returning null or a placeholder to avoid errors if it were somehow still imported.
 export function BlogPostPreview() {
-  return null;
+    return null;
 }

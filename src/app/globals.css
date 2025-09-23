@@ -3,95 +3,102 @@
 @tailwind utilities;
 
 body {
-  font-family: var(--font-inter-tight), sans-serif; /* Default to Inter Tight for body */
+    font-family: var(--font-inter-tight), sans-serif; /* Default to Inter Tight for body */
 }
 
 @layer base {
-  :root {
-    /* New Color Palette - Professional & Bold with Solid Backgrounds */
-    --background: 220 20% 15%; /* Dark Slate Blue/Charcoal */
-    --foreground: 210 30% 95%; /* Light Gray/Off-White */
+    :root {
+        /* New Color Palette - Professional & Bold with Solid Backgrounds */
+        --background: 220 20% 15%; /* Dark Slate Blue/Charcoal */
+        --foreground: 210 30% 95%; /* Light Gray/Off-White */
 
-    --muted: 220 20% 20%; /* Slightly Lighter Dark Slate for muted backgrounds */
-    --muted-foreground: 210 20% 70%; /* Medium-Light Gray for muted text */
+        --muted: 220 20% 20%; /* Slightly Lighter Dark Slate for muted backgrounds */
+        --muted-foreground: 210 20% 70%; /* Medium-Light Gray for muted text */
 
-    --popover: 220 20% 12%; 
-    --popover-foreground: 210 30% 95%;
+        --popover: 220 20% 12%;
+        --popover-foreground: 210 30% 95%;
 
-    --card: 220 20% 18%; /* Darker card, distinct from main background */
-    --card-foreground: 210 30% 95%;
+        --card: 220 20% 18%; /* Darker card, distinct from main background */
+        --card-foreground: 210 30% 95%;
 
-    --border: 220 20% 30%; 
-    --input: 220 20% 25%; 
+        --border: 220 20% 30%;
+        --input: 220 20% 25%;
 
-    --primary: 180 70% 50%; /* Vibrant Teal/Cyan */
-    --primary-foreground: 220 20% 10%; /* Dark text for primary buttons */
-    
-    --secondary: 220 15% 40%; /* Muted Blue-Gray for secondary elements */
-    --secondary-foreground: 210 30% 90%; 
+        --primary: 180 70% 50%; /* Vibrant Teal/Cyan */
+        --primary-foreground: 220 20% 10%; /* Dark text for primary buttons */
 
-    --accent: 15 90% 60%; /* Warm Coral/Orange */
-    --accent-foreground: 220 20% 10%; /* Dark text for on accent */
+        --secondary: 220 15% 40%; /* Muted Blue-Gray for secondary elements */
+        --secondary-foreground: 210 30% 90%;
 
-    --destructive: 0 70% 55%; 
-    --destructive-foreground: 210 30% 95%;
+        --accent: 15 90% 60%; /* Warm Coral/Orange */
+        --accent-foreground: 220 20% 10%; /* Dark text for on accent */
 
-    --ring: 180 70% 55%; 
-    --radius: 0.5rem;
+        --destructive: 0 70% 55%;
+        --destructive-foreground: 210 30% 95%;
 
-    --chart-1: 180 70% 50%;
-    --chart-2: 15 85% 65%;
-    --chart-3: 200 60% 55%;
-    --chart-4: 280 50% 60%;
-    --chart-5: 50 70% 50%;
+        --ring: 180 70% 55%;
+        --radius: 0.5rem;
 
-    --hero-gradient-start: hsl(var(--background), 0.95); /* Slightly lighter than background */
-    --hero-gradient-end: hsl(var(--background));       /* Main background color */
+        --chart-1: 180 70% 50%;
+        --chart-2: 15 85% 65%;
+        --chart-3: 200 60% 55%;
+        --chart-4: 280 50% 60%;
+        --chart-5: 50 70% 50%;
 
-    --section-bg-about: hsl(220 20% 18%); 
-    --section-bg-experience: hsl(var(--background)); /* Main bg */
-    --section-bg-projects: hsl(220 20% 18%);
-    --section-bg-skills: hsl(var(--background)); /* Main bg */
-    --section-bg-education: hsl(220 20% 18%);
-    --section-bg-blog: hsl(var(--background)); /* Main bg */
-    --section-bg-contact: hsl(220 20% 18%);
-  }
+        --hero-gradient-start: hsl(var(--background), 0.95); /* Slightly lighter than background */
+        --hero-gradient-end: hsl(var(--background)); /* Main background color */
 
-  /* No separate dark mode needed if base is dark */
-  /* .dark { ... } */
+        --section-bg-about: hsl(220 20% 18%);
+        --section-bg-experience: hsl(var(--background)); /* Main bg */
+        --section-bg-projects: hsl(220 20% 18%);
+        --section-bg-skills: hsl(var(--background)); /* Main bg */
+        --section-bg-education: hsl(220 20% 18%);
+        --section-bg-blog: hsl(var(--background)); /* Main bg */
+        --section-bg-contact: hsl(220 20% 18%);
+    }
+
+    /* No separate dark mode needed if base is dark */
+    /* .dark { ... } */
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-    @apply antialiased;
-  }
-  html {
-    scroll-behavior: smooth;
-  }
-  a {
-    @apply text-primary hover:text-accent font-medium transition-colors duration-300;
-    @apply no-underline hover:underline underline-offset-4;
-  }
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-headline text-foreground; /* Archivo will be applied via --font-headline */
-  }
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground;
+        @apply antialiased;
+    }
+    html {
+        scroll-behavior: smooth;
+    }
+    a {
+        @apply text-primary hover:text-accent font-medium transition-colors duration-300;
+        @apply no-underline hover:underline underline-offset-4;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply font-headline text-foreground; /* Archivo will be applied via --font-headline */
+    }
 
-  .gradient-text {
-    @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
-  }
+    .gradient-text {
+        @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
+    }
 }
 
 .scroll-reveal-hidden {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    opacity: 0;
+    transform: translateY(30px);
+    transition:
+        opacity 0.7s ease-out,
+        transform 0.7s ease-out;
 }
 
 .scroll-reveal-visible {
-  opacity: 1;
-  transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
 }

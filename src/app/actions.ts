@@ -1,4 +1,3 @@
-
 "use server";
 
 // This file is intentionally kept minimal for static site generation.
@@ -7,8 +6,8 @@
 // The ContactFormState type might be used if re-enabling server actions,
 // but it's not actively used for the client-side mailto: functionality.
 export type ContactFormState = {
-  message: string;
-  fields?: Record<string, string>;
-  issues?: string[];
-  success: boolean;
+    message: string;
+    fields?: Record<string, string>;
+    issues?: string[];
+    success: boolean;
 };
